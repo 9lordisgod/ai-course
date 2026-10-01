@@ -1053,12 +1053,20 @@ function wire(path, parts) {
 }
 
 // ---------- Update check ----------
-// GitHub Pages caches for 10 minutes and the hash router never reloads the page, so a tab can
-// outlive several deploys. version.json is stamped per deploy; offer a reload when it changes.
+// GitHub Pages sits behind a CDN that caches every URL for 10 minutes and ignores the browser's
+// no-cache/reload requests, and the hash router never reloads the page, so a tab can outlive
+// several deploys. version.json (always fetched under a unique URL) is stamped per deploy; when
+// it changes, offer a reload that navigates to a unique URL so neither the browser nor the CDN
+// can answer from cache. boot() strips that marker once the fresh page is running.
+const UPDATE_PARAM = "b";
 function watchForUpdates() {
   if (!IS_RELEASE) return;
   let prompted = false;
-  const reloadFresh = () => fetch(location.href.replace(/#.*$/, ""), { cache: "reload" }).catch(() => {}).finally(() => location.reload());
+  const reloadFresh = (build) => {
+    const url = new URL(location.href);
+    url.searchParams.set(UPDATE_PARAM, `${build}.${Date.now().toString(36)}`);
+    location.replace(url.href);
+  };
   const check = async (force) => {
     if (prompted || (force !== true && document.visibilityState === "hidden")) return;
     try {
@@ -1067,7 +1075,7 @@ function watchForUpdates() {
       const { build } = await r.json();
       if (!build || build === BUILD) return;
       prompted = true;
-      toast(t("ui.update.ready"), "refresh", { sticky: true, action: { label: t("ui.update.reload"), onClick: reloadFresh } });
+      toast(t("ui.update.ready"), "refresh", { sticky: true, action: { label: t("ui.update.reload"), onClick: () => reloadFresh(build) } });
     } catch {}
   };
   setTimeout(() => check(true), 4000);
@@ -1077,7 +1085,16 @@ function watchForUpdates() {
 }
 
 // ---------- Boot ----------
+function stripUpdateMarker() {
+  const params = new URLSearchParams(location.search);
+  if (!params.has(UPDATE_PARAM)) return;
+  params.delete(UPDATE_PARAM);
+  const rest = params.toString();
+  history.replaceState(null, "", `${location.pathname}${rest ? `?${rest}` : ""}${location.hash}`);
+}
+
 async function boot() {
+  stripUpdateMarker();
   const [i18n, courses, policy, tracks, library] = await Promise.all(["data/i18n.json", "data/courses.json", "data/policy.json", "data/tracks.json", "data/library.json"].map((u) => fetch(versioned(u)).then((r) => { if (!r.ok) throw new Error(u); return r.json(); })));
   Object.assign(state, { i18n, courses, policy, library, tracks: tracks.tracks, trackModules: tracks.modules });
   document.documentElement.dataset.theme = state.theme;

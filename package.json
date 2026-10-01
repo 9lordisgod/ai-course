@@ -19,8 +19,5 @@
   "dependencies": {
     "dotenv": "^18.0.5",
     "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "pptxgenjs": "^4.0.1"
   }
 }

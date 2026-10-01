@@ -270,9 +270,10 @@ function renderChrome() {
           <div class="search-results" id="searchResults" hidden></div>
         </div>
         <div class="actions">
+          <button class="btn-icon search-btn" id="searchBtn" aria-label="${esc(t("ui.search"))}" aria-expanded="false" aria-controls="q">${icon("search")}</button>
           <button class="btn-icon" id="themeBtn" title="${esc(t("ui.theme"))}" aria-label="${esc(t("ui.theme"))}">${icon(state.theme === "dark" ? "sun" : "moon")}</button>
           <a class="btn btn-accent btn-sm hide-sm" href="#/courses">${esc(t("ui.startLearning"))}</a>
-          <button class="btn-icon menu-btn" id="menuBtn" aria-label="${esc(t("ui.menu"))}" aria-expanded="false">${icon("menu")}</button>
+          <button class="btn-icon menu-btn" id="menuBtn" aria-label="${esc(t("ui.menu"))}" aria-expanded="false" aria-controls="mobileMenu">${icon("menu")}</button>
         </div>
       </div>
       <div class="mobile-menu" id="mobileMenu">
@@ -306,7 +307,6 @@ function renderChrome() {
           <li><a href="${REPO}" target="_blank" rel="noopener">${icon("code")}${esc(fl.github)}</a></li>
           <li><a href="pitch/" target="_blank" rel="noopener">${icon("layers")}${esc(fl.deck)}</a></li>
           <li><a href="${REPO}/blob/main/docs/research.md" target="_blank" rel="noopener">${icon("file")}${esc(fl.research)}</a></li>
-          <li><a href="docs/Canada_AI_Education_K12_EN_ZH.pdf" target="_blank" rel="noopener">${icon("file")}${esc(fl.briefing)}</a></li>
         </ul></div>
       </div>
       <div class="wrap footer-bottom"><span>${esc(t("footer"))}</span><span>© ${new Date().getFullYear()} ${esc(t("brand"))} · ${esc(fl.openSource)} · ${IS_RELEASE
@@ -315,13 +315,23 @@ function renderChrome() {
     </div>`;
 
   $("#themeBtn").onclick = () => setTheme(state.theme === "dark" ? "light" : "dark");
-  const menuBtn = $("#menuBtn"), menu = $("#mobileMenu");
-  menuBtn.onclick = () => {
-    const open = menu.classList.toggle("open");
+  const menuBtn = $("#menuBtn"), menu = $("#mobileMenu"), searchBtn = $("#searchBtn"), topbar = $(".topbar");
+  const setMenu = (open) => {
+    menu.classList.toggle("open", open);
     menuBtn.setAttribute("aria-expanded", String(open));
     menuBtn.innerHTML = icon(open ? "close" : "menu");
   };
-  menu.onclick = () => { menu.classList.remove("open"); menuBtn.innerHTML = icon("menu"); };
+  // Phones hide the inline search box; this toggles it as a panel under the topbar.
+  const setSearch = (open) => {
+    topbar.classList.toggle("search-open", open);
+    searchBtn.setAttribute("aria-expanded", String(open));
+    searchBtn.innerHTML = icon(open ? "close" : "search");
+    if (open) { setMenu(false); $("#q").focus(); } else { $("#searchResults").hidden = true; }
+  };
+  menuBtn.onclick = () => { setSearch(false); setMenu(!menu.classList.contains("open")); };
+  searchBtn.onclick = () => setSearch(!topbar.classList.contains("search-open"));
+  menu.onclick = () => setMenu(false);
+  window.addEventListener("hashchange", () => { setMenu(false); setSearch(false); });
   wireSearch();
 }
 
@@ -584,7 +594,7 @@ const pages = {
     return `
       <div class="wrap">${crumbs(crumbTrail)}</div>
       <div class="wrap layout">
-        <aside class="side">${tocCard(m)}${miniMastery(m)}</aside>
+        <aside class="side side-toc">${tocCard(m)}${miniMastery(m)}</aside>
         <div class="content">
           <header class="mod-hero">
             <div class="thumb ${thumbClass(m)} lg">${icon(m.icon)}</div>
@@ -634,7 +644,7 @@ const pages = {
     return `
       <div class="wrap">${crumbs(crumbTrail)}</div>
       <div class="wrap layout">
-        <aside class="side" id="lessonSide">${tocCard(m, l.id)}${miniMastery(m)}</aside>
+        <aside class="side side-toc" id="lessonSide">${tocCard(m, l.id)}${miniMastery(m)}</aside>
         <div class="content article">
           <p class="kicker">${esc(ui.lesson)} ${idx + 1} ${esc(ui.of)} ${m.lessons.length}</p>
           <h1>${esc(L(l.title))}</h1>
@@ -754,7 +764,7 @@ const pages = {
         <div>
           <p class="lead">${esc(a.body)}</p>
           <div class="notice">${icon("info")} ${esc(t("policy.subtitle"))}</div>
-          <div class="hero-actions" style="margin-top:24px"><a class="btn btn-dark" href="${REPO}" target="_blank" rel="noopener">${icon("code")} GitHub</a><a class="btn btn-ghost" href="pitch/" target="_blank" rel="noopener">${icon("layers")} ${esc(t("nav.pitch"))}</a><a class="btn btn-ghost" href="docs/Canada_AI_Education_K12_EN_ZH.pdf" target="_blank" rel="noopener">${icon("file")} PDF</a></div>
+          <div class="hero-actions" style="margin-top:24px"><a class="btn btn-dark" href="${REPO}" target="_blank" rel="noopener">${icon("code")} GitHub</a><a class="btn btn-ghost" href="pitch/" target="_blank" rel="noopener">${icon("layers")} ${esc(t("nav.pitch"))}</a></div>
         </div>
         <div class="card"><h4>${esc(a.sources)}</h4><ul>${state.policy.sources.map((s) => `<li><a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)} ${icon("external")}</a></li>`).join("")}</ul></div>
       </div>`;
@@ -781,7 +791,7 @@ const pages = {
     return `
       <div class="wrap">${crumbs([{ label: t("nav.tracks"), href: "#/tracks" }, { label: tr.title }])}</div>
       <div class="wrap layout">
-        <aside class="side">
+        <aside class="side side-toc">
           <div class="card side-card">
             <h4>${esc(tk.spine)}</h4>
             <ol class="spine lg">${tr.spine.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
@@ -957,7 +967,8 @@ function wire(path, parts) {
 
   if (path === "module" && parts[1]) {
     const [mid, lid] = parts;
-    const m = findModule(mid), l = m.lessons.find((x) => x.id === lid);
+    const m = findModule(mid), l = m && m.lessons.find((x) => x.id === lid);
+    if (!l || !$("#player")) return;
     const ui = { root: $("#player"), btn: $("#listen"), status: $("#ttsStatus"), player: $("#ttsPlayer"), defaultStatus: $("#ttsStatus").textContent };
     const text = `${L(l.title)}. ${L(l.body)}`;
     ui.btn.onclick = () => (ui.btn.dataset.playing ? tts.stop() : tts.speak(text, "en", ui));

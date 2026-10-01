@@ -5,6 +5,8 @@
     "nav": {
       "home": "Home",
       "courses": "Courses",
+      "tracks": "Tracks",
+      "library": "Library",
       "teachers": "Teachers",
       "parents": "Parents",
       "policy": "Policy",
@@ -12,7 +14,7 @@
       "about": "About"
     },
     "ui": {
-      "search": "Search lessons, topics, policies…",
+      "search": "Search lessons, tracks, library…",
       "searchEmpty": "No matching lessons",
       "searchAll": "See all results",
       "theme": "Toggle dark mode",
@@ -115,21 +117,21 @@
     "hero": {
       "kicker": "National AI Literacy Initiative · 2026",
       "title": "Learn how AI really works. Then teach it.",
-      "subtitle": "Ready-to-teach K–12 modules on how AI works, generative AI, bias, privacy, academic integrity, Indigenous data sovereignty and future careers — every lesson narrated by ElevenLabs.",
+      "subtitle": "Ready-to-teach K–12 modules on how AI works, generative AI, bias, privacy, academic integrity, Indigenous data sovereignty and future careers — plus four open learning tracks from a first chatbot to Academic ML. Every lesson narrated by ElevenLabs.",
       "cta": "Start learning",
-      "cta2": "For teachers",
+      "cta2": "Explore tracks",
       "stats": [
         {
-          "n": "8",
+          "k": "modules",
           "l": "modules"
         },
         {
-          "n": "K–12",
-          "l": "grade bands"
+          "k": "tracks",
+          "l": "learning tracks"
         },
         {
-          "n": "2",
-          "l": "languages"
+          "k": "library",
+          "l": "open resources"
         },
         {
           "n": "0",
@@ -170,8 +172,8 @@
         },
         {
           "icon": "globe",
-          "t": "Curriculum-mapped",
-          "d": "Every module is tagged to B.C. ADST & Career Education, New Brunswick's K–12 AI literacy strands and the Essentials for Educators topics."
+          "t": "Open learning tracks",
+          "d": "Four self-paced tracks — Intro, Practitioner ML, AI Engineer and Academic ML — built on Microsoft, Hugging Face, fast.ai, d2l.ai and Stanford open materials, with a license badge on every resource."
         },
         {
           "icon": "award",
@@ -187,6 +189,7 @@
       "k5": "K–5",
       "68": "6–8",
       "912": "9–12",
+      "adult": "Adult · self-paced",
       "lessons": "lessons",
       "min": "min",
       "start": "Open module",
@@ -209,7 +212,57 @@
       "next": "Next lesson",
       "back": "Back to module",
       "curriculum": "Curriculum connections",
-      "prev": "Previous"
+      "prev": "Previous",
+      "resources": "Open resources for this lesson",
+      "resourcesHelp": "Original lesson text by SI Academy. Resources are forked (permissive license) or linked to their official home."
+    },
+    "tracks": {
+      "kicker": "Beyond K–12",
+      "title": "Learning Tracks",
+      "subtitle": "Four self-paced tracks for learners beyond K–12 — from a first chatbot to reading research papers. Every lesson is original, and every lesson points to the best open curricula, free books and university classes.",
+      "topics": "Topics",
+      "outcome": "What you will build",
+      "audience": "Who it is for",
+      "spine": "Course spine",
+      "syllabus": "Syllabus",
+      "hours": "hours",
+      "weeks": "weeks",
+      "modules": "modules",
+      "start": "Start track",
+      "resume": "Resume track",
+      "complete": "Track complete",
+      "certificate": "Track certificate",
+      "certBody": "has completed all modules of the SI Academy {track} track",
+      "viewAll": "All tracks",
+      "licensing": "How we use open materials",
+      "licensingBody": "Fork = permissive license (MIT, Apache-2.0, CC BY-SA, CC0) — we may mirror and translate it with attribution. Link = officially free but still copyrighted — we point to its official home and never re-host it. No 'free PDF' dumps of commercial books, ever.",
+      "libraryTeaser": "Browse every curriculum, book, class and repository the tracks draw on, with its license and how we may use it.",
+      "libraryCta": "Open the library"
+    },
+    "library": {
+      "title": "Open Resource Library",
+      "subtitle": "Open curricula, officially free books, university classes and build-from-scratch repositories — each with its license and whether we may host it or only link to it.",
+      "rulesTitle": "Copyright rules we follow",
+      "all": "All",
+      "fork": "Fork & host",
+      "link": "Link only",
+      "hosting": "Hosting",
+      "license": "License",
+      "track": "Track",
+      "type": "Type",
+      "by": "by",
+      "search": "Search the library…",
+      "results": "resources",
+      "usedIn": "Used in",
+      "open": "Open",
+      "types": {
+        "course": "Course",
+        "book": "Book",
+        "class": "University class",
+        "code": "Code",
+        "cookbook": "Cookbook",
+        "index": "Index"
+      }
     },
     "teachers": {
       "title": "Teacher Hub",

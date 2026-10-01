@@ -1,6 +1,6 @@
 # SI Academy
 
-_Super Intelligence Academy — K–12 AI literacy with ElevenLabs voice-over_
+_Super Intelligence Academy — K–12 AI literacy and open learning tracks with ElevenLabs voice-over_
 
 ---
 
@@ -8,7 +8,7 @@ _Super Intelligence Academy — K–12 AI literacy with ElevenLabs voice-over_
 
 *Super Intelligence Academy · Pitch Deck 2026*
 
-- Open-source K–12 AI literacy platform — Khan-style mastery, Plan B-style clarity
+- Open-source AI literacy platform — K–12 curriculum plus four open learning tracks, Khan-style mastery, Plan B-style clarity
 - Aligned with Canada's National AI Literacy Initiative & provincial curricula
 - Studio-quality narration in every lesson via ElevenLabs
 - github.com/9lordisgod/ai-course
@@ -49,11 +49,12 @@ _Super Intelligence Academy — K–12 AI literacy with ElevenLabs voice-over_
 
 - 8 curriculum-mapped modules: How AI works · GenAI & cognitive offloading · Bias & deepfakes · Privacy · Academic integrity · Indigenous data sovereignty · Responsible use · Future careers
 - Every lesson: plain-English text, ElevenLabs voice-over, classroom activity, practice quiz, mastery points & certificate
-- Teacher Hub: traffic-light AI-use policy generator + disclosure templates
-- Parent portal & Provincial Policy Explorer
+- Beyond K–12: four learning tracks (Intro · Practitioner ML · AI Engineer · Academic) — 16 modules, 48 original lessons built on Microsoft, Hugging Face, fast.ai, d2l.ai, Karpathy and Stanford/MIT open courses
+- Open Resource Library: 41 curated curricula, books and classes with license and fork/link-only status — no rehosted copyrighted PDFs
+- Teacher Hub: traffic-light AI-use policy generator + disclosure templates · Parent portal · Provincial Policy Explorer
 - Privacy-first: no student accounts, progress on-device, works with district-approved tools
 
-> **Speaker notes:** Demo the lesson page: toggle to Chinese, press Listen. Then show the policy generator.
+> **Speaker notes:** Demo a K–12 lesson: press Listen, take the quiz, watch mastery update. Then open the AI Engineer track and the Open Resource Library, and finish with the policy generator.
 
 ---
 
@@ -117,7 +118,7 @@ _Super Intelligence Academy — K–12 AI literacy with ElevenLabs voice-over_
 - Code.org AI / Day of AI (MIT) / Experience AI (Google): strong but US/UK-centric, English-only, no Canadian policy mapping
 - Khanmigo / MagicSchool: AI tutors & teacher tools — not curricula about AI itself
 - aiEDU: US curriculum, English-only
-- Us: Canada-specific · curriculum-mapped · voice-over · policy generator · open-source
+- Us: Canada-specific · curriculum-mapped · voice-over · policy generator · open-source · a free on-ramp from K–12 to practitioner and research tracks
 
 > **Speaker notes:** We are complementary to AI tutors; we teach students how to use them responsibly.
 
@@ -127,10 +128,10 @@ _Super Intelligence Academy — K–12 AI literacy with ElevenLabs voice-over_
 
 *What's built*
 
-- ✅ Working platform: 8 modules, 12 lessons, quizzes, certificates, Teacher Hub, policy explorer — live on GitHub Pages
+- ✅ Working platform: 8 K–12 modules + 4 learning tracks (16 modules, 48 lessons, 100+ open-resource links), quizzes, certificates, Teacher Hub, Open Resource Library, policy explorer — live on GitHub Pages
 - ✅ ElevenLabs TTS pipeline with caching and browser fallback; live on GitHub Pages, deployable anywhere Node runs
 - Q4 2026: pilot schools, teacher feedback loop, French UI
-- 2027: LMS integrations, analytics, 20+ lessons per grade band, educator micro-credential
+- 2027: LMS integrations, analytics, 20+ lessons per grade band, mirrored notebooks for fork-licensed curricula, educator micro-credential
 
 > **Speaker notes:** Everything on this slide can be demoed live today.
 
@@ -149,7 +150,7 @@ _Super Intelligence Academy — K–12 AI literacy with ElevenLabs voice-over_
 
 ---
 
-## 12. Thank you · 谢谢
+## 12. Thank you
 
 *Contact*
 

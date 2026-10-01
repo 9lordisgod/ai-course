@@ -1,0 +1,796 @@
+{
+  "rules": [
+    {
+      "t": "Fork and host",
+      "d": "Materials under MIT, Apache-2.0, CC BY-SA or CC0 may be mirrored, translated and embedded on this platform with attribution and the original license file. Non-commercial variants (CC BY-NC-SA) may be hosted only in a non-commercial context."
+    },
+    {
+      "t": "Link only",
+      "d": "Officially free books that remain copyrighted — Goodfellow, ESL, MML, Murphy, Sutton & Barto, the Jurafsky & Martin draft, Prince's Understanding Deep Learning — and university course sites are linked to their official homes, never re-hosted."
+    },
+    {
+      "t": "No PDF dumps",
+      "d": "We do not link to 'free PDF' repositories of commercial textbooks. If a book is not free from its authors or publisher, it is not in this library."
+    },
+    {
+      "t": "Read the model card",
+      "d": "Open model weights carry their own licenses and use policies. Lessons that use them ask you to check the license before deploying."
+    }
+  ],
+  "sections": [
+    {
+      "id": "curricula",
+      "title": "Complete open curricula",
+      "summary": "Full courses with lessons, notebooks and quizzes under permissive licenses — the fastest way to stand up a real syllabus.",
+      "items": [
+        {
+          "id": "ms-ai",
+          "title": "AI for Beginners",
+          "by": "Microsoft",
+          "url": "https://github.com/microsoft/AI-For-Beginners",
+          "type": "course",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "24 lessons across symbolic AI, neural networks, vision and NLP with TensorFlow and PyTorch notebooks, quizzes and translations.",
+          "tags": [
+            "course",
+            "beginner",
+            "notebooks"
+          ],
+          "tracks": [
+            "intro"
+          ]
+        },
+        {
+          "id": "ms-ml",
+          "title": "ML for Beginners",
+          "by": "Microsoft",
+          "url": "https://github.com/microsoft/ML-For-Beginners",
+          "type": "course",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "26 classical machine-learning lessons with scikit-learn: regression, classification, clustering, NLP, time series and reinforcement learning.",
+          "tags": [
+            "course",
+            "beginner",
+            "scikit-learn"
+          ],
+          "tracks": [
+            "practitioner",
+            "academic"
+          ]
+        },
+        {
+          "id": "ms-genai",
+          "title": "Generative AI for Beginners",
+          "by": "Microsoft",
+          "url": "https://github.com/microsoft/generative-ai-for-beginners",
+          "type": "course",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "21 lessons on prompt engineering, RAG, function calling, agents, fine-tuning and responsible use, with a companion repo of runnable samples.",
+          "tags": [
+            "course",
+            "beginner",
+            "LLM"
+          ],
+          "tracks": [
+            "intro",
+            "engineer"
+          ]
+        },
+        {
+          "id": "ms-agents",
+          "title": "AI Agents for Beginners",
+          "by": "Microsoft",
+          "url": "https://github.com/microsoft/ai-agents-for-beginners",
+          "type": "course",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "18 lessons on agent design patterns, tool use, agentic RAG, memory, protocols, local agents and security.",
+          "tags": [
+            "course",
+            "intermediate",
+            "agents"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "fastai",
+          "title": "Practical Deep Learning for Coders",
+          "by": "fast.ai",
+          "url": "https://course.fast.ai",
+          "type": "course",
+          "license": "Videos & prose: link only · fastbook code: GPL-3.0",
+          "hosting": "link",
+          "note": "Code-first PyTorch deep learning. Videos and book prose are link-only; the fastbook notebooks are GPL-3.0.",
+          "tags": [
+            "course",
+            "intermediate",
+            "PyTorch"
+          ],
+          "tracks": [
+            "practitioner"
+          ]
+        },
+        {
+          "id": "hf-llm",
+          "title": "LLM Course",
+          "by": "Hugging Face",
+          "url": "https://huggingface.co/learn/llm-course",
+          "type": "course",
+          "license": "Apache-2.0",
+          "hosting": "fork",
+          "note": "Transformers, tokenizers, fine-tuning, the Hub and a chapter track through modern LLM practice, with Apache-licensed notebooks.",
+          "tags": [
+            "course",
+            "intermediate",
+            "LLM"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "hf-agents",
+          "title": "Agents Course",
+          "by": "Hugging Face",
+          "url": "https://huggingface.co/learn/agents-course",
+          "type": "course",
+          "license": "Apache-2.0",
+          "hosting": "fork",
+          "note": "Agents from the thought-action-observation loop through frameworks, use cases and a final project with a free certificate.",
+          "tags": [
+            "course",
+            "intermediate",
+            "agents"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "d2l",
+          "title": "Dive into Deep Learning",
+          "by": "Zhang, Lipton, Li & Smola",
+          "url": "https://d2l.ai",
+          "type": "book",
+          "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+          "hosting": "fork",
+          "note": "University-grade interactive book with runnable notebooks for every architecture; adopted at hundreds of universities.",
+          "tags": [
+            "book",
+            "advanced",
+            "notebooks"
+          ],
+          "tracks": [
+            "academic",
+            "engineer"
+          ]
+        },
+        {
+          "id": "d2l-zh",
+          "title": "Dive into Deep Learning — Chinese edition (zh.d2l.ai)",
+          "by": "Zhang, Lipton, Li & Smola",
+          "url": "https://zh.d2l.ai",
+          "type": "book",
+          "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+          "hosting": "fork",
+          "note": "The strong Chinese-language edition of Dive into Deep Learning, under the same open license.",
+          "tags": [
+            "book",
+            "advanced",
+            "translation"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "mlcourse",
+          "title": "mlcourse.ai",
+          "by": "Yury Kashnitsky & contributors",
+          "url": "https://mlcourse.ai",
+          "type": "course",
+          "license": "CC BY-NC-SA 4.0",
+          "hosting": "fork",
+          "note": "A ten-week open machine-learning course with assignments and Kaggle competitions. Non-commercial license.",
+          "tags": [
+            "course",
+            "intermediate",
+            "assignments"
+          ],
+          "tracks": [
+            "practitioner"
+          ]
+        },
+        {
+          "id": "eoa",
+          "title": "Elements of AI",
+          "by": "University of Helsinki & MinnaLearn",
+          "url": "https://www.elementsofai.com/",
+          "type": "course",
+          "license": "Free course (all rights reserved)",
+          "hosting": "link",
+          "note": "A gentle, non-technical introduction to AI from the University of Helsinki. Free to take, link only.",
+          "tags": [
+            "course",
+            "beginner",
+            "non-technical"
+          ],
+          "tracks": [
+            "intro"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "books",
+      "title": "Open and officially free books",
+      "summary": "Authoritative references that their authors or publishers make free to read. We link; we do not re-host.",
+      "items": [
+        {
+          "id": "udl",
+          "title": "Understanding Deep Learning",
+          "by": "Simon J.D. Prince",
+          "url": "https://udlbook.github.io/udlbook/",
+          "type": "book",
+          "license": "Free PDF · CC BY-NC-ND 4.0 (notebooks repo)",
+          "hosting": "link",
+          "note": "The most readable modern deep-learning text, with 60+ companion notebooks. Free PDF under non-commercial terms.",
+          "tags": [
+            "book",
+            "deep learning",
+            "theory"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "goodfellow",
+          "title": "Deep Learning",
+          "by": "Goodfellow, Bengio & Courville",
+          "url": "https://www.deeplearningbook.org",
+          "type": "book",
+          "license": "Free online (© MIT Press)",
+          "hosting": "link",
+          "note": "The classic deep-learning reference, free to read on the authors' site.",
+          "tags": [
+            "book",
+            "deep learning",
+            "reference"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "mml",
+          "title": "Mathematics for Machine Learning",
+          "by": "Deisenroth, Faisal & Ong",
+          "url": "https://mml-book.github.io",
+          "type": "book",
+          "license": "Free PDF (© Cambridge University Press)",
+          "hosting": "link",
+          "note": "Linear algebra, calculus, probability and optimisation with machine-learning motivation throughout.",
+          "tags": [
+            "book",
+            "mathematics"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "esl",
+          "title": "The Elements of Statistical Learning",
+          "by": "Hastie, Tibshirani & Friedman",
+          "url": "https://hastie.su.domains/ElemStatLearn/",
+          "type": "book",
+          "license": "Free PDF (© Springer)",
+          "hosting": "link",
+          "note": "The definitive classical statistical-learning text; the authors host the PDF.",
+          "tags": [
+            "book",
+            "statistics",
+            "theory"
+          ],
+          "tracks": [
+            "academic",
+            "practitioner"
+          ]
+        },
+        {
+          "id": "pml",
+          "title": "Probabilistic Machine Learning",
+          "by": "Kevin P. Murphy",
+          "url": "https://probml.github.io/pml-book/",
+          "type": "book",
+          "license": "Free PDF (© MIT Press) · pyprobml code MIT",
+          "hosting": "link",
+          "note": "Murphy's two-volume probabilistic treatment of modern ML, with MIT-licensed pyprobml code.",
+          "tags": [
+            "book",
+            "probability",
+            "reference"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "sutton",
+          "title": "Reinforcement Learning: An Introduction",
+          "by": "Sutton & Barto",
+          "url": "http://incompleteideas.net/book/the-book-2nd.html",
+          "type": "book",
+          "license": "Free PDF (© MIT Press)",
+          "hosting": "link",
+          "note": "The canonical reinforcement-learning textbook, free from the authors.",
+          "tags": [
+            "book",
+            "reinforcement learning"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "slp3",
+          "title": "Speech and Language Processing (3rd ed. draft)",
+          "by": "Jurafsky & Martin",
+          "url": "https://web.stanford.edu/~jurafsky/slp3/",
+          "type": "book",
+          "license": "Draft · classroom use only, do not rehost",
+          "hosting": "link",
+          "note": "Jurafsky & Martin's NLP draft. Classroom use of drafts is permitted; do not re-host.",
+          "tags": [
+            "book",
+            "NLP",
+            "draft"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "nielsen",
+          "title": "Neural Networks and Deep Learning",
+          "by": "Michael Nielsen",
+          "url": "http://neuralnetworksanddeeplearning.com",
+          "type": "book",
+          "license": "CC BY-NC 3.0",
+          "hosting": "link",
+          "note": "A gentle, visual introduction to neural networks and backpropagation.",
+          "tags": [
+            "book",
+            "beginner",
+            "neural networks"
+          ],
+          "tracks": [
+            "engineer",
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "classes",
+      "title": "University classes",
+      "summary": "Serious tracks with public lecture notes, assignments and often videos. All link-only.",
+      "items": [
+        {
+          "id": "cs229",
+          "title": "CS229 Machine Learning",
+          "by": "Stanford",
+          "url": "https://cs229.stanford.edu",
+          "type": "class",
+          "license": "Public course site · link only",
+          "hosting": "link",
+          "note": "Andrew Ng's machine-learning course; the lecture notes are a compact graduate-level reference.",
+          "tags": [
+            "class",
+            "machine learning",
+            "Stanford"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cs231n",
+          "title": "CS231n Deep Learning for Computer Vision",
+          "by": "Stanford",
+          "url": "https://cs231n.stanford.edu",
+          "type": "class",
+          "license": "Public course site · link only",
+          "hosting": "link",
+          "note": "Deep learning for computer vision: convolutions, training recipes, visualisation and modern architectures.",
+          "tags": [
+            "class",
+            "vision",
+            "Stanford"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cs231n-notes",
+          "title": "CS231n course notes",
+          "by": "Stanford",
+          "url": "https://cs231n.github.io",
+          "type": "class",
+          "license": "Public course notes · link only",
+          "hosting": "link",
+          "note": "The public course notes for CS231n, readable without enrolment.",
+          "tags": [
+            "class",
+            "vision",
+            "notes"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cs224n",
+          "title": "CS224n NLP with Deep Learning",
+          "by": "Stanford",
+          "url": "https://web.stanford.edu/class/cs224n/",
+          "type": "class",
+          "license": "Public course site · link only",
+          "hosting": "link",
+          "note": "NLP with deep learning: word vectors, recurrent networks, transformers and pre-trained models.",
+          "tags": [
+            "class",
+            "NLP",
+            "Stanford"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cs336",
+          "title": "CS336 Language Modeling from Scratch",
+          "by": "Stanford",
+          "url": "https://stanford-cs336.github.io",
+          "type": "class",
+          "license": "Public course site · link only",
+          "hosting": "link",
+          "note": "Build a language model from scratch: tokenization, architecture, systems, scaling, data and alignment.",
+          "tags": [
+            "class",
+            "LLM",
+            "Stanford"
+          ],
+          "tracks": [
+            "academic",
+            "engineer"
+          ]
+        },
+        {
+          "id": "mit6s191",
+          "title": "6.S191 Introduction to Deep Learning",
+          "by": "MIT",
+          "url": "https://introtodeeplearning.com",
+          "type": "class",
+          "license": "Lectures: link only · labs (aamini/introtodeeplearning): MIT",
+          "hosting": "link",
+          "note": "MIT's intensive deep-learning bootcamp; lectures are link-only, the labs are MIT-licensed.",
+          "tags": [
+            "class",
+            "deep learning",
+            "MIT"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "mit6390",
+          "title": "6.390 Introduction to Machine Learning — notes",
+          "by": "MIT",
+          "url": "https://introml.mit.edu/notes",
+          "type": "class",
+          "license": "Public course notes · link only",
+          "hosting": "link",
+          "note": "MIT's introductory machine-learning course notes, free to read.",
+          "tags": [
+            "class",
+            "machine learning",
+            "MIT"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cs189",
+          "title": "CS189 Introduction to Machine Learning",
+          "by": "UC Berkeley",
+          "url": "https://eecs189.org",
+          "type": "class",
+          "license": "Public course site · link only",
+          "hosting": "link",
+          "note": "Berkeley's introductory machine-learning course with full lecture notes.",
+          "tags": [
+            "class",
+            "machine learning",
+            "Berkeley"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cos324",
+          "title": "COS 324 Introduction to Machine Learning",
+          "by": "Princeton",
+          "url": "https://princeton-introml.github.io",
+          "type": "class",
+          "license": "Public course site · link only",
+          "hosting": "link",
+          "note": "Princeton's introductory machine-learning course with open notes.",
+          "tags": [
+            "class",
+            "machine learning",
+            "Princeton"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "cs50ai",
+          "title": "CS50's Introduction to AI with Python",
+          "by": "Harvard",
+          "url": "https://cs50.harvard.edu/ai/",
+          "type": "class",
+          "license": "CC BY-NC-SA 4.0",
+          "hosting": "link",
+          "note": "Harvard's AI with Python course: search, knowledge, uncertainty, optimisation, learning, neural networks and language.",
+          "tags": [
+            "class",
+            "AI",
+            "Harvard"
+          ],
+          "tracks": [
+            "intro"
+          ]
+        },
+        {
+          "id": "lfd",
+          "title": "Learning From Data",
+          "by": "Caltech (Yaser Abu-Mostafa)",
+          "url": "https://work.caltech.edu/telecourse.html",
+          "type": "class",
+          "license": "Public lecture series · link only",
+          "hosting": "link",
+          "note": "Caltech's learning-theory lecture series by Yaser Abu-Mostafa.",
+          "tags": [
+            "class",
+            "theory",
+            "Caltech"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "llm-spine",
+      "title": "LLM and build-from-scratch spine",
+      "summary": "Code-first resources for understanding and building language models and the systems around them.",
+      "items": [
+        {
+          "id": "karpathy",
+          "title": "Neural Networks: Zero to Hero",
+          "by": "Andrej Karpathy",
+          "url": "https://karpathy.ai/zero-to-hero.html",
+          "type": "course",
+          "license": "Videos: link only · code (nn-zero-to-hero): MIT",
+          "hosting": "link",
+          "note": "From backpropagation to GPT in a sequence of live-coded lectures. Videos are link-only; the code is MIT.",
+          "tags": [
+            "video",
+            "from scratch",
+            "LLM"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "micrograd",
+          "title": "micrograd",
+          "by": "Andrej Karpathy",
+          "url": "https://github.com/karpathy/micrograd",
+          "type": "code",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "A tiny scalar autograd engine and neural-network library — the clearest explanation of backpropagation in code.",
+          "tags": [
+            "code",
+            "from scratch",
+            "autograd"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "nanogpt",
+          "title": "nanoGPT",
+          "by": "Andrej Karpathy",
+          "url": "https://github.com/karpathy/nanoGPT",
+          "type": "code",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "The simplest, fastest repository for training and fine-tuning medium-sized GPTs.",
+          "tags": [
+            "code",
+            "from scratch",
+            "GPT"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "raschka",
+          "title": "LLMs from Scratch (code)",
+          "by": "Sebastian Raschka",
+          "url": "https://github.com/rasbt/LLMs-from-scratch",
+          "type": "code",
+          "license": "Apache-2.0 (code) · book © Manning",
+          "hosting": "fork",
+          "note": "Chapter-by-chapter code for building a GPT from scratch, loading pre-trained weights and fine-tuning. Apache-2.0 code; the book is Manning's.",
+          "tags": [
+            "code",
+            "from scratch",
+            "GPT"
+          ],
+          "tracks": [
+            "engineer",
+            "academic"
+          ]
+        },
+        {
+          "id": "labonne",
+          "title": "LLM Course",
+          "by": "Maxime Labonne",
+          "url": "https://github.com/mlabonne/llm-course",
+          "type": "course",
+          "license": "Apache-2.0",
+          "hosting": "fork",
+          "note": "Roadmaps and notebooks for the LLM Scientist and LLM Engineer: fine-tuning, quantization, evaluation and deployment.",
+          "tags": [
+            "course",
+            "LLM",
+            "notebooks"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "hf-cookbook",
+          "title": "Open-Source AI Cookbook",
+          "by": "Hugging Face",
+          "url": "https://huggingface.co/learn/cookbook",
+          "type": "cookbook",
+          "license": "Apache-2.0",
+          "hosting": "fork",
+          "note": "Practical recipes for RAG, fine-tuning, evaluation and agents with open models.",
+          "tags": [
+            "cookbook",
+            "recipes",
+            "open models"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "openai-cookbook",
+          "title": "OpenAI Cookbook",
+          "by": "OpenAI",
+          "url": "https://cookbook.openai.com",
+          "type": "cookbook",
+          "license": "MIT",
+          "hosting": "fork",
+          "note": "Examples and guides for building with and evaluating language-model APIs, including evals and function calling.",
+          "tags": [
+            "cookbook",
+            "recipes",
+            "evals"
+          ],
+          "tracks": [
+            "engineer"
+          ]
+        },
+        {
+          "id": "dlai",
+          "title": "Short Courses",
+          "by": "DeepLearning.AI",
+          "url": "https://learn.deeplearning.ai",
+          "type": "course",
+          "license": "Free to audit · link only",
+          "hosting": "link",
+          "note": "Short, focused courses on current LLM tooling. Free to audit, link only.",
+          "tags": [
+            "course",
+            "short courses",
+            "LLM"
+          ],
+          "tracks": [
+            "intro",
+            "engineer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "indexes",
+      "title": "Indexes and course tables",
+      "summary": "Curated lists for finding alternatives when you need another explanation.",
+      "items": [
+        {
+          "id": "idx-books",
+          "title": "awesome-free-ai-books",
+          "by": "MarcosSete",
+          "url": "https://github.com/MarcosSete/awesome-free-ai-books",
+          "type": "index",
+          "license": "CC0-1.0",
+          "hosting": "fork",
+          "note": "An index of books whose authors or publishers make them officially free.",
+          "tags": [
+            "index",
+            "books"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "idx-notes",
+          "title": "awesome-free-ai-course-notes",
+          "by": "MarcosSete",
+          "url": "https://github.com/MarcosSete/awesome-free-ai-course-notes",
+          "type": "index",
+          "license": "CC0-1.0",
+          "hosting": "fork",
+          "note": "An index of freely available written course notes from universities.",
+          "tags": [
+            "index",
+            "notes"
+          ],
+          "tracks": [
+            "academic"
+          ]
+        },
+        {
+          "id": "idx-courses",
+          "title": "courses (ML course table)",
+          "by": "SkalskiP",
+          "url": "https://github.com/SkalskiP/courses",
+          "type": "index",
+          "license": "No license file · link only",
+          "hosting": "link",
+          "note": "A comparison table of machine-learning courses with links. No license file — link only.",
+          "tags": [
+            "index",
+            "courses"
+          ],
+          "tracks": []
+        }
+      ]
+    }
+  ]
+}

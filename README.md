@@ -1,6 +1,6 @@
 # SI Academy · Super Intelligence Academy
 
-**Open-source K–12 AI literacy platform aligned with Canada's National AI Literacy Initiative and provincial curricula — with Khan-style mastery, a Teacher Hub and studio-quality voice-over powered by ElevenLabs.**
+**Open-source AI literacy platform: a K–12 curriculum aligned with Canada's National AI Literacy Initiative and provincial curricula, plus four self-paced learning tracks built on the best open AI curricula — with Khan-style mastery, a Teacher Hub, an Open Resource Library and studio-quality voice-over powered by ElevenLabs.**
 
 [![CI](https://github.com/9lordisgod/ai-course/actions/workflows/ci.yml/badge.svg)](https://github.com/9lordisgod/ai-course/actions/workflows/ci.yml)
 [![GitHub Pages](https://github.com/9lordisgod/ai-course/actions/workflows/pages.yml/badge.svg)](https://github.com/9lordisgod/ai-course/actions/workflows/pages.yml)
@@ -14,10 +14,12 @@
 
 | Feature | Details |
 |---|---|
-| **4 learning paths · 8 modules · 12 lessons** | Foundations → Critical Thinking → Ethics & Responsibility → Futures & Careers. How AI works · Generative AI & cognitive offloading · Bias, deepfakes & misinformation · Privacy & data · Academic integrity · Indigenous data sovereignty (OCAP®) · Responsible classroom use · Future-ready careers |
+| **4 K–12 learning paths · 8 modules · 12 lessons** | Foundations → Critical Thinking → Ethics & Responsibility → Futures & Careers. How AI works · Generative AI & cognitive offloading · Bias, deepfakes & misinformation · Privacy & data · Academic integrity · Indigenous data sovereignty (OCAP®) · Responsible classroom use · Future-ready careers |
+| **4 learning tracks · 16 modules · 48 lessons** | Beyond K–12: **Intro** (Elements of AI → Generative AI for Beginners → RAG capstone), **Practitioner ML** (ML for Beginners / mlcourse.ai → fast.ai → tabular + vision projects), **AI Engineer** (Hugging Face LLM Course → Karpathy + nanoGPT → Agents Course → local open-model agent with evals), **Academic** (Mathematics for ML → CS229 / MIT 6.390 → d2l.ai → CS231n / CS224n, Prince's *UDL* as theory companion). Every lesson is original prose with a quiz, an activity and 1–3 **Open resources** showing license and hosting status. Track certificate on completion |
+| **Open Resource Library** | 41 curated items (open curricula, free books, university classes, LLM build-from-scratch spine, indexes) filterable by type, track and hosting policy, with license badges and "used in" track links |
 | **Mastery system** | Khan-style mastery points per lesson (Not started → Attempted → Familiar → Proficient → Mastered), module mastery bars, practice quizzes with instant feedback, printable certificate |
 | **AI voice-over** | Every lesson narrated by natural ElevenLabs voices (`eleven_multilingual_v2`); server-side proxy, per-lesson cache, automatic browser-speech fallback |
-| **Global search** | Instant search across lessons, modules and provincial policies |
+| **Global search** | Instant search across lessons, modules, tracks, library resources and provincial policies |
 | **Course catalog** | Sidebar filters by grade band (K–5 / 6–8 / 9–12) and curriculum area; level badges (Beginner / Intermediate / Advanced); "Start here" guidance |
 | **Teacher Hub** | Tabbed dashboard: traffic-light (🟢🟡🔴) AI-use policy generator, student disclosure template, module planner with total class time, official resources |
 | **Parents** | Plain-language FAQ on Canadian school expectations + recommended modules for younger learners |
@@ -64,7 +66,9 @@ public/                 Static SPA (no build step)
   index.html
   assets/app.js         Router, i18n, icons, mastery, search, TTS player, quizzes, Teacher Hub
   assets/styles.css     Design tokens, light/dark themes, layouts
-  data/courses.json     Learning paths, modules, lessons, activities, quizzes
+  data/courses.json     K–12 learning paths, modules, lessons, activities, quizzes
+  data/tracks.json      Four learning tracks: 16 modules, 48 lessons with quizzes and open resources
+  data/library.json     Open Resource Library: hosting rules, sections and catalogue items
   data/i18n.json        UI strings
   data/policy.json      Provincial policy explorer + sources
 server/
@@ -99,7 +103,25 @@ Module mastery = sum of lesson points / (lessons × 100). Everything is stored l
 
 ## Adding content
 
-Edit `public/data/courses.json`. Each module needs `icon`, `path`, `level`, `grades`, `curriculum`, `title` and `summary`; each lesson needs `title`, `body`, `activity` strings plus a `quiz` array (`q`, `options`, `answer`). UI copy lives in `public/data/i18n.json`. Run `npm test` — it verifies every lesson is complete and every quiz answer index is valid.
+**K–12 courses** — edit `public/data/courses.json`. Each module needs `icon`, `path`, `level`, `grades`, `curriculum`, `title` and `summary`; each lesson needs `title`, `body`, `activity` strings plus a `quiz` array (`q`, `options`, `answer`).
+
+**Learning tracks** — edit `public/data/tracks.json`. `tracks[]` hold `id`, `title`, `tagline`, `description`, `level`, `audience`, `hours`, `weeks`, `outcome`, `icon`, `spine[]` and an ordered `modules[]` list of module ids; `modules[]` use the same shape as K–12 modules plus `track`, and every lesson adds `minutes` and 1–3 `resources` (`title`, `by`, `url`, `license`, `hosting: "fork" | "link"`, `note`).
+
+**Library** — edit `public/data/library.json` (`rules[]`, `sections[].items[]` with `id`, `title`, `by`, `url`, `type`, `license`, `hosting`, `note`, `tags[]`, `tracks[]`).
+
+UI copy lives in `public/data/i18n.json`. Run `npm test` — it verifies every lesson is complete, every quiz answer index is valid, every track module exists, every resource has a URL, license and hosting status, and that library items only reference real tracks.
+
+## Open-content policy
+
+The tracks reuse the open AI curriculum ecosystem without redistributing anything we have no right to:
+
+| Status | Meaning | Examples |
+|---|---|---|
+| **Fork & host** | Permissive license (MIT / Apache-2.0 / CC BY-SA / CC0). Lessons may be mirrored, adapted and translated with attribution | Microsoft AI / ML / Generative AI / AI Agents for Beginners, Hugging Face LLM & Agents courses and Cookbook, Dive into Deep Learning, Karpathy's micrograd / makemore / nanoGPT, OpenAI Cookbook |
+| **Link only** | Free to read but still copyrighted, non-commercial or share-alike-restricted — we link to the official source and never rehost | Goodfellow *Deep Learning*, *Mathematics for ML*, *ESL*, Murphy's *PML*, Sutton & Barto, Jurafsky & Martin SLP3 draft, Prince's *Understanding Deep Learning*, fast.ai book prose, mlcourse.ai, university course sites |
+| **Never** | "Free PDF" dumps of commercial textbooks | — |
+
+All lesson prose on SI Academy is original. Resource cards show the upstream license verbatim.
 
 ## Sources
 
@@ -109,6 +131,7 @@ Edit `public/data/courses.json`. Each module needs `icon`, `path`, `level`, `gra
 - [CanCode](https://ised-isde.canada.ca/site/cancode/en) — Phase 5, $30M 2026–2028
 - [First Nations principles of OCAP®](https://fnigc.ca/ocap-training/)
 - [ElevenLabs Text-to-Speech API](https://elevenlabs.io/docs/api-reference/text-to-speech/convert)
+- Open curricula and books referenced by the learning tracks: [Microsoft AI for Beginners](https://github.com/microsoft/AI-For-Beginners), [ML for Beginners](https://github.com/microsoft/ML-For-Beginners), [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners), [AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners), [fast.ai](https://course.fast.ai), [Hugging Face Learn](https://huggingface.co/learn), [Dive into Deep Learning](https://d2l.ai), [mlcourse.ai](https://mlcourse.ai), [Karpathy — Zero to Hero](https://karpathy.ai/zero-to-hero.html), [LLMs from Scratch](https://github.com/rasbt/LLMs-from-scratch), [Stanford CS229](https://cs229.stanford.edu) / [CS231n](https://cs231n.stanford.edu) / [CS224n](https://web.stanford.edu/class/cs224n/) / [CS336](https://stanford-cs336.github.io), [MIT 6.S191](http://introtodeeplearning.com), and the full list in the [Open Resource Library](https://9lordisgod.github.io/ai-course/#/library)
 
 See [`docs/research.md`](docs/research.md) for the full research summary.
 

@@ -27,11 +27,15 @@ const state = {
   theme: ["light", "dark"].includes(store.get("theme")) ? store.get("theme") : prefersDark() ? "dark" : "light",
   i18n: null,
   courses: null,
+  tracks: [],
+  trackModules: [],
+  library: null,
   policy: null,
   progress: store.get("progress", {}) || {},
   quiz: store.get("quiz", {}) || {},
   certName: store.get("certName", "") || "",
   filters: { grade: "all", area: "all", q: "" },
+  lib: { section: "all", track: "all", hosting: "all", q: "" },
   teacherTab: "policy",
   planner: {},
 };
@@ -86,6 +90,9 @@ const ICONS = {
   table: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/>',
   link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
   crown: '<path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z"/>',
+  sigma: '<path d="M18 6H6l6 6-6 6h12"/>',
+  scale: '<path d="M12 3v18M5 21h14"/><path d="M4 7h16"/><path d="M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/>',
+  library: '<path d="M4 4h4v16H4zM10 4h4v16h-4z"/><path d="M15.5 5l3.9-1 4 15.5-3.9 1z"/>',
 };
 const icon = (name, cls = "") => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ICONS.book}</svg>`;
 const LOGO = '<svg viewBox="0 0 32 32" aria-hidden="true"><g shape-rendering="crispEdges"><rect class="px" x="0.3" y="28.3" width="3.4" height="3.4" fill="#fff" opacity="0.28"/><rect class="px" x="4.3" y="24.3" width="3.4" height="3.4" fill="#fff" opacity="0.5"/><rect class="px" x="8.3" y="24.3" width="3.4" height="3.4" fill="#fff" opacity="0.56"/><rect class="px" x="12.3" y="24.3" width="3.4" height="3.4" fill="#fff" opacity="0.62"/><rect class="px" x="16.3" y="24.3" width="3.4" height="3.4" fill="#fff" opacity="0.68"/><rect class="px" x="20.3" y="24.3" width="3.4" height="3.4" fill="#fff" opacity="0.74"/><rect class="px" x="24.3" y="20.3" width="3.4" height="3.4" fill="#fff" opacity="0.8"/><rect class="px" x="20.3" y="16.3" width="3.4" height="3.4" fill="#fff" opacity="0.86"/><rect class="px" x="16.3" y="12.3" width="3.4" height="3.4" fill="#fff" opacity="0.92"/><rect class="px" x="12.3" y="12.3" width="3.4" height="3.4" fill="#fff" opacity="0.96"/><rect class="px" x="8.3" y="8.3" width="3.4" height="3.4" fill="#fff"/><rect class="px" x="12.3" y="4.3" width="3.4" height="3.4" fill="#fff"/><rect class="px" x="16.3" y="4.3" width="3.4" height="3.4" fill="#fff"/><rect class="px" x="20.3" y="4.3" width="3.4" height="3.4" fill="#fff"/><rect class="px" x="24.3" y="4.3" width="3.4" height="3.4" fill="#fff"/><rect class="px dither" x="21.2" y="1.2" width="1.6" height="1.6" fill="#fff" opacity="0.35"/><rect class="px dither" x="29.2" y="9.2" width="1.6" height="1.6" fill="#fff" opacity="0.45"/><rect class="px dither" x="5.2" y="17.2" width="1.6" height="1.6" fill="#fff" opacity="0.25"/><rect class="px spark" x="28.3" y="0.3" width="3.4" height="3.4" fill="#1865f2"/></g></svg>';
@@ -95,11 +102,19 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const t = (path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), state.i18n[state.lang]) ?? path;
 const L = (v) => (v && typeof v === "object" && !Array.isArray(v) ? v.en ?? "" : v ?? "");
 const pad = (n) => String(n).padStart(2, "0");
-const modIndex = (m) => state.courses.modules.indexOf(m);
-const findModule = (id) => state.courses.modules.find((m) => m.id === id);
+const allModules = () => state.courses.modules.concat(state.trackModules);
+const findModule = (id) => allModules().find((m) => m.id === id);
+const findTrack = (id) => state.tracks.find((tr) => tr.id === id);
+const trackOf = (m) => (m.track ? findTrack(m.track) : null);
+const trackModules = (tr) => tr.modules.map((id) => state.trackModules.find((m) => m.id === id)).filter(Boolean);
+const siblings = (m) => (m.track ? trackModules(trackOf(m)) : state.courses.modules);
+const modIndex = (m) => siblings(m).indexOf(m);
+const thumbClass = (m) => `thumb-${esc(m.track || m.path)}`;
 const pathOf = (m) => state.courses.paths.find((p) => p.id === m.path) || { id: m.path, title: { en: m.path } };
 const modMinutes = (m) => m.lessons.reduce((s, l) => s + (l.minutes || 0), 0);
-const gradeLabel = (g) => ({ k5: t("courses.k5"), 68: t("courses.68"), 912: t("courses.912") }[g] || g);
+const trackMinutes = (tr) => trackModules(tr).reduce((s, m) => s + modMinutes(m), 0);
+const libItems = () => state.library.sections.flatMap((s) => s.items.map((it) => ({ ...it, section: s.id })));
+const gradeLabel = (g) => ({ k5: t("courses.k5"), 68: t("courses.68"), 912: t("courses.912"), adult: t("courses.adult") }[g] || g);
 const areaOf = (c) => c.replace(/\s*(K[–-]\d+|\d+[–-]\d+)$/u, "").trim();
 const wave = (n = 14) => `<div class="wave" aria-hidden="true">${Array.from({ length: n }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div>`;
 const key = (mid, lid) => `${mid}/${lid}`;
@@ -136,6 +151,13 @@ function moduleMastery(m) {
   return { items, points, total, pct: total ? Math.round((points / total) * 100) : 0, done, complete: done === m.lessons.length };
 }
 const allComplete = () => state.courses.modules.every((m) => moduleMastery(m).complete);
+function trackMastery(tr) {
+  const mods = trackModules(tr);
+  const points = mods.reduce((s, m) => s + moduleMastery(m).points, 0);
+  const total = mods.reduce((s, m) => s + moduleMastery(m).total, 0);
+  const done = mods.filter((m) => moduleMastery(m).complete).length;
+  return { points, total, pct: total ? Math.round((points / total) * 100) : 0, done, complete: mods.length > 0 && done === mods.length };
+}
 function lastActivity() {
   let best = null;
   for (const [k, v] of Object.entries(state.progress)) {
@@ -149,7 +171,7 @@ function lastActivity() {
   const idx = m.lessons.findIndex((l) => l.id === lid);
   const next = m.lessons[idx + 1];
   if (next) return { m, l: next, resume: true };
-  const nextMod = state.courses.modules.find((x) => !moduleMastery(x).complete);
+  const nextMod = siblings(m).find((x) => !moduleMastery(x).complete);
   return nextMod ? { m: nextMod, l: nextMod.lessons.find((l) => !lessonMastery(nextMod.id, l.id).done) || nextMod.lessons[0], resume: false } : null;
 }
 const mbox = (level, cls = "") => `<span class="mbox ${level} ${cls}" title="${esc(t(`ui.mastery.levels.${level}`))}">${level === "mastered" ? icon("check") : ""}</span>`;
@@ -231,7 +253,7 @@ const tts = {
 
 // ---------- Chrome (header / footer) ----------
 function renderChrome() {
-  const nav = ["home", "courses", "teachers", "parents", "policy", "about"];
+  const nav = ["courses", "tracks", "library", "teachers", "parents", "policy", "about"];
   const href = (k) => (k === "home" ? "#/" : `#/${k}`);
   $("#chrome").innerHTML = `
     <div class="topbar">
@@ -250,7 +272,7 @@ function renderChrome() {
         </div>
       </div>
       <div class="mobile-menu" id="mobileMenu">
-        ${nav.map((k) => `<a href="${href(k)}">${esc(t(`nav.${k}`))}</a>`).join("")}
+        ${["home", ...nav].map((k) => `<a href="${href(k)}">${esc(t(`nav.${k}`))}</a>`).join("")}
         <a href="pitch/" target="_blank" rel="noopener">${esc(t("nav.pitch"))} ↗</a>
       </div>
     </div>`;
@@ -266,6 +288,8 @@ function renderChrome() {
         <div><h4>${esc(fl.learn)}</h4><ul>
           <li><a href="#/courses">${esc(t("nav.courses"))}</a></li>
           ${state.courses.paths.map((p) => `<li><a href="#/courses#path-${p.id}">${esc(L(p.title))}</a></li>`).join("")}
+          <li><a href="#/tracks">${esc(t("nav.tracks"))}</a></li>
+          ${state.tracks.map((tr) => `<li><a href="#/tracks/${tr.id}">${esc(tr.title)}</a></li>`).join("")}
         </ul></div>
         <div><h4>${esc(fl.educators)}</h4><ul>
           <li><a href="#/teachers">${esc(t("nav.teachers"))}</a></li>
@@ -274,6 +298,7 @@ function renderChrome() {
           <li><a href="#/certificate">${esc(t("certificate.title"))}</a></li>
         </ul></div>
         <div><h4>${esc(fl.resources)}</h4><ul>
+          <li><a href="#/library">${icon("library")}${esc(t("library.title"))}</a></li>
           <li><a href="${REPO}" target="_blank" rel="noopener">${icon("code")}${esc(fl.github)}</a></li>
           <li><a href="pitch/" target="_blank" rel="noopener">${icon("layers")}${esc(fl.deck)}</a></li>
           <li><a href="${REPO}/blob/main/docs/research.md" target="_blank" rel="noopener">${icon("file")}${esc(fl.research)}</a></li>
@@ -306,17 +331,25 @@ function setTheme(theme) {
 let searchIndex = null;
 function buildIndex() {
   const out = [];
-  for (const m of state.courses.modules) {
-    out.push({ type: "module", href: `#/module/${m.id}`, title: m.title, sub: m.summary, icon: m.icon, text: [m.title, m.summary, ...m.curriculum].join(" ") });
+  for (const m of allModules()) {
+    const tr = trackOf(m);
+    out.push({ type: "module", href: `#/module/${m.id}`, title: m.title, sub: tr ? tr.title : m.summary, icon: m.icon, text: [m.title, m.summary, tr ? tr.title : "", ...m.curriculum].join(" ") });
     for (const l of m.lessons) {
-      out.push({ type: "lesson", href: `#/module/${m.id}/${l.id}`, title: l.title, sub: m.title, icon: "book", text: [l.title, l.body, l.activity].join(" ") });
+      out.push({ type: "lesson", href: `#/module/${m.id}/${l.id}`, title: l.title, sub: m.title, icon: "book", text: [l.title, l.body, l.activity, ...(l.resources || []).map((r) => r.title)].join(" ") });
     }
+  }
+  for (const tr of state.tracks) {
+    out.push({ type: "track", href: `#/tracks/${tr.id}`, title: tr.title, sub: tr.tagline, icon: tr.icon, text: [tr.title, tr.tagline, tr.description, ...tr.spine].join(" ") });
+  }
+  for (const it of libItems()) {
+    out.push({ type: "library", href: `#/library#lib-${it.id}`, title: it.title, sub: `${it.by} · ${it.license}`, icon: "library", text: [it.title, it.by, it.note, it.license, ...it.tags].join(" ") });
   }
   for (const p of state.policy.provinces) {
     out.push({ type: "policy", href: "#/policy", title: p.name, sub: p.where, icon: "flag", text: [p.name, p.where, p.notes].join(" ") });
   }
   return out.map((x) => ({ ...x, text: x.text.toLowerCase() }));
 }
+const typeLabel = (type) => t({ module: "ui.module", lesson: "ui.lesson", track: "nav.tracks", library: "nav.library", policy: "nav.policy" }[type] || "ui.lesson");
 function search(q, limit = 8) {
   const needle = q.trim().toLowerCase();
   if (!needle) return [];
@@ -339,7 +372,7 @@ function wireSearch() {
     const res = search(q);
     box.hidden = false;
     box.innerHTML = res.length
-      ? res.map((r) => `<a href="${r.href}">${icon(r.icon)}<span><span class="sr-t">${esc(L(r.title))}</span><br><span class="sr-d">${esc(t(r.type === "module" ? "ui.module" : r.type === "lesson" ? "ui.lesson" : "nav.policy"))} · ${esc(L(r.sub)).slice(0, 80)}</span></span></a>`).join("") +
+      ? res.map((r) => `<a href="${r.href}">${icon(r.icon)}<span><span class="sr-t">${esc(L(r.title))}</span><br><span class="sr-d">${esc(typeLabel(r.type))} · ${esc(L(r.sub)).slice(0, 80)}</span></span></a>`).join("") +
         `<a class="sr-all" href="#/courses?q=${encodeURIComponent(q.trim())}">${esc(t("ui.searchAll"))} ${icon("arrow")}</a>`
       : `<div class="sr-empty">${esc(t("ui.searchEmpty"))}</div>`;
   };
@@ -375,7 +408,7 @@ function moduleCard(m, opts = {}) {
   const showStart = opts.startHere && idx === 0 && mm.points === 0;
   return `
     <a class="mcard card card-hover" href="#/module/${m.id}">
-      <div class="thumb thumb-${esc(m.path)}">${icon(m.icon)}</div>
+      <div class="thumb ${thumbClass(m)}">${icon(m.icon)}</div>
       <div class="mcard-body">
         <div class="mcard-meta"><span class="mono">${esc(t("ui.module"))} ${pad(idx + 1)}</span>${levelBadge(m.level)}${showStart ? `<span class="badge badge-start">${icon("star")}${esc(t("ui.startHere"))}</span>` : ""}${mm.complete ? `<span class="badge badge-mastered">${icon("check")}${esc(t("lesson.completed"))}</span>` : ""}</div>
         <h3>${esc(L(m.title))}</h3>
@@ -388,7 +421,7 @@ function moduleCard(m, opts = {}) {
 function tocCard(m, currentLid) {
   return `
     <div class="toc card">
-      <a class="toc-mod" href="#/module/${m.id}"><span class="thumb thumb-${esc(m.path)} sm">${icon(m.icon)}</span><span>${esc(L(m.title))}</span></a>
+      <a class="toc-mod" href="#/module/${m.id}"><span class="thumb ${thumbClass(m)} sm">${icon(m.icon)}</span><span>${esc(L(m.title))}</span></a>
       <h4>${esc(t("ui.contents"))}</h4>
       <ol>${m.lessons.map((l, i) => {
         const lm = lessonMastery(m.id, l.id);
@@ -405,16 +438,37 @@ function miniMastery(m) {
       <div class="row muted small"><span>${mm.done}/${m.lessons.length} ${esc(t("courses.progress"))}</span><span>${esc(t("ui.mastery.points"))}</span></div>
     </div>`;
 }
+function trackCard(tr) {
+  const tk = t("tracks"), tm = trackMastery(tr), mods = trackModules(tr);
+  return `
+    <a class="tcard card card-hover" href="#/tracks/${tr.id}">
+      <div class="tcard-head"><span class="thumb thumb-${esc(tr.id)}">${icon(tr.icon)}</span><div class="mcard-meta">${levelBadge(tr.level)}${tm.complete ? `<span class="badge badge-mastered">${icon("check")}${esc(tk.complete)}</span>` : ""}</div></div>
+      <h3>${esc(tr.title)}</h3>
+      <p>${esc(tr.tagline)}</p>
+      <ol class="spine">${tr.spine.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      <div class="mcard-foot"><span>${icon("layers")}${mods.length} ${esc(tk.modules)}</span><span>${icon("clock")}~${tr.hours} ${esc(tk.hours)}</span><span>${icon("map")}${tr.weeks} ${esc(tk.weeks)}</span></div>
+      <div class="mastery-line"><div class="bar"><i style="width:${tm.pct}%"></i></div><span class="mono">${tm.points}/${tm.total}</span></div>
+    </a>`;
+}
+const hostBadge = (h) => `<span class="badge badge-${h === "fork" ? "fork" : "link"}">${icon(h === "fork" ? "code" : "link")}${esc(t(`library.${h}`))}</span>`;
+function resourceList(resources) {
+  return `<ul class="res-block">${resources.map((r) => `
+    <li><a href="${esc(r.url)}" target="_blank" rel="noopener">
+      <span class="res-main"><b>${esc(r.title)}</b><span class="muted">${esc(t("library.by"))} ${esc(r.by)}</span>${r.note ? `<span class="res-note">${esc(r.note)}</span>` : ""}</span>
+      <span class="res-tags">${hostBadge(r.hosting)}<span class="badge badge-license">${esc(r.license)}</span>${icon("external")}</span>
+    </a></li>`).join("")}</ul>`;
+}
 
 // ---------- Pages ----------
 const pages = {
   home() {
-    const h = t("hero"), ui = t("ui"), f = t("features");
+    const h = t("hero"), ui = t("ui"), f = t("features"), tk = t("tracks");
+    const counts = { modules: allModules().length, tracks: state.tracks.length, library: libItems().length };
     const cont = lastActivity();
     const contHtml = cont ? `
       <section class="continue"><div class="wrap">
         <div class="continue-card card">
-          <div class="thumb thumb-${esc(cont.m.path)}">${icon(cont.m.icon)}</div>
+          <div class="thumb ${thumbClass(cont.m)}">${icon(cont.m.icon)}</div>
           <div><p class="kicker">${esc(ui.continue)}</p><h3>${esc(L(cont.m.title))} · ${esc(L(cont.l.title))}</h3><div class="bar" style="max-width:320px"><i style="width:${moduleMastery(cont.m).pct}%"></i></div></div>
           <a class="btn btn-primary" href="#/module/${cont.m.id}/${cont.l.id}">${esc(ui.resume)} ${icon("arrow")}</a>
         </div>
@@ -425,8 +479,8 @@ const pages = {
           <p class="kicker">${esc(h.kicker)}</p>
           <h1>${esc(h.title)}</h1>
           <p class="lead">${esc(h.subtitle)}</p>
-          <div class="hero-actions"><a class="btn btn-primary btn-lg" href="#/courses">${esc(h.cta)} ${icon("arrow")}</a><a class="btn btn-ghost btn-lg" href="#/teachers">${esc(h.cta2)}</a></div>
-          <ul class="stats">${h.stats.map((s) => `<li><b>${esc(s.n)}</b><span>${esc(s.l)}</span></li>`).join("")}</ul>
+          <div class="hero-actions"><a class="btn btn-primary btn-lg" href="#/courses">${esc(h.cta)} ${icon("arrow")}</a><a class="btn btn-ghost btn-lg" href="#/tracks">${esc(h.cta2)}</a></div>
+          <ul class="stats">${h.stats.map((s) => `<li><b>${esc(s.k ? counts[s.k] : s.n)}</b><span>${esc(s.l)}</span></li>`).join("")}</ul>
         </div>
         <div class="preview playing" aria-hidden="true">
           <span class="preview-badge">${esc(ui.lesson)} · ${esc(ui.level.intermediate)}</span>
@@ -452,14 +506,19 @@ const pages = {
         <div class="paths-grid">${state.courses.paths.map((p, i) => {
           const mods = state.courses.modules.filter((m) => m.path === p.id);
           return `<div class="pcard card"><div class="pcard-head"><h3>${esc(L(p.title))}</h3><span class="mono">${esc(t("ui.results"))} · ${pad(mods.length)}</span></div><p>${esc(L(p.description))}</p>
-            <ul>${mods.map((m) => `<li><a href="#/module/${m.id}"><span class="glyph thumb-${esc(m.path)}">${icon(m.icon)}</span><span class="t">${esc(L(m.title))}</span>${levelBadge(m.level)}${icon("chevron")}</a></li>`).join("")}</ul></div>`;
+            <ul>${mods.map((m) => `<li><a href="#/module/${m.id}"><span class="glyph ${thumbClass(m)}">${icon(m.icon)}</span><span class="t">${esc(L(m.title))}</span>${levelBadge(m.level)}${icon("chevron")}</a></li>`).join("")}</ul></div>`;
         }).join("")}</div>
       </div></section>
       <section class="section"><div class="wrap">
+        <div class="section-head"><div><p class="kicker">${esc(tk.kicker)}</p><h2>${esc(tk.title)}</h2><p>${esc(tk.subtitle)}</p></div><a class="more" href="#/tracks">${esc(tk.viewAll)} ${icon("arrow")}</a></div>
+        <div class="tracks-grid">${state.tracks.map(trackCard).join("")}</div>
+        <div class="lib-teaser card"><span class="icon-wrap">${icon("library")}</span><div><h3>${esc(t("library.title"))}</h3><p>${esc(tk.libraryTeaser)}</p></div><a class="btn btn-dark" href="#/library">${esc(tk.libraryCta)} ${icon("arrow")}</a></div>
+      </div></section>
+      <section class="section section-warm"><div class="wrap">
         <div class="section-head"><h2>${esc(f.title)}</h2></div>
         <div class="grid-3">${f.items.map((x) => `<div class="feat card"><span class="icon-wrap">${icon(x.icon)}</span><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div>`).join("")}</div>
       </div></section>
-      <section class="section section-warm"><div class="wrap">
+      <section class="section"><div class="wrap">
         <div class="section-head"><h2>${esc(ui.howTitle)}</h2></div>
         <div class="how-grid">
           <ol class="steps">${ui.how.map((s) => `<li><div><b>${esc(s.t)}</b><span>${esc(s.d)}</span></div></li>`).join("")}</ol>
@@ -511,15 +570,18 @@ const pages = {
     if (!m) return pages.notFound();
     const ui = t("ui"), c = t("courses");
     const mm = moduleMastery(m);
-    const p = pathOf(m);
+    const tr = trackOf(m), p = pathOf(m);
+    const crumbTrail = tr
+      ? [{ label: t("nav.tracks"), href: "#/tracks" }, { label: tr.title, href: `#/tracks/${tr.id}` }, { label: L(m.title) }]
+      : [{ label: t("nav.courses"), href: "#/courses" }, { label: L(p.title), href: `#/courses#path-${p.id}` }, { label: L(m.title) }];
     const nextLesson = m.lessons.find((l) => !lessonMastery(m.id, l.id).done) || m.lessons[0];
     return `
-      <div class="wrap">${crumbs([{ label: t("nav.courses"), href: "#/courses" }, { label: L(p.title), href: `#/courses#path-${p.id}` }, { label: L(m.title) }])}</div>
+      <div class="wrap">${crumbs(crumbTrail)}</div>
       <div class="wrap layout">
         <aside class="side">${tocCard(m)}${miniMastery(m)}</aside>
         <div class="content">
           <header class="mod-hero">
-            <div class="thumb thumb-${esc(m.path)} lg">${icon(m.icon)}</div>
+            <div class="thumb ${thumbClass(m)} lg">${icon(m.icon)}</div>
             <div>
               <div class="mcard-meta"><span class="mono">${esc(ui.module)} ${pad(modIndex(m) + 1)}</span>${levelBadge(m.level)}${m.grades.map((g) => `<span class="badge badge-outline">${esc(gradeLabel(g))}</span>`).join("")}</div>
               <h1>${esc(L(m.title))}</h1>
@@ -536,7 +598,7 @@ const pages = {
             </div>
             <div class="mboxes">${mm.items.map(({ lesson, level, points }) => `<a href="#/module/${m.id}/${lesson.id}">${mbox(level, "lg")}<span><b>${esc(L(lesson.title))}</b><small>${esc(ui.mastery.levels[level])}</small></span><span class="pts">${points}/100</span></a>`).join("")}</div>
           </section>
-          <section style="margin-bottom:36px"><h2>${esc(ui.aboutModule)}</h2><p class="lead">${esc(L(m.summary))}</p><p><b>${esc(t("lesson.curriculum"))}:</b> ${m.curriculum.map((x) => `<span class="tag">${esc(x)}</span>`).join(" ")}</p></section>
+          <section style="margin-bottom:36px"><h2>${esc(ui.aboutModule)}</h2><p class="lead">${esc(L(m.summary))}</p><p><b>${esc(tr ? t("tracks.topics") : t("lesson.curriculum"))}:</b> ${m.curriculum.map((x) => `<span class="tag">${esc(x)}</span>`).join(" ")}</p></section>
           <section>
             <div class="section-head"><h2>${esc(ui.contents)}</h2></div>
             <div class="lesson-list">${m.lessons.map((l, i) => {
@@ -556,10 +618,15 @@ const pages = {
     const lt = t("lesson"), ui = t("ui");
     const prev = m.lessons[idx - 1], next = m.lessons[idx + 1];
     const lm = lessonMastery(m.id, l.id);
-    const nextMod = state.courses.modules[modIndex(m) + 1];
+    const tr = trackOf(m);
+    const nextMod = siblings(m)[modIndex(m) + 1];
+    const finishHref = tr ? `#/certificate?track=${tr.id}` : "#/certificate";
+    const crumbTrail = tr
+      ? [{ label: t("nav.tracks"), href: "#/tracks" }, { label: tr.title, href: `#/tracks/${tr.id}` }, { label: L(m.title), href: `#/module/${m.id}` }, { label: L(l.title) }]
+      : [{ label: t("nav.courses"), href: "#/courses" }, { label: L(m.title), href: `#/module/${m.id}` }, { label: L(l.title) }];
     const saved = state.quiz[key(m.id, l.id)];
     return `
-      <div class="wrap">${crumbs([{ label: t("nav.courses"), href: "#/courses" }, { label: L(m.title), href: `#/module/${m.id}` }, { label: L(l.title) }])}</div>
+      <div class="wrap">${crumbs(crumbTrail)}</div>
       <div class="wrap layout">
         <aside class="side" id="lessonSide">${tocCard(m, l.id)}${miniMastery(m)}</aside>
         <div class="content article">
@@ -573,6 +640,7 @@ const pages = {
           </div>
           <article class="prose" id="lessonText">${L(l.body).split(/\n\n+/).map((p) => `<p>${esc(p)}</p>`).join("")}</article>
           <aside class="callout"><span class="callout-icon">${icon("lightbulb")}</span><div><b>${esc(lt.activity)}</b><p>${esc(L(l.activity))}</p></div></aside>
+          ${l.resources && l.resources.length ? `<section class="resources"><div class="section-head"><div><h2>${esc(lt.resources)}</h2><p>${esc(lt.resourcesHelp)}</p></div></div>${resourceList(l.resources)}</section>` : ""}
           <section class="quiz card" id="quiz">
             <div class="quiz-head"><p class="kicker">${esc(lt.quiz)}</p><span class="mono">${l.quiz.length} Q · ${saved ? `${esc(lt.score)} ${saved.correct}/${saved.total}` : "100 pts"}</span></div>
             ${l.quiz.map((q, qi) => `<div class="q" data-answer="${q.answer}"><p class="q-text"><span class="n">${pad(qi + 1)}</span>${esc(L(q.q))}</p><div class="opts">${L(q.options).map((o, oi) => `<label class="opt"><input type="radio" name="q${qi}" value="${oi}" /><span>${esc(o)}</span><span class="mark"></span></label>`).join("")}</div></div>`).join("")}
@@ -581,10 +649,10 @@ const pages = {
           <div class="lesson-nav">
             ${prev ? `<a class="btn btn-ghost" href="#/module/${m.id}/${prev.id}">${icon("arrowLeft")} ${esc(lt.prev)}</a>` : `<a class="btn btn-ghost" href="#/module/${m.id}">${icon("arrowLeft")} ${esc(lt.back)}</a>`}
             <button class="btn ${lm.done ? "btn-ghost" : "btn-accent"}" id="complete">${lm.done ? icon("check") : ""} ${esc(lm.done ? lt.completed : lt.complete)}</button>
-            ${next ? `<a class="btn btn-primary" href="#/module/${m.id}/${next.id}">${esc(lt.next)} ${icon("arrow")}</a>` : nextMod ? `<a class="btn btn-primary" href="#/module/${nextMod.id}">${esc(ui.module)} ${pad(modIndex(nextMod) + 1)} ${icon("arrow")}</a>` : `<a class="btn btn-primary" href="#/certificate">${esc(t("certificate.title"))} ${icon("award")}</a>`}
+            ${next ? `<a class="btn btn-primary" href="#/module/${m.id}/${next.id}">${esc(lt.next)} ${icon("arrow")}</a>` : nextMod ? `<a class="btn btn-primary" href="#/module/${nextMod.id}">${esc(ui.module)} ${pad(modIndex(nextMod) + 1)} ${icon("arrow")}</a>` : `<a class="btn btn-primary" href="${finishHref}">${esc(tr ? t("tracks.certificate") : t("certificate.title"))} ${icon("award")}</a>`}
           </div>
-          ${next ? `<div class="upnext card"><div class="thumb thumb-${esc(m.path)} sm">${icon("book")}</div><div><p class="kicker">${esc(ui.upNext)}</p><a class="title" href="#/module/${m.id}/${next.id}">${esc(L(next.title))}</a><div class="muted small">${next.minutes} ${esc(t("courses.min"))}</div></div><a class="btn btn-ghost btn-sm" href="#/module/${m.id}/${next.id}">${icon("arrow")}</a></div>`
-            : nextMod ? `<div class="upnext card"><div class="thumb thumb-${esc(nextMod.path)} sm">${icon(nextMod.icon)}</div><div><p class="kicker">${esc(ui.upNext)} · ${esc(ui.module)} ${pad(modIndex(nextMod) + 1)}</p><a class="title" href="#/module/${nextMod.id}">${esc(L(nextMod.title))}</a></div><a class="btn btn-ghost btn-sm" href="#/module/${nextMod.id}">${icon("arrow")}</a></div>` : ""}
+          ${next ? `<div class="upnext card"><div class="thumb ${thumbClass(m)} sm">${icon("book")}</div><div><p class="kicker">${esc(ui.upNext)}</p><a class="title" href="#/module/${m.id}/${next.id}">${esc(L(next.title))}</a><div class="muted small">${next.minutes} ${esc(t("courses.min"))}</div></div><a class="btn btn-ghost btn-sm" href="#/module/${m.id}/${next.id}">${icon("arrow")}</a></div>`
+            : nextMod ? `<div class="upnext card"><div class="thumb ${thumbClass(nextMod)} sm">${icon(nextMod.icon)}</div><div><p class="kicker">${esc(ui.upNext)} · ${esc(ui.module)} ${pad(modIndex(nextMod) + 1)}</p><a class="title" href="#/module/${nextMod.id}">${esc(L(nextMod.title))}</a></div><a class="btn btn-ghost btn-sm" href="#/module/${nextMod.id}">${icon("arrow")}</a></div>` : ""}
         </div>
       </div>`;
   },
@@ -594,7 +662,7 @@ const pages = {
     const subjects = ["English Language Arts", "Social Studies", "Science", "Mathematics", "ADST / Technology", "Career Education", "Arts"];
     const tabs = [["policy", "shield"], ["template", "file"], ["modules", "table"], ["resources", "link"]];
     const tab = state.teacherTab;
-    const plannerRows = state.courses.modules.map((m, i) => `<tr><td><input type="checkbox" data-plan="${m.id}" ${state.planner[m.id] ? "checked" : ""} aria-label="${esc(L(m.title))}" /></td><td><div class="mod-cell"><span class="thumb thumb-${esc(m.path)} sm">${icon(m.icon)}</span><span>${pad(i + 1)} · ${esc(L(m.title))}</span></div></td><td>${levelBadge(m.level)}</td><td>${m.grades.map(gradeLabel).join(" · ")}</td><td>${m.lessons.length}</td><td class="mono">${modMinutes(m)} ${esc(c.min)}</td></tr>`).join("");
+    const plannerRows = state.courses.modules.map((m, i) => `<tr><td><input type="checkbox" data-plan="${m.id}" ${state.planner[m.id] ? "checked" : ""} aria-label="${esc(L(m.title))}" /></td><td><div class="mod-cell"><span class="thumb ${thumbClass(m)} sm">${icon(m.icon)}</span><span>${pad(i + 1)} · ${esc(L(m.title))}</span></div></td><td>${levelBadge(m.level)}</td><td>${m.grades.map(gradeLabel).join(" · ")}</td><td>${m.lessons.length}</td><td class="mono">${modMinutes(m)} ${esc(c.min)}</td></tr>`).join("");
     return `
       <div class="wrap page-head"><p class="kicker">${esc(t("nav.teachers"))}</p><h1>${esc(th.title)}</h1><p class="lead">${esc(th.subtitle)}</p></div>
       <div class="wrap" style="padding-bottom:72px">
@@ -686,21 +754,134 @@ const pages = {
       </div>`;
   },
 
-  certificate() {
-    const c = t("certificate");
-    const complete = allComplete();
+  tracks() {
+    const tk = t("tracks");
+    return `
+      <div class="wrap page-head"><p class="kicker">${esc(tk.kicker)}</p><h1>${esc(tk.title)}</h1><p class="lead">${esc(tk.subtitle)}</p></div>
+      <div class="wrap" style="padding-bottom:72px">
+        <div class="tracks-grid">${state.tracks.map(trackCard).join("")}</div>
+        <div class="licensing card"><span class="icon-wrap">${icon("shield")}</span><div><h3>${esc(tk.licensing)}</h3><p>${esc(tk.licensingBody)}</p><div class="chips" style="margin-top:12px">${hostBadge("fork")}${hostBadge("link")}</div></div><a class="btn btn-ghost" href="#/library">${esc(tk.libraryCta)} ${icon("arrow")}</a></div>
+      </div>`;
+  },
+
+  track(tid) {
+    const tr = findTrack(tid);
+    if (!tr) return pages.notFound();
+    const tk = t("tracks"), ui = t("ui"), c = t("courses");
+    const mods = trackModules(tr), tm = trackMastery(tr);
+    const firstMod = mods.find((m) => !moduleMastery(m).complete) || mods[0];
+    const firstLesson = firstMod.lessons.find((l) => !lessonMastery(firstMod.id, l.id).done) || firstMod.lessons[0];
+    const lessons = mods.reduce((s, m) => s + m.lessons.length, 0);
+    return `
+      <div class="wrap">${crumbs([{ label: t("nav.tracks"), href: "#/tracks" }, { label: tr.title }])}</div>
+      <div class="wrap layout">
+        <aside class="side">
+          <div class="card side-card">
+            <h4>${esc(tk.spine)}</h4>
+            <ol class="spine lg">${tr.spine.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+          </div>
+          <div class="mini-mastery card">
+            <div class="row"><span>${esc(ui.mastery.title)}</span><b>${tm.points}/${tm.total}</b></div>
+            <div class="bar"><i style="width:${tm.pct}%"></i></div>
+            <div class="row muted small"><span>${tm.done}/${mods.length} ${esc(tk.modules)} ${esc(c.progress)}</span><span>${esc(ui.mastery.points)}</span></div>
+            ${tm.complete ? `<a class="btn btn-accent btn-sm" style="margin-top:12px" href="#/certificate?track=${tr.id}">${icon("award")} ${esc(tk.certificate)}</a>` : ""}
+          </div>
+        </aside>
+        <div class="content">
+          <header class="mod-hero">
+            <div class="thumb thumb-${esc(tr.id)} lg">${icon(tr.icon)}</div>
+            <div>
+              <div class="mcard-meta"><span class="mono">${esc(t("nav.tracks"))}</span>${levelBadge(tr.level)}<span class="badge badge-outline">${esc(gradeLabel("adult"))}</span></div>
+              <h1>${esc(tr.title)}</h1>
+              <p class="lead">${esc(tr.description)}</p>
+              <div class="hero-actions"><a class="btn btn-primary" href="#/module/${firstMod.id}/${firstLesson.id}">${esc(tm.points ? tk.resume : tk.start)} ${icon("arrow")}</a><span class="muted small" style="align-self:center">${mods.length} ${esc(tk.modules)} · ${lessons} ${esc(c.lessons)} · ~${tr.hours} ${esc(tk.hours)} · ${tr.weeks} ${esc(tk.weeks)}</span></div>
+            </div>
+          </header>
+          <div class="grid-2 track-facts">
+            <div class="card"><p class="kicker">${esc(tk.outcome)}</p><p>${esc(tr.outcome)}</p></div>
+            <div class="card"><p class="kicker">${esc(tk.audience)}</p><p>${esc(tr.audience)}</p></div>
+          </div>
+          <section>
+            <div class="section-head"><h2>${esc(tk.syllabus)}</h2></div>
+            <ol class="syllabus">${mods.map((m, i) => {
+              const mm = moduleMastery(m);
+              return `<li class="card">
+                <div class="syl-head"><span class="thumb ${thumbClass(m)}">${icon(m.icon)}</span><div><div class="mcard-meta"><span class="mono">${esc(ui.module)} ${pad(i + 1)}</span>${levelBadge(m.level)}${mm.complete ? `<span class="badge badge-mastered">${icon("check")}${esc(t("lesson.completed"))}</span>` : ""}</div><h3><a href="#/module/${m.id}">${esc(m.title)}</a></h3><p>${esc(m.summary)}</p></div></div>
+                <ul class="syl-lessons">${m.lessons.map((l, li) => { const lm = lessonMastery(m.id, l.id); return `<li><a href="#/module/${m.id}/${l.id}">${mbox(lm.level)}<span>${i + 1}.${li + 1} ${esc(l.title)}</span><small>${l.minutes} ${esc(c.min)}</small></a></li>`; }).join("")}</ul>
+                <div class="syl-foot"><span class="muted small">${m.curriculum.map((x) => `<span class="tag">${esc(x)}</span>`).join(" ")}</span><div class="mastery-line"><div class="bar"><i style="width:${mm.pct}%"></i></div><span class="mono">${mm.points}/${mm.total}</span></div></div>
+              </li>`;
+            }).join("")}</ol>
+          </section>
+        </div>
+      </div>`;
+  },
+
+  library(query) {
+    const lb = t("library"), f = state.lib;
+    if (query.has("track")) f.track = query.get("track");
+    if (query.has("q")) f.q = query.get("q");
+    if ([...query.keys()].length) history.replaceState(null, "", "#/library");
+    const q = f.q.trim().toLowerCase();
+    const matches = (it) =>
+      (f.section === "all" || it.section === f.section) &&
+      (f.track === "all" || it.tracks.includes(f.track)) &&
+      (f.hosting === "all" || it.hosting === f.hosting) &&
+      (!q || [it.title, it.by, it.note, it.license, ...it.tags].join(" ").toLowerCase().includes(q));
+    const items = libItems();
+    const visible = items.filter(matches);
+    const chips = (name, list, cur) => `<div class="chips">${list.map(([v, lbl]) => `<button class="chip ${cur === v ? "on" : ""}" data-lib="${name}" data-value="${esc(v)}">${esc(lbl)}</button>`).join("")}</div>`;
+    const sections = state.library.sections.filter((s) => visible.some((it) => it.section === s.id));
+    return `
+      <div class="wrap page-head"><p class="kicker">${esc(t("nav.library"))}</p><h1>${esc(lb.title)}</h1><p class="lead">${esc(lb.subtitle)}</p></div>
+      <div class="wrap layout">
+        <aside class="side">
+          <div class="side-block"><h4>${esc(lb.type)}</h4>${chips("section", [["all", lb.all], ...state.library.sections.map((s) => [s.id, s.title])], f.section)}</div>
+          <div class="side-block"><h4>${esc(lb.track)}</h4>${chips("track", [["all", lb.all], ...state.tracks.map((tr) => [tr.id, tr.title])], f.track)}</div>
+          <div class="side-block"><h4>${esc(lb.hosting)}</h4>${chips("hosting", [["all", lb.all], ["fork", lb.fork], ["link", lb.link]], f.hosting)}</div>
+          <button class="btn btn-ghost btn-sm" id="resetLib">${icon("refresh")} ${esc(t("ui.reset"))}</button>
+        </aside>
+        <div class="content">
+          <div class="results-bar"><input class="input" id="libSearch" type="search" placeholder="${esc(lb.search)}" value="${esc(f.q)}" aria-label="${esc(lb.search)}" /><span class="count">${visible.length} ${esc(lb.results)}</span></div>
+          <section class="rules card">
+            <h3>${esc(lb.rulesTitle)}</h3>
+            <div class="rules-grid">${state.library.rules.map((r) => `<div><b>${esc(r.t)}</b><p>${esc(r.d)}</p></div>`).join("")}</div>
+          </section>
+          ${sections.length ? sections.map((s) => `
+            <section class="lib-section" id="lib-${s.id}">
+              <div class="section-head"><div><h2>${esc(s.title)}</h2><p>${esc(s.summary)}</p></div></div>
+              <div class="lib-grid">${visible.filter((it) => it.section === s.id).map((it) => `
+                <article class="lib-item card" id="lib-${esc(it.id)}">
+                  <div class="lib-top"><span class="badge badge-outline">${esc(lb.types[it.type] || it.type)}</span>${hostBadge(it.hosting)}</div>
+                  <h3><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)} ${icon("external")}</a></h3>
+                  <p class="muted small">${esc(lb.by)} ${esc(it.by)}</p>
+                  <p>${esc(it.note)}</p>
+                  <dl class="lib-meta"><dt>${esc(lb.license)}</dt><dd><span class="badge badge-license">${esc(it.license)}</span></dd>${it.tracks.length ? `<dt>${esc(lb.usedIn)}</dt><dd>${it.tracks.map((tid) => { const tr = findTrack(tid); return tr ? `<a class="tag" href="#/tracks/${tr.id}">${esc(tr.title)}</a>` : ""; }).join(" ")}</dd>` : ""}</dl>
+                </article>`).join("")}</div>
+            </section>`).join("") : `<div class="empty">${esc(t("ui.searchEmpty"))}</div>`}
+        </div>
+      </div>`;
+  },
+
+  certificate(query) {
+    const c = t("certificate"), tk = t("tracks");
+    const tr = query && query.has("track") ? findTrack(query.get("track")) : null;
+    const mods = tr ? trackModules(tr) : state.courses.modules;
+    const complete = tr ? trackMastery(tr).complete : allComplete();
+    const title = tr ? tk.certificate : c.title;
+    const body = tr ? tk.certBody.replace("{track}", tr.title) : c.body;
     const date = new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" });
     return `
-      <div class="wrap page-head"><p class="kicker">${esc(t("ui.mastery.title"))}</p><h1>${esc(c.title)}</h1>
-        <div class="cert-tools"><input class="input" id="certName" type="text" placeholder="${esc(c.name)}" value="${esc(state.certName)}" /><button class="btn btn-primary" id="printCert">${icon("printer")} ${esc(c.print)}</button>${complete ? `<span class="badge badge-mastered">${icon("check")} ${esc(t("lesson.completed"))}</span>` : `<span class="badge badge-amber">${icon("info")} ${state.courses.modules.filter((m) => moduleMastery(m).complete).length}/${state.courses.modules.length} ${esc(t("courses.progress"))}</span>`}</div>
+      <div class="wrap page-head"><p class="kicker">${esc(t("ui.mastery.title"))}</p><h1>${esc(title)}</h1>
+        <div class="chips" style="margin-bottom:16px"><a class="chip ${tr ? "" : "on"}" href="#/certificate">${esc(t("nav.courses"))}</a>${state.tracks.map((x) => `<a class="chip ${tr && tr.id === x.id ? "on" : ""}" href="#/certificate?track=${x.id}">${esc(x.title)}</a>`).join("")}</div>
+        <div class="cert-tools"><input class="input" id="certName" type="text" placeholder="${esc(c.name)}" value="${esc(state.certName)}" /><button class="btn btn-primary" id="printCert">${icon("printer")} ${esc(c.print)}</button>${complete ? `<span class="badge badge-mastered">${icon("check")} ${esc(t("lesson.completed"))}</span>` : `<span class="badge badge-amber">${icon("info")} ${mods.filter((m) => moduleMastery(m).complete).length}/${mods.length} ${esc(t("courses.progress"))}</span>`}</div>
       </div>
       <div class="wrap" style="padding-bottom:72px">
         <div class="cert">
           <div class="cert-brand"><span class="logo">${LOGO}</span><span>${esc(t("brand"))}</span></div>
-          <h1>${esc(c.title)}</h1>
+          <h1>${esc(title)}</h1>
           <div class="name" id="certNameOut">${esc(state.certName || "____________")}</div>
-          <p class="cert-body">${esc(c.body)}</p>
-          <div class="modules">${state.courses.modules.map((m) => `<span class="badge ${moduleMastery(m).complete ? "badge-mastered" : "badge-outline"}">${esc(L(m.title))}</span>`).join("")}</div>
+          <p class="cert-body">${esc(body)}</p>
+          <div class="modules">${mods.map((m) => `<span class="badge ${moduleMastery(m).complete ? "badge-mastered" : "badge-outline"}">${esc(L(m.title))}</span>`).join("")}</div>
           <div class="cert-foot"><span>${esc(c.date)}: ${esc(date)}</span><span>${esc(t("brand"))} · 9lordisgod.github.io/ai-course</span></div>
         </div>
       </div>`;
@@ -737,6 +918,9 @@ function route() {
   else if (path === "module" && parts[1]) html = pages.lesson(parts[0], parts[1]);
   else if (path === "module") html = pages.module(parts[0]);
   else if (path === "courses") html = pages.courses(query);
+  else if (path === "tracks" && parts[0]) html = pages.track(parts[0]);
+  else if (path === "library") html = pages.library(query);
+  else if (path === "certificate") html = pages.certificate(query);
   else html = (pages[path] || pages.notFound)();
   tts.stop();
   const app = $("#app");
@@ -756,6 +940,13 @@ function wire(path, parts) {
     const s = $("#courseSearch");
     s.oninput = () => { state.filters.q = s.value; const pos = s.selectionStart; route(); const s2 = $("#courseSearch"); s2.focus(); s2.setSelectionRange(pos, pos); };
     $$("[data-jump]", app).forEach((a) => (a.onclick = (e) => { e.preventDefault(); $("#" + a.dataset.jump)?.scrollIntoView({ behavior: "smooth", block: "start" }); }));
+  }
+
+  if (path === "library") {
+    $$("[data-lib]", app).forEach((b) => (b.onclick = () => { state.lib[b.dataset.lib] = b.dataset.value; route(); }));
+    $("#resetLib").onclick = () => { state.lib = { section: "all", track: "all", hosting: "all", q: "" }; location.hash = "#/library"; route(); };
+    const s = $("#libSearch");
+    s.oninput = () => { state.lib.q = s.value; const pos = s.selectionStart; route(); const s2 = $("#libSearch"); s2.focus(); s2.setSelectionRange(pos, pos); };
   }
 
   if (path === "module" && parts[1]) {
@@ -849,8 +1040,8 @@ function wire(path, parts) {
 
 // ---------- Boot ----------
 async function boot() {
-  const [i18n, courses, policy] = await Promise.all(["data/i18n.json", "data/courses.json", "data/policy.json"].map((u) => fetch(u).then((r) => { if (!r.ok) throw new Error(u); return r.json(); })));
-  Object.assign(state, { i18n, courses, policy });
+  const [i18n, courses, policy, tracks, library] = await Promise.all(["data/i18n.json", "data/courses.json", "data/policy.json", "data/tracks.json", "data/library.json"].map((u) => fetch(u).then((r) => { if (!r.ok) throw new Error(u); return r.json(); })));
+  Object.assign(state, { i18n, courses, policy, library, tracks: tracks.tracks, trackModules: tracks.modules });
   document.documentElement.dataset.theme = state.theme;
   document.documentElement.lang = "en-CA";
   document.title = `${t("brand")} — ${t("tagline")}`;

@@ -1,0 +1,2827 @@
+{
+  "tracks": [
+    {
+      "id": "intro",
+      "title": "Intro: AI Foundations",
+      "tagline": "From zero to your first grounded chatbot.",
+      "description": "A gentle, code-light route for senior students, teachers and newcomers. You will learn what AI can and cannot do, write prompts that work, understand how language models are trained, and finish by building a small chatbot that answers questions about your own documents.",
+      "level": "beginner",
+      "audience": "Grade 11–12, educators, career changers",
+      "hours": 20,
+      "weeks": 4,
+      "outcome": "A working retrieval-augmented (RAG) chatbot that answers questions about documents you choose, plus a short write-up of where it fails.",
+      "icon": "sparkles",
+      "spine": [
+        "Elements of AI",
+        "Generative AI for Beginners",
+        "RAG capstone"
+      ],
+      "modules": [
+        "intro-what-ai-does",
+        "intro-prompting",
+        "intro-llms",
+        "intro-rag"
+      ]
+    },
+    {
+      "id": "practitioner",
+      "title": "Practitioner ML",
+      "tagline": "Ship honest models with scikit-learn and fast.ai.",
+      "description": "A hands-on route for people who can write a little Python and want to build real predictive models. You will run the full workflow — framing, data, baselines, supervised models, evaluation and fairness — then use transfer learning to train an image classifier, finishing with two documented projects.",
+      "level": "intermediate",
+      "audience": "Grade 12 CS, undergraduates, working analysts",
+      "hours": 40,
+      "weeks": 8,
+      "outcome": "One tabular model and one image classifier, each with a model card: data, metrics on a held-out set, leakage checks and known failure modes.",
+      "icon": "table",
+      "spine": [
+        "ML for Beginners / mlcourse.ai",
+        "fast.ai",
+        "Tabular + vision projects"
+      ],
+      "modules": [
+        "ml-workflow",
+        "ml-supervised",
+        "ml-evaluation",
+        "ml-deep-fastai"
+      ]
+    },
+    {
+      "id": "engineer",
+      "title": "AI Engineer",
+      "tagline": "Build, fine-tune and evaluate LLM systems you can run yourself.",
+      "description": "For developers who want to work with language models below the API surface. You will use Transformers in production style, build a GPT from scratch to understand what you are calling, design tool-using agents, and finish with an open-model agent running locally behind an evaluation harness.",
+      "level": "advanced",
+      "audience": "Developers, CS undergraduates, ML engineers switching to LLMs",
+      "hours": 60,
+      "weeks": 10,
+      "outcome": "A local open-model agent with tools and retrieval, shipped with an evaluation harness that reports task success, groundedness and cost on every change.",
+      "icon": "code",
+      "spine": [
+        "HF LLM Course",
+        "Karpathy + nanoGPT",
+        "Agents course",
+        "Local agent with evals"
+      ],
+      "modules": [
+        "eng-transformers",
+        "eng-gpt-from-scratch",
+        "eng-agents",
+        "eng-local-evals"
+      ]
+    },
+    {
+      "id": "academic",
+      "title": "Academic ML",
+      "tagline": "The mathematics, theory and canonical courses behind modern machine learning.",
+      "description": "A university-style sequence for learners who want to read current papers, not just run them. Mathematics for ML first, then learning theory through Stanford and MIT courses, then each core architecture implemented with Dive into Deep Learning, finishing at the research frontier with CS336, reinforcement learning and paper reproduction.",
+      "level": "advanced",
+      "audience": "Upper-year undergraduates, graduate students, teachers preparing to teach AP-level computing",
+      "hours": 120,
+      "weeks": 16,
+      "outcome": "Mathematical fluency to read current machine-learning papers, with your own d2l.ai-based implementation of each core architecture and one reproduced result.",
+      "icon": "graduation",
+      "spine": [
+        "Math for ML",
+        "CS229 / MIT 6.390",
+        "d2l.ai",
+        "CS231n or CS224n",
+        "Prince as theory companion"
+      ],
+      "modules": [
+        "acad-math",
+        "acad-learning-theory",
+        "acad-deep-learning",
+        "acad-frontier"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "intro-what-ai-does",
+      "icon": "cpu",
+      "track": "intro",
+      "level": "beginner",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "AI literacy",
+        "Machine learning basics"
+      ],
+      "title": "What AI Can and Cannot Do",
+      "summary": "Separate the three big families of AI, see how learning from examples differs from following rules, and build an honest intuition for where today's systems fail.",
+      "lessons": [
+        {
+          "id": "map-of-ai",
+          "title": "A Map of AI: Rules, Learning and Generation",
+          "minutes": 12,
+          "body": "Almost every headline about \"AI\" is talking about one of three very different things. Rule-based systems follow instructions written by people: a thermostat, a chess engine from the 1990s, the spell-checker that flags a word not in its dictionary. Machine-learning systems are tuned on examples rather than programmed line by line: a spam filter, a credit-scoring model, the camera feature that groups your photos by face. Generative systems are machine-learning models trained to produce new content — text, images, audio or code — that resembles their training data.\n\nKeeping the three apart matters because each fails differently. A rule-based system breaks when it meets a situation its author never imagined. A machine-learning model breaks when the world drifts away from the data it was trained on. A generative model can produce fluent, confident output that is simply untrue. If you know which family a tool belongs to, you already know what kind of mistakes to watch for.\n\nThe free Elements of AI course from the University of Helsinki is the best place to build this intuition without code. Its first two chapters walk through the same three families with interactive exercises, and the whole course takes about six hours. Pair it with the first lesson of Microsoft's AI for Beginners, which adds a short history of the field from symbolic AI to deep learning.",
+          "activity": "Collect five AI features you used this week (autocomplete, a map route, a recommendation, a photo filter, a chatbot). Sort each into rules, learning or generation, and write one sentence on how it could fail.",
+          "quiz": [
+            {
+              "q": "Which family of AI is most likely to produce fluent output that is factually wrong?",
+              "options": [
+                "Rule-based systems",
+                "Classical machine learning",
+                "Generative models",
+                "Spreadsheets"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "A spam filter that was tuned on millions of labelled emails is an example of…",
+              "options": [
+                "A rule-based system",
+                "A machine-learning system",
+                "A generative system",
+                "A database"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Elements of AI",
+              "by": "University of Helsinki & MinnaLearn",
+              "url": "https://www.elementsofai.com/",
+              "license": "Free course (all rights reserved)",
+              "hosting": "link",
+              "note": "Chapters 1–2: What is AI? and AI problem solving"
+            },
+            {
+              "title": "AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/AI-For-Beginners/tree/main/lessons/1-Intro",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 1 — Introduction and history of AI"
+            }
+          ]
+        },
+        {
+          "id": "learning-from-examples",
+          "title": "How Models Learn from Examples",
+          "minutes": 14,
+          "body": "Training a model is a loop with three parts. First, the model makes a guess on an example — say, whether a photo shows a bicycle. Second, a loss function measures how wrong the guess was compared with the correct label. Third, an optimizer nudges the model's internal numbers, called parameters or weights, in the direction that would have made the loss a little smaller. Repeat this millions of times and the guesses stop being random.\n\nTwo ideas fall straight out of that loop. The model can only learn patterns that are actually present in its examples, so a dataset with no winter photos produces a model that is confused by snow. And the model is optimised for the loss you chose, not for what you meant: if you reward \"predict the next word\", you get a system that is superb at plausible text and indifferent to truth.\n\nThe split between training data and held-out test data is how practitioners keep themselves honest. A model that scores well on examples it has already seen has proven nothing; the test set is a dress rehearsal for the real world. Microsoft's AI for Beginners introduces this workflow with small neural networks you can run in a browser notebook, and Elements of AI covers the same idea in its machine-learning chapter without any code.",
+          "activity": "Open the AI for Beginners perceptron notebook, change the number of training steps and watch the accuracy on the test set. Note the point where more training stops helping.",
+          "quiz": [
+            {
+              "q": "In the training loop, what does the loss function do?",
+              "options": [
+                "Picks the training data",
+                "Measures how wrong a prediction was",
+                "Stores the model's weights",
+                "Generates new examples"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why do practitioners keep a separate test set?",
+              "options": [
+                "To make training faster",
+                "To check performance on examples the model has not seen",
+                "Because datasets are too large to use at once",
+                "To reduce the number of parameters"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/AI-For-Beginners/tree/main/lessons/3-NeuralNetworks",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 3 — Neural networks: perceptron and multi-layer notebooks"
+            },
+            {
+              "title": "Elements of AI",
+              "by": "University of Helsinki & MinnaLearn",
+              "url": "https://www.elementsofai.com/",
+              "license": "Free course (all rights reserved)",
+              "hosting": "link",
+              "note": "Chapter 4: Machine learning"
+            }
+          ]
+        },
+        {
+          "id": "limits-and-trust",
+          "title": "Limits, Hallucinations and Trust",
+          "minutes": 12,
+          "body": "A hallucination is output that sounds right and is wrong: an invented court case, a plausible but non-existent citation, a confident date that is off by a decade. It is not a bug that will be patched next month. A language model is trained to continue text in the most likely way, and for many prompts the most likely continuation is a specific-sounding answer rather than \"I don't know\".\n\nTrust therefore has to be earned per task, not granted to a tool. Useful questions to ask: Is the answer checkable against a source I can open? Does the task have one right answer or many acceptable ones? What is the cost if the output is wrong — a bad draft, or a wrong medication dose? High-stakes, hard-to-verify, single-correct-answer tasks are where generative tools need the most human oversight.\n\nMicrosoft's \"Using Generative AI Responsibly\" lesson gives a practical checklist — measure harms, mitigate with grounding and filters, and keep a human in the loop. In the next modules you will see the engineering side of that checklist: prompts that constrain the model, and retrieval that grounds it in documents you control.",
+          "activity": "Ask any chatbot for three academic references on a niche topic you know well. Try to find each reference. Record how many exist, and how confidently the fake ones were presented.",
+          "quiz": [
+            {
+              "q": "A hallucination is best described as…",
+              "options": [
+                "A model refusing to answer",
+                "Fluent output that is factually wrong",
+                "A slow response",
+                "An output in the wrong language"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Which task deserves the MOST human oversight when using a generative tool?",
+              "options": [
+                "Brainstorming party themes",
+                "Rewording a friendly email",
+                "Summarising a medication guideline for a patient",
+                "Suggesting names for a pet"
+              ],
+              "answer": 2
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/03-using-generative-ai-responsibly",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 03 — Using generative AI responsibly"
+            },
+            {
+              "title": "Elements of AI",
+              "by": "University of Helsinki & MinnaLearn",
+              "url": "https://www.elementsofai.com/",
+              "license": "Free course (all rights reserved)",
+              "hosting": "link",
+              "note": "Chapter 6: Implications — societal risks and limits"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-prompting",
+      "icon": "pen",
+      "track": "intro",
+      "level": "beginner",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Prompt engineering",
+        "Evaluation"
+      ],
+      "title": "Prompt Engineering Fundamentals",
+      "summary": "Write prompts the way an editor writes a brief: role, task, context, format and examples. Then iterate on them like code.",
+      "lessons": [
+        {
+          "id": "anatomy-of-a-prompt",
+          "title": "Anatomy of a Prompt",
+          "minutes": 12,
+          "body": "A prompt is a brief, and good briefs share a structure. State the role the model should adopt (\"You are a patient tutor for Grade 10 chemistry\"). State the task precisely (\"Explain why ice floats\"). Supply context the model cannot know (\"The student has just learned about hydrogen bonds\"). Specify the output format (\"Three short paragraphs, then one check-for-understanding question\"). Add constraints (\"Do not use the word density until you have defined it\").\n\nEach of these parts closes off a set of wrong answers. Without a role, the model picks a generic register. Without format instructions, you get whatever shape the training data favoured — often a bulleted list. Without context, the model fills the gap with assumptions and presents them as fact. Prompting is mostly the discipline of writing down what you were silently assuming.\n\nMicrosoft's Prompt Engineering Fundamentals lesson works through the same anatomy with runnable examples in a notebook, and it introduces the idea of a system prompt — instructions that persist across a whole conversation — which is where applications usually put role and constraints.",
+          "activity": "Take a vague prompt you have actually used ('write about climate change') and rewrite it with role, task, context, format and constraints. Run both versions and note three differences in the outputs.",
+          "quiz": [
+            {
+              "q": "Which prompt component tells the model what the finished output should look like?",
+              "options": [
+                "Role",
+                "Context",
+                "Format",
+                "Temperature"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "A system prompt is…",
+              "options": [
+                "The first user message only",
+                "Instructions that persist across a conversation",
+                "A prompt generated by the model",
+                "A list of banned words"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/04-prompt-engineering-fundamentals",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 04 — Prompt engineering fundamentals"
+            }
+          ]
+        },
+        {
+          "id": "iterating-prompts",
+          "title": "Few-shot, Chain-of-thought and Constraints",
+          "minutes": 14,
+          "body": "Once the structure is right, three techniques cover most of the remaining ground. Few-shot prompting shows the model two or three worked examples of exactly the input and output you want; the model continues the pattern, which is often more reliable than describing the pattern in words. Chain-of-thought prompting asks the model to reason step by step before answering, which measurably helps on arithmetic and multi-step logic. Constraints and schemas — \"answer only with valid JSON matching this shape\" — make the output machine-readable so another program can use it.\n\nTreat prompts like code: keep them in a file, version them, and keep a small set of test inputs with expected outputs. When you change a prompt, re-run the tests. Prompt changes that fix one case frequently break another, and you will not notice without a regression set.\n\nMicrosoft's Advanced Prompts lesson demonstrates few-shot and chain-of-thought with side-by-side comparisons. Hugging Face's LLM Course Chapter 1 explains why these techniques work by showing what a model actually sees: a single stream of tokens in which your examples and the model's reply are indistinguishable.",
+          "activity": "Write a few-shot prompt that converts messy meeting notes into a JSON list of action items with owner and due date. Test it on five real notes and count how many outputs are valid JSON.",
+          "quiz": [
+            {
+              "q": "Few-shot prompting means…",
+              "options": [
+                "Asking several questions at once",
+                "Showing worked examples of the desired input and output",
+                "Reducing the prompt length",
+                "Using several models"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why keep a set of test inputs for your prompts?",
+              "options": [
+                "To make the prompt shorter",
+                "To catch regressions when the prompt changes",
+                "Because models require it",
+                "To increase temperature"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/05-advanced-prompts",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 05 — Advanced prompting techniques"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 1 — Transformer models: how a prompt becomes tokens"
+            }
+          ]
+        },
+        {
+          "id": "evaluating-output",
+          "title": "Evaluating Output Like an Editor",
+          "minutes": 12,
+          "body": "Reading generated text is a skill. Editors check four things in order: Is it accurate? Is it complete — did it answer the whole question? Is it appropriate for the audience and context? Is it well-formed — the requested length, format and tone? Most people check only the last item because fluency is what jumps out, and fluency is exactly what a language model is best at faking.\n\nBuild a rubric before you read. For a lesson summary it might be: every key term defined (0–2), no factual errors (0–2), reading level matches the grade (0–1), under 150 words (0–1). Score several outputs blind and you will quickly discover which prompt changes matter. The same rubric can later be given to a second model to score the first — a technique called model-as-judge that scales evaluation once you trust the rubric.\n\nThis is also where academic integrity lives. A student who can score an AI draft against a rubric, find the errors and fix them has learned more than one who copied it or one who refused to touch it. Microsoft's Text Generation Applications lesson shows how to wire a rubric into an app so the check happens every time.",
+          "activity": "Generate three versions of a one-paragraph explanation of photosynthesis for Grade 7. Score each with the four-part rubric before comparing notes with a partner.",
+          "quiz": [
+            {
+              "q": "Which quality is a language model best at faking?",
+              "options": [
+                "Accuracy",
+                "Completeness",
+                "Fluency",
+                "Brevity"
+              ],
+              "answer": 2
+            },
+            {
+              "q": "Model-as-judge means…",
+              "options": [
+                "A model that refuses unsafe prompts",
+                "Using a second model to score outputs against a rubric",
+                "Letting the model pick its own prompt",
+                "A courtroom simulation"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/06-text-generation-apps",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 06 — Building text-generation applications"
+            },
+            {
+              "title": "Elements of AI",
+              "by": "University of Helsinki & MinnaLearn",
+              "url": "https://www.elementsofai.com/",
+              "license": "Free course (all rights reserved)",
+              "hosting": "link",
+              "note": "Chapter 6: Implications — evaluating claims about AI"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-llms",
+      "icon": "layers",
+      "track": "intro",
+      "level": "beginner",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Large language models",
+        "Model selection"
+      ],
+      "title": "How Large Language Models Work",
+      "summary": "Tokens, embeddings and next-word prediction; pre-training, fine-tuning and alignment; and how to choose between open and hosted models.",
+      "lessons": [
+        {
+          "id": "tokens-and-prediction",
+          "title": "Tokens, Embeddings and Next-word Prediction",
+          "minutes": 14,
+          "body": "A language model never sees letters or words. Text is first chopped into tokens — pieces that are sometimes whole words, sometimes fragments like \"ing\" or \" un\". Each token is mapped to a vector of numbers, called an embedding, chosen during training so that tokens used in similar ways end up close together. The model then does one thing, repeatedly: given the sequence so far, output a probability for every possible next token. Pick one, append it, and go again.\n\nThat single mechanic explains a lot of behaviour. Models are bad at counting letters because they do not see letters. They can be steered by the first few words of a reply because those words change every probability that follows. And \"temperature\" is just how greedily you pick: low temperature always takes the most likely token and sounds repetitive; high temperature samples from the long tail and sounds creative or unhinged.\n\nEmbeddings are also useful on their own. Because similar meanings map to nearby vectors, you can search a library of documents by meaning rather than exact keywords — which is the foundation of the chatbot you will build in the next module. Microsoft's Building Search Applications lesson walks through computing embeddings and comparing them.",
+          "activity": "Paste a paragraph into a tokenizer playground (Hugging Face's or OpenAI's). Count the tokens, find three words that split into multiple tokens, and try the same paragraph in another language.",
+          "quiz": [
+            {
+              "q": "What does a language model output at each step?",
+              "options": [
+                "A full sentence",
+                "A probability for each possible next token",
+                "A dictionary definition",
+                "An image"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Lower temperature makes a model…",
+              "options": [
+                "More random",
+                "Choose the most likely token more often",
+                "Faster to train",
+                "Multilingual"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/08-building-search-applications",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 08 — Embeddings and search applications"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 1 — Transformer models and tokenization"
+            }
+          ]
+        },
+        {
+          "id": "training-and-alignment",
+          "title": "Pre-training, Fine-tuning and Alignment",
+          "minutes": 14,
+          "body": "Building a modern assistant happens in stages. Pre-training feeds the model a very large slice of public text and asks it to predict the next token, over and over; this is where almost all of its knowledge and fluency come from, and it is the expensive part. The result is a \"base\" model that completes text but does not follow instructions — ask it a question and it may reply with another question.\n\nSupervised fine-tuning then shows the base model thousands of example conversations written by people, teaching it the shape of a helpful reply. Alignment steps such as reinforcement learning from human feedback go further: people rank several candidate answers, a reward model learns those preferences, and the assistant is tuned to produce answers people prefer. This is why assistants are polite, hedge, and refuse some requests — none of that was in pre-training.\n\nThe stages explain the trade-offs you meet as a user. Knowledge has a cut-off date because pre-training stopped. The model \"sounds sure\" because preference tuning rewarded confident, complete answers. And fine-tuning on your own data is possible but usually the wrong first tool: for new facts, retrieval is cheaper and more controllable, as Microsoft's Fine-tuning lesson argues before showing how to do it.",
+          "activity": "Compare a base model and its instruction-tuned sibling on the Hugging Face Hub (for example a small open model that ships both). Give both the same question and describe the difference in one paragraph.",
+          "quiz": [
+            {
+              "q": "Where does most of a language model's knowledge come from?",
+              "options": [
+                "Supervised fine-tuning",
+                "Pre-training on next-token prediction",
+                "The system prompt",
+                "User feedback thumbs-up"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "For teaching a model new facts about your organisation, the usually recommended FIRST tool is…",
+              "options": [
+                "Pre-training from scratch",
+                "Retrieval (RAG)",
+                "Increasing temperature",
+                "A longer system prompt"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/18-fine-tuning",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 18 — Fine-tuning: when and how"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 1 — Encoder, decoder and the training pipeline"
+            }
+          ]
+        },
+        {
+          "id": "choosing-models",
+          "title": "Choosing and Comparing Models",
+          "minutes": 12,
+          "body": "There is no best model, only a best fit for a task, a budget and a privacy requirement. Hosted frontier models give the highest quality with the least setup, at the cost of sending your data to a vendor and paying per token. Open-weight models — downloadable, runnable on your own hardware — trade some quality for control, offline use and predictable cost. Small language models in the one-to-eight-billion-parameter range now run on a laptop and are good enough for many classroom tasks.\n\nCompare models on your task, not on leaderboards. Write ten representative prompts, run each model, and score the outputs with the rubric from the previous module. Record latency and cost per answer. A model that is five points higher on a public benchmark and three times slower is often the wrong choice for a live classroom tool.\n\nFor schools, two questions dominate: where does student data go, and can the tool be audited? Open-weight models run inside the district's own environment answer both cleanly. Microsoft's Open Source Models lesson surveys the landscape, and the Exploring and Comparing LLMs lesson gives a decision checklist you can reuse.",
+          "activity": "Pick one hosted and one open-weight model. Run the same five prompts from an earlier lesson on both, score with your rubric, and write a one-paragraph recommendation for your school.",
+          "quiz": [
+            {
+              "q": "Open-weight models are attractive to schools mainly because…",
+              "options": [
+                "They are always more accurate",
+                "Data can stay inside the district's own environment",
+                "They never hallucinate",
+                "They need no hardware"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "The most reliable way to pick a model for your task is…",
+              "options": [
+                "Choose the top of a public leaderboard",
+                "Test on your own representative prompts and score them",
+                "Pick the newest release",
+                "Pick the largest model"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/02-exploring-and-comparing-different-llms",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 02 — Exploring and comparing LLMs"
+            },
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/16-open-source-models",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 16 — Open-source models"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-rag",
+      "icon": "rocket",
+      "track": "intro",
+      "level": "intermediate",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Retrieval-augmented generation",
+        "Capstone"
+      ],
+      "title": "Build Your First RAG Chatbot",
+      "summary": "Ground a chatbot in documents you choose: chunk them, embed them, retrieve the right passages, and measure whether the answers improved.",
+      "lessons": [
+        {
+          "id": "why-retrieval",
+          "title": "Why Retrieval? Grounding Answers in Your Documents",
+          "minutes": 12,
+          "body": "Retrieval-augmented generation, or RAG, solves two problems at once. The model does not know your documents — the school handbook, last term's lab manual, the district's AI policy — and even if it did, you could not easily update or audit what it \"remembers\". So instead of teaching the model, you look things up: find the passages most relevant to the question, paste them into the prompt as context, and ask the model to answer using only that context.\n\nThe payoff is control. Answers can cite the passage they came from, so a reader can check them. Updating knowledge means replacing a file, not retraining anything. And when the retrieved passages do not contain an answer, a well-prompted model can say so instead of inventing one — the hallucination problem from Module 1 becomes a retrieval problem you can measure.\n\nRAG is not free. If retrieval returns the wrong passages, the model confidently answers from them. Long contexts cost tokens and can bury the relevant sentence. The next two lessons tackle both, following Microsoft's RAG and Vector Databases lesson and the agentic-RAG lesson from AI Agents for Beginners.",
+          "activity": "Choose the document set for your capstone (10–50 pages you are allowed to use, such as a public handbook). Write ten questions a real user would ask, and mark where in the documents each answer lives.",
+          "quiz": [
+            {
+              "q": "In a RAG system, the model's knowledge of your documents comes from…",
+              "options": [
+                "Fine-tuning the weights",
+                "Passages retrieved and placed in the prompt",
+                "A larger vocabulary",
+                "Higher temperature"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A key advantage of RAG over fine-tuning for school documents is…",
+              "options": [
+                "It needs no computer",
+                "Answers can cite checkable passages and updates are just file changes",
+                "It is always more accurate",
+                "It removes the need for a prompt"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/15-rag-and-vector-databases",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 15 — RAG and vector databases"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/05-agentic-rag",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 05 — Agentic RAG"
+            }
+          ]
+        },
+        {
+          "id": "chunking-and-search",
+          "title": "Chunking, Embeddings and Vector Search",
+          "minutes": 16,
+          "body": "Documents are too long to embed whole, so the first design decision is chunking: splitting text into pieces of a few hundred tokens, usually with some overlap so a sentence cut in half still appears intact somewhere. Chunk by structure when you can — headings, paragraphs, table rows — because a chunk that corresponds to a real unit of meaning retrieves better than one cut at an arbitrary character count.\n\nEach chunk is passed through an embedding model and stored with its vector in a vector database or even a plain array. At question time the question is embedded the same way, and the nearest chunks by cosine similarity are returned. Hybrid search, which also runs a classic keyword match, catches exact terms such as course codes and names that embeddings sometimes blur.\n\nMeasure retrieval separately from generation. For each of your ten test questions, check whether the correct passage appears in the top five results; that fraction is your recall@5. If recall is low, no prompt will save you — fix chunk size, add metadata filters or switch embedding models first. Microsoft's lesson includes a notebook that builds this pipeline end to end with a small open embedding model.",
+          "activity": "Implement chunk → embed → search on your documents using the lesson notebook. Compute recall@5 for your ten questions with two different chunk sizes and record which wins.",
+          "quiz": [
+            {
+              "q": "Why add overlap between chunks?",
+              "options": [
+                "To make files larger",
+                "So sentences cut at a boundary still appear whole in some chunk",
+                "To confuse the model",
+                "Because vector databases require it"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "recall@5 measures…",
+              "options": [
+                "How fast the model answers",
+                "Whether the right passage appears among the top five retrieved",
+                "The number of tokens in a prompt",
+                "How many users asked a question"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/15-rag-and-vector-databases",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 15 notebook — chunking, embeddings and similarity search"
+            },
+            {
+              "title": "Open-Source AI Cookbook",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/cookbook/index",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Cookbook recipes on RAG with open embedding models"
+            }
+          ]
+        },
+        {
+          "id": "rag-capstone",
+          "title": "Capstone: Ship and Evaluate Your Chatbot",
+          "minutes": 18,
+          "body": "Assemble the pieces: a retriever that returns the top chunks, a prompt that says \"Answer using only the context below; if the answer is not there, say you do not know; cite the chunk id you used\", and a chat loop. Keep the first version small and local — a notebook or a single script is fine. The goal is a system you understand completely, not a product.\n\nThen evaluate honestly. Run your ten test questions and score each answer on three things: Did it answer correctly? Did it cite the right passage? When the answer was not in the documents, did it decline? Add five adversarial questions designed to trick it — questions about topics near but outside your documents — and see how often it stays grounded. Write down every failure; a failure log is the most valuable artefact of this track.\n\nFinally, write a one-page report: what the bot does, where its data lives, what it gets wrong and what a user should never trust it for. If you can hand that page to a teacher or principal and they understand the risks, you have finished the Intro track. Ideas for going further are in Microsoft's AI Agents lesson on trustworthy agents and in the AI Engineer track.",
+          "activity": "Build the chatbot, run the fifteen-question evaluation, and publish the code plus your one-page risk report in a public repository under an open license.",
+          "quiz": [
+            {
+              "q": "A grounded RAG prompt should instruct the model to…",
+              "options": [
+                "Answer from general knowledge if the context is unhelpful",
+                "Use only the provided context and say when the answer is missing",
+                "Always give a long answer",
+                "Hide its sources"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why include adversarial questions in the evaluation?",
+              "options": [
+                "To make the bot faster",
+                "To test whether it stays grounded when the answer is not in the documents",
+                "To increase recall@5",
+                "To train the embedding model"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/06-building-trustworthy-agents",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 06 — Building trustworthy agents"
+            },
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/07-building-chat-applications",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 07 — Building chat applications"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-workflow",
+      "icon": "compass",
+      "track": "practitioner",
+      "level": "intermediate",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "ML workflow",
+        "Data preparation"
+      ],
+      "title": "The Machine-Learning Workflow",
+      "summary": "Turn a vague goal into a prediction problem, get data into shape, split it properly and beat a dumb baseline before trying anything clever.",
+      "lessons": [
+        {
+          "id": "framing",
+          "title": "Framing a Problem as Prediction",
+          "minutes": 12,
+          "body": "Machine learning starts before any code: with a decision someone needs to make, and a quantity that, if predicted, would improve that decision. \"Reduce food waste in the cafeteria\" is a goal. \"Predict tomorrow's lunch count within ten percent, given the day of week, weather and the menu\" is a prediction problem. The second version names the target, the inputs available at prediction time, and how good is good enough.\n\nThree framing questions save weeks. Is the target a number (regression), a category (classification) or a grouping with no labels (clustering)? Are the inputs actually available when the prediction is needed — tomorrow's attendance is not an input for predicting tomorrow's lunch count? And what does the decision-maker do differently at different predicted values? If nothing changes, the model is a toy.\n\nMicrosoft's ML for Beginners opens with exactly this, including a lesson on the history and fairness of ML, and mlcourse.ai's first topic shows the exploratory data analysis you do to check whether a framing is even plausible. Both are open and runnable; fork the notebooks into your own repository.",
+          "activity": "Write a one-page problem statement for a dataset you care about: target, inputs available at prediction time, metric, and the decision that changes. Have a partner try to poke a hole in it.",
+          "quiz": [
+            {
+              "q": "Which is a well-framed prediction problem?",
+              "options": [
+                "Make the library better",
+                "Predict the number of overdue books next month from borrowing history",
+                "Use AI in the library",
+                "Build a dashboard"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "An input that is only known AFTER the prediction is needed is…",
+              "options": [
+                "A useful feature",
+                "A label",
+                "Not a valid input (leakage)",
+                "A hyperparameter"
+              ],
+              "answer": 2
+            }
+          ],
+          "resources": [
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/1-Introduction",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 1 — Introduction: history, fairness and techniques of ML"
+            },
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic01/topic01_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 1 — Exploratory data analysis with pandas"
+            }
+          ]
+        },
+        {
+          "id": "data-prep",
+          "title": "Data: Loading, Cleaning and Splitting",
+          "minutes": 14,
+          "body": "Real data arrives messy: missing values, inconsistent categories (\"Ont.\", \"Ontario\", \"ON\"), dates stored as text, duplicates, and outliers that are either errors or the most important rows in the file. The first hour with any dataset is spent looking — distributions, counts per category, missingness patterns — before touching a model. pandas and a few plots are the only tools you need.\n\nSplit before you look too closely. Hold out a test set the moment the data is loaded and do not touch it until the very end; everything else — imputation, scaling, feature engineering — is learned from the training portion only and then applied to the test portion. Fitting a scaler on all the data and then splitting is a small, common leak that inflates every score you report.\n\nFor time-ordered data, split by time: train on the past, test on the future. Random splits on time series let the model peek ahead. ML for Beginners' regression section demonstrates cleaning and splitting on a pumpkin-price dataset, and mlcourse.ai's second topic covers the visual analysis that reveals most data problems.",
+          "activity": "Load a public dataset, hold out 20% as a test set immediately, then profile the training portion: missing values per column, category counts, and three plots. Document two problems you found.",
+          "quiz": [
+            {
+              "q": "When should the test set be held out?",
+              "options": [
+                "After feature engineering",
+                "Immediately after loading the data",
+                "After the first model is trained",
+                "Only for deep learning"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "For a time series, the correct split is…",
+              "options": [
+                "Random shuffle",
+                "By time — train on the past, test on the future",
+                "By alphabetical order",
+                "No split is needed"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/2-Regression",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 2 — Regression: data cleaning and preparation lessons"
+            },
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic02/topic02_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 2 — Visual data analysis"
+            }
+          ]
+        },
+        {
+          "id": "baselines",
+          "title": "Baselines Before Brilliance",
+          "minutes": 12,
+          "body": "A baseline is the simplest prediction you could make without a model: the mean for regression, the most common class for classification, or \"same as last week\" for a time series. Compute it first and report it next to every model score. A fancy model that beats the baseline by half a percent has told you the signal is weak — or that your framing is wrong — far more cheaply than a week of tuning would.\n\nThe second baseline is a simple model: linear or logistic regression with sensible features. It trains in seconds, its coefficients are readable, and it frequently lands within a few points of the eventual winner. If a gradient-boosted ensemble later beats it by a wide margin, you have learned that the problem has interactions and non-linearities worth modelling.\n\nThis habit also protects you from leakage. If a simple model scores suspiciously well — 99% accuracy on a hard problem — a feature is almost certainly leaking the answer, and you want to discover that before anyone sees a demo. ML for Beginners builds linear and logistic baselines in its regression section; mlcourse.ai's topic on linear models explains why they are more capable than they look.",
+          "activity": "On your dataset, compute the constant baseline and a linear/logistic baseline. Report both metrics in a table and write one sentence on what the gap tells you.",
+          "quiz": [
+            {
+              "q": "A constant baseline for a classification task predicts…",
+              "options": [
+                "A random class",
+                "The most common class for every row",
+                "The class with the longest name",
+                "Nothing"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A simple model scoring 99% on a hard problem most likely means…",
+              "options": [
+                "The problem is solved",
+                "A feature is leaking the answer",
+                "The test set is too large",
+                "You need a bigger model"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic04/topic04_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 4 — Linear classification and regression"
+            },
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/2-Regression",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 2 — Linear and logistic regression lessons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-supervised",
+      "icon": "table",
+      "track": "practitioner",
+      "level": "intermediate",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Supervised learning",
+        "scikit-learn"
+      ],
+      "title": "Supervised Learning with scikit-learn",
+      "summary": "Regression, classification and tree ensembles with a consistent API — and the intuition for when each one wins.",
+      "lessons": [
+        {
+          "id": "regression",
+          "title": "Regression: Predicting a Number",
+          "minutes": 14,
+          "body": "Regression predicts a continuous quantity: a price, a temperature, a count. Linear regression fits a weighted sum of the inputs; its strengths are speed, stability and readable coefficients, and its weakness is that the world is rarely a straight line. Polynomial features, log transforms of skewed targets and interaction terms stretch linear models surprisingly far before you need anything else.\n\nEvaluate with a metric that matches the cost of errors. Mean absolute error is in the units of the target and treats all misses equally; root mean squared error punishes large misses harder; R-squared tells you the fraction of variance explained but hides the scale. If a ten-dollar error and a hundred-dollar error have very different consequences, say so with the metric you choose.\n\nscikit-learn's design makes the whole family interchangeable: every estimator has fit, predict and score, and a Pipeline chains preprocessing with the model so that transformations are learned on training data only. ML for Beginners' regression section builds linear, polynomial and logistic models on the same dataset so you can see the trade-offs side by side.",
+          "activity": "Fit linear, polynomial and ridge regression inside a scikit-learn Pipeline on your dataset. Report MAE and RMSE on the test set and explain which metric your decision-maker should care about.",
+          "quiz": [
+            {
+              "q": "Which metric is in the same units as the target and treats all errors equally?",
+              "options": [
+                "R-squared",
+                "Mean absolute error",
+                "Log loss",
+                "Accuracy"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A scikit-learn Pipeline helps prevent leakage because…",
+              "options": [
+                "It runs faster",
+                "Preprocessing is fit on training data only and applied to test data",
+                "It removes outliers",
+                "It uses more features"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/2-Regression",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 2 — Linear, polynomial and logistic regression"
+            },
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic04/topic04_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 4 — Linear models, regularisation"
+            }
+          ]
+        },
+        {
+          "id": "classification",
+          "title": "Classification: Predicting a Category",
+          "minutes": 14,
+          "body": "Classification predicts a label: spam or not, which cuisine a recipe belongs to, whether a loan will default. Logistic regression is the baseline; k-nearest neighbours, support vector machines and naive Bayes each shine in particular regimes. The practical difference between them is smaller than the difference between good and bad features, so spend your time on inputs before algorithms.\n\nAccuracy misleads whenever classes are imbalanced. If 2% of transactions are fraud, a model that says \"never fraud\" is 98% accurate and useless. Look at the confusion matrix, then precision (of the items flagged, how many were right) and recall (of the real positives, how many were caught). Which one matters depends on the cost of a miss versus a false alarm, and the classification threshold lets you trade one for the other.\n\nML for Beginners' classification section works through a multi-class cuisine dataset with several classifiers and a scikit-learn cheat-sheet for choosing between them. mlcourse.ai's topic on k-NN and decision trees adds the geometric intuition for why these models draw the boundaries they do.",
+          "activity": "Train logistic regression, k-NN and an SVM on a classification dataset. Produce a confusion matrix for each and pick a threshold for the best one based on a stated cost of false negatives.",
+          "quiz": [
+            {
+              "q": "On a dataset where 2% of rows are positive, 98% accuracy means…",
+              "options": [
+                "The model is excellent",
+                "Possibly nothing — predicting 'negative' always scores the same",
+                "The model has high recall",
+                "The data is balanced"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Recall measures…",
+              "options": [
+                "Of the items flagged positive, how many were truly positive",
+                "Of the truly positive items, how many were flagged",
+                "Overall accuracy",
+                "Training speed"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/4-Classification",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 4 — Classification: cuisines dataset and classifier comparison"
+            },
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic03/topic03_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 3 — Decision trees and k-NN"
+            }
+          ]
+        },
+        {
+          "id": "trees-and-boosting",
+          "title": "Trees, Forests and Gradient Boosting",
+          "minutes": 16,
+          "body": "A decision tree asks a sequence of yes/no questions about the features and predicts the majority answer in each leaf. Trees handle mixed data types, need no scaling and are easy to read — and a single deep tree memorises the training set. Random forests fix that by training hundreds of trees on random subsets of rows and features and averaging them; variance drops, and the result is a robust default for tabular data.\n\nGradient boosting builds trees sequentially, each one correcting the errors of the ensemble so far. Modern implementations — XGBoost, LightGBM, CatBoost and scikit-learn's HistGradientBoosting — win most tabular competitions and are what practitioners reach for when a forest is not enough. They have more knobs: learning rate, tree depth, number of rounds, and early stopping on a validation set to know when to quit.\n\nFeature importance from trees is a quick sanity check but not an explanation; permutation importance and partial-dependence plots are more honest. mlcourse.ai's topics on ensembles and gradient boosting are the clearest open treatment, and ML for Beginners' clustering section rounds out the toolkit for when you have no labels at all.",
+          "activity": "Train a random forest and a gradient-boosted model on your tabular data with early stopping. Compare them with your linear baseline, and produce permutation importances for the winner.",
+          "quiz": [
+            {
+              "q": "Random forests reduce overfitting mainly by…",
+              "options": [
+                "Using deeper trees",
+                "Averaging many trees trained on random subsets",
+                "Removing features",
+                "Training longer"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Gradient boosting differs from a random forest because its trees are…",
+              "options": [
+                "Trained independently in parallel",
+                "Built sequentially, each correcting previous errors",
+                "Always of depth one",
+                "Not trees at all"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic05/topic05_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 5 — Bagging and random forests"
+            },
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic10/topic10_gradient_boosting.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 10 — Gradient boosting"
+            },
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/5-Clustering",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 5 — Clustering (when you have no labels)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-evaluation",
+      "icon": "target",
+      "track": "practitioner",
+      "level": "intermediate",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Evaluation",
+        "Fairness"
+      ],
+      "title": "Evaluation, Leakage and Fairness",
+      "summary": "Choose metrics that match decisions, validate without fooling yourself, and audit models for unequal error rates before anyone relies on them.",
+      "lessons": [
+        {
+          "id": "metrics",
+          "title": "Metrics That Match the Decision",
+          "minutes": 12,
+          "body": "A metric is a compressed statement of what you value. Choosing one is a product decision dressed up as a technical one, so make it explicitly. For a screening tool that flags students who might need reading support, missing a student (a false negative) is worse than an unnecessary check-in (a false positive), so recall at a fixed, affordable false-positive rate is the right target — not accuracy, and not F1 by default.\n\nRanking metrics such as ROC-AUC and average precision summarise performance across all thresholds and are useful for comparing models, but a deployed model operates at one threshold, so always report the confusion matrix at the threshold you will actually use. Calibration — do things predicted at 70% happen 70% of the time? — matters whenever a human reads the probability.\n\nReport on a held-out set the model never saw, with the baseline alongside, and with a confidence interval or at least the test-set size. A difference of one point on three hundred examples is noise. The evaluation chapters of The Elements of Statistical Learning and mlcourse.ai's topic on model assessment formalise these ideas.",
+          "activity": "For your project, write down the decision, the cost of each error type, and the metric and threshold that follow. Then produce the confusion matrix at that threshold and a calibration plot.",
+          "quiz": [
+            {
+              "q": "For a tool that screens students for extra reading support, the costlier error is usually…",
+              "options": [
+                "A false positive",
+                "A false negative",
+                "Both are equal",
+                "Neither matters"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A model is well calibrated when…",
+              "options": [
+                "Accuracy is above 90%",
+                "Events predicted at 70% happen about 70% of the time",
+                "It trains quickly",
+                "It uses many features"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "The Elements of Statistical Learning",
+              "by": "Hastie, Tibshirani & Friedman",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "license": "Free PDF (© Springer)",
+              "hosting": "link",
+              "note": "Chapter 7 — Model assessment and selection (link only)"
+            },
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic04/topic04_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 4 — Model validation and learning curves"
+            }
+          ]
+        },
+        {
+          "id": "cross-validation-leakage",
+          "title": "Cross-validation and Leakage",
+          "minutes": 14,
+          "body": "One train/test split gives one noisy estimate. k-fold cross-validation rotates which fold is held out, trains k models and averages their scores, which both uses data more efficiently and shows you the variance between folds. Use it for model selection and hyperparameter tuning; keep the final test set untouched for a single, honest number at the end.\n\nLeakage is any way information about the target sneaks into the inputs. Classic cases: a feature computed from the whole dataset including test rows; a column that is a proxy for the label (the \"account closed\" flag when predicting churn); duplicate rows split across train and test; or, in grouped data, the same patient or student appearing in both. Grouped and time-based cross-validation exist precisely to prevent the last two.\n\nThe symptom of leakage is a score that is too good, and the cure is paranoia at the data-preparation stage: every transformation inside a Pipeline, every split respecting groups and time. mlcourse.ai's validation topic shows learning and validation curves that make overfitting visible, and ML for Beginners' time-series section demonstrates the time-ordered split in practice.",
+          "activity": "Replace your single split with 5-fold cross-validation (grouped or time-based if appropriate). Then deliberately introduce a leak, observe the score jump, and remove it — document both numbers.",
+          "quiz": [
+            {
+              "q": "k-fold cross-validation is primarily used for…",
+              "options": [
+                "The final reported score",
+                "Model selection and tuning while keeping the test set untouched",
+                "Cleaning data",
+                "Visualising embeddings"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "The same student appearing in both training and test folds is an example of…",
+              "options": [
+                "Good coverage",
+                "Leakage — fix it with grouped splitting",
+                "Regularisation",
+                "Class imbalance"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "mlcourse.ai",
+              "by": "Yury Kashnitsky & contributors",
+              "url": "https://mlcourse.ai/book/topic04/topic04_intro.html",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "fork",
+              "note": "Topic 4 — Validation and learning curves"
+            },
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/7-TimeSeries",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 7 — Time series forecasting with time-ordered splits"
+            }
+          ]
+        },
+        {
+          "id": "fairness-audit",
+          "title": "Fairness Audits for Tabular Models",
+          "minutes": 14,
+          "body": "A model can score well overall and still fail a group of people. The minimum audit is to break every metric down by the groups that matter in context — gender, language background, region, disability status where it is lawful and appropriate to measure — and look at the gaps. Equal accuracy can hide very unequal false-negative rates, and the group with the least training data usually has the worst errors.\n\nDifferent fairness definitions conflict, so you must choose one for the context. Demographic parity asks for equal positive rates; equalised odds asks for equal error rates; calibration within groups asks that a 70% prediction mean 70% for everyone. You cannot satisfy all three at once unless base rates are equal, so the choice is a policy decision that should be written down and defended, not left to defaults.\n\nMitigations range from collecting more data for under-represented groups, to re-weighting, to group-specific thresholds, to not deploying the model. ML for Beginners' introductory fairness lesson and Microsoft's Responsible AI lesson give practical checklists; Harvard's CS50 AI and Elements of AI add the societal framing. Your project's model card should include the audit table and the definition you chose.",
+          "activity": "Compute your project's key metrics broken down by at least two relevant groups. Choose a fairness definition, justify it in two sentences, and record the gaps in the model card.",
+          "quiz": [
+            {
+              "q": "Equal overall accuracy across groups guarantees…",
+              "options": [
+                "Equal false-negative rates",
+                "Nothing about error rates within groups",
+                "Demographic parity",
+                "Calibration"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why can't a model usually satisfy demographic parity, equalised odds and calibration at once?",
+              "options": [
+                "Because of software limits",
+                "Because they conflict when group base rates differ",
+                "Because fairness is undefined",
+                "Because test sets are small"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/1-Introduction",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 1 — Fairness and machine learning"
+            },
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/03-using-generative-ai-responsibly",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 03 — Responsible AI checklist"
+            },
+            {
+              "title": "CS50's Introduction to AI with Python",
+              "by": "Harvard",
+              "url": "https://cs50.harvard.edu/ai/",
+              "license": "CC BY-NC-SA 4.0",
+              "hosting": "link",
+              "note": "Harvard CS50 AI — societal framing (CC BY-NC-SA, link only)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ml-deep-fastai",
+      "icon": "scan",
+      "track": "practitioner",
+      "level": "intermediate",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Deep learning",
+        "Computer vision",
+        "Capstone"
+      ],
+      "title": "Deep Learning the fast.ai Way",
+      "summary": "Train a state-of-the-art image classifier with transfer learning, understand the training loop you were given, and finish both capstone projects.",
+      "lessons": [
+        {
+          "id": "transfer-learning",
+          "title": "Transfer Learning in Ten Lines",
+          "minutes": 14,
+          "body": "Deep learning on images used to require a research lab. Today the standard recipe is transfer learning: take a network already trained on millions of general photos, replace its final layer with one sized for your categories, and fine-tune on a few hundred of your own images. The early layers already detect edges, textures and shapes that transfer to almost any visual task, so training takes minutes on a free GPU.\n\nfast.ai's first lesson does exactly this in roughly ten lines of code, and the lesson's point is not the brevity but the workflow: get a working model on day one, then spend your time on data and evaluation rather than architecture. The library's data-block API makes it straightforward to point at a folder of labelled images, apply standard augmentations and train with sensible defaults.\n\nThe same reasoning applies to text and tabular data, and fast.ai covers those too. Microsoft's AI for Beginners computer-vision section is the complementary open-source reference: it explains convolutional networks from the pixel up, in both PyTorch and TensorFlow, under an MIT license you can fork.",
+          "activity": "Collect 100–300 images in three to five categories you care about (with permission for any people). Train a transfer-learning classifier with fast.ai lesson 1 and report accuracy on a held-out set.",
+          "quiz": [
+            {
+              "q": "Transfer learning works because…",
+              "options": [
+                "All images look alike",
+                "Early layers learn general features (edges, textures) that reuse across tasks",
+                "It skips training entirely",
+                "It needs no labels"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "fast.ai's recommended first step on a new problem is…",
+              "options": [
+                "Design a new architecture",
+                "Get a working baseline model quickly, then improve data and evaluation",
+                "Collect a million images",
+                "Tune the learning rate by hand"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Practical Deep Learning for Coders",
+              "by": "fast.ai",
+              "url": "https://course.fast.ai/Lessons/lesson1.html",
+              "license": "Videos & prose: link only · fastbook code: GPL-3.0",
+              "hosting": "link",
+              "note": "Lesson 1 — Getting started (video and notebook; prose is link-only)"
+            },
+            {
+              "title": "AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/AI-For-Beginners/tree/main/lessons/4-ComputerVision",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 4 — Computer vision: CNNs in PyTorch and TensorFlow"
+            }
+          ]
+        },
+        {
+          "id": "training-loop",
+          "title": "Augmentation, Learning Rates and the Training Loop",
+          "minutes": 16,
+          "body": "Under fast.ai's convenience sits the same loop from the Intro track: forward pass, loss, backward pass, optimizer step. Knowing it lets you debug. A loss that never falls means the learning rate is too low or the data is broken; a loss that explodes means the rate is too high; training loss falling while validation loss rises means the model is memorising — overfitting — and you need more data, more augmentation or earlier stopping.\n\nData augmentation is the cheapest cure for overfitting in vision. Random crops, flips, small rotations and colour jitter create new training examples that preserve the label, teaching the model that a cat rotated ten degrees is still a cat. fast.ai's second lesson also shows how to use the model's most confident mistakes to find mislabelled images — in practice, cleaning labels improves results more than any architectural change.\n\nThe learning-rate finder, which runs a short sweep and plots loss against rate, replaces guesswork with a one-minute experiment. Dive into Deep Learning's chapters on multilayer perceptrons and optimisation give the full mathematical account of each piece and are open under CC BY-SA, so you can mirror them alongside your notes.",
+          "activity": "Run the learning-rate finder on your classifier, train with and without augmentation, and plot both validation curves. Use the confusion-matrix tool to find and fix at least five mislabelled images.",
+          "quiz": [
+            {
+              "q": "Training loss falling while validation loss rises indicates…",
+              "options": [
+                "Underfitting",
+                "Overfitting",
+                "A perfect model",
+                "A broken GPU"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Data augmentation helps because it…",
+              "options": [
+                "Shrinks the dataset",
+                "Creates label-preserving variations that improve generalisation",
+                "Removes the need for a test set",
+                "Speeds up inference"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Practical Deep Learning for Coders",
+              "by": "fast.ai",
+              "url": "https://course.fast.ai/Lessons/lesson2.html",
+              "license": "Videos & prose: link only · fastbook code: GPL-3.0",
+              "hosting": "link",
+              "note": "Lesson 2 — Deployment, data cleaning and augmentation"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_multilayer-perceptrons/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter — Multilayer perceptrons: overfitting, regularisation"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_optimization/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter — Optimization algorithms: learning rates and schedules"
+            }
+          ]
+        },
+        {
+          "id": "capstone-projects",
+          "title": "Capstone: Tabular + Vision Projects with Model Cards",
+          "minutes": 18,
+          "body": "You now have the two halves of a practitioner's portfolio. For the tabular project, take the model you have been building since Module 1 — baseline, tuned ensemble, cross-validated, audited — and freeze it. For the vision project, take your transfer-learning classifier with cleaned labels and augmentation. Each gets a model card: a short document stating what the model does, the data it was trained on and its limits, the metrics on a held-out set with the baseline alongside, the fairness audit, and what the model must not be used for.\n\nReproducibility is part of the deliverable. A reader should be able to clone your repository, run one command and regenerate every number in the card. Pin your dependencies, fix random seeds, and store the exact train/test split. If the data cannot be shared, provide a script that downloads it or a small synthetic sample so the pipeline still runs.\n\nFinally, deploy something small: a notebook widget or a tiny web app where someone can upload an image or a row of features and see a prediction with its confidence. Watching real users break it is the best lesson in the track. ML for Beginners' web-app section and fast.ai lesson 2 both show a minimal deployment path.",
+          "activity": "Publish both projects in a public repository with model cards, a one-command reproduction script and a minimal demo. Ask two people outside the course to try to break the demo and record what happened.",
+          "quiz": [
+            {
+              "q": "A model card should include…",
+              "options": [
+                "Only the best metric",
+                "Purpose, data, held-out metrics with baseline, limits and misuse warnings",
+                "The source code only",
+                "Marketing copy"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Reproducibility in this capstone means…",
+              "options": [
+                "The demo looks nice",
+                "Someone else can regenerate every reported number from your repository",
+                "The model is 100% accurate",
+                "Training took under a minute"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/3-Web-App",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 3 — Build a web app to use your model"
+            },
+            {
+              "title": "Practical Deep Learning for Coders",
+              "by": "fast.ai",
+              "url": "https://course.fast.ai/Lessons/lesson2.html",
+              "license": "Videos & prose: link only · fastbook code: GPL-3.0",
+              "hosting": "link",
+              "note": "Lesson 2 — Deploying a model with a simple UI"
+            },
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/9-Real-World",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 9 — ML in the real world"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eng-transformers",
+      "icon": "layers",
+      "track": "engineer",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Transformers",
+        "Fine-tuning"
+      ],
+      "title": "Transformers in Practice",
+      "summary": "Use the Hugging Face stack the way engineers do: pipelines and tokenizers first, attention explained with tensor shapes, then a real fine-tune with the Trainer API.",
+      "lessons": [
+        {
+          "id": "pipelines-tokenizers",
+          "title": "Pipelines, Tokenizers and the Hub",
+          "minutes": 14,
+          "body": "The Hugging Face Hub is the package registry of modern AI: hundreds of thousands of model checkpoints, datasets and demos, each with a model card and a license. The transformers library gives them a common interface. A pipeline wraps the three steps you always need — tokenise the input, run the model, decode the output — so sentiment analysis, summarisation or text generation is one call, and swapping models is a string change.\n\nUnder the pipeline, the tokenizer is the piece engineers most often get wrong. Each checkpoint ships with its own tokenizer, and mixing them silently produces garbage. Tokenizers also define the special tokens that mark the start of a sequence, padding and the chat template that turns a list of messages into one string — so if an instruction-tuned model behaves oddly, check that you applied its chat template before blaming the weights.\n\nChapters 1 and 2 of the LLM Course cover the pipeline-to-tensors journey with runnable notebooks under an Apache license, which means you may fork them, translate them and host them for your learners. Read the model card every time: the license, intended use and known limitations sections are where production surprises hide.",
+          "activity": "Run three different Hub models through the same text-classification pipeline. Inspect the tokenizer output for each (ids, special tokens, chat template if present) and note which model's license permits commercial use.",
+          "quiz": [
+            {
+              "q": "Why must you use the tokenizer that ships with a checkpoint?",
+              "options": [
+                "For speed",
+                "Token ids are specific to that model's vocabulary; mixing produces garbage",
+                "Because the Hub requires it",
+                "To reduce memory"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A chat template…",
+              "options": [
+                "Translates text",
+                "Turns a list of messages into the exact string format a chat model was trained on",
+                "Is only for images",
+                "Sets the learning rate"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 1 — Transformer models and pipelines"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter2/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 2 — Using Transformers: tokenizers and models"
+            }
+          ]
+        },
+        {
+          "id": "attention-shapes",
+          "title": "Attention, Explained with Shapes",
+          "minutes": 16,
+          "body": "A transformer layer does two things to a sequence of token vectors. Self-attention lets every position gather information from every other position, weighted by relevance; a feed-forward network then transforms each position independently. Stack the layer a few dozen times, add residual connections and normalisation, and you have the architecture behind every modern language model.\n\nAttention is easiest to understand by tracking tensor shapes. From each token vector of size d you compute a query, a key and a value by three linear maps. Scores are the dot products of every query with every key — a sequence-length by sequence-length matrix — scaled by the square root of the key size and passed through a softmax so each row sums to one. Those weights mix the values. Multi-head attention runs several of these in parallel with smaller dimensions and concatenates them, so different heads can track different relationships.\n\nTwo consequences matter for engineering. The score matrix grows with the square of the sequence length, which is why long contexts are expensive and why key-value caching exists for generation. And because attention has no built-in notion of order, positional information is added explicitly — which is what context-window limits are really about. Dive into Deep Learning's attention chapter and the 3Blue1Brown-style explanation in Karpathy's lectures are the two best open walkthroughs.",
+          "activity": "Implement single-head scaled dot-product attention in about fifteen lines of PyTorch. Print the shapes at every step for a batch of 2 sequences of length 5 with d=8, then extend to 2 heads.",
+          "quiz": [
+            {
+              "q": "The attention score matrix for a sequence of length n has shape…",
+              "options": [
+                "n × d",
+                "n × n",
+                "d × d",
+                "1 × n"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why is positional information added explicitly in a transformer?",
+              "options": [
+                "To save memory",
+                "Because attention alone is order-agnostic",
+                "To speed up training",
+                "Because tokenizers remove it"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter — Attention mechanisms and transformers"
+            },
+            {
+              "title": "Neural Networks: Zero to Hero",
+              "by": "Andrej Karpathy",
+              "url": "https://karpathy.ai/zero-to-hero.html",
+              "license": "Videos: link only · code (nn-zero-to-hero): MIT",
+              "hosting": "link",
+              "note": "Lecture 7 — Let's build GPT: attention from scratch (video, link only)"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter1/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 1 — How transformers work"
+            }
+          ]
+        },
+        {
+          "id": "fine-tuning-trainer",
+          "title": "Fine-tuning with the Trainer API",
+          "minutes": 18,
+          "body": "Fine-tuning adapts a pre-trained model to your data: a classifier for support tickets, a summariser for your document style, an instruction-follower for a narrow domain. The Hugging Face recipe is consistent — load a dataset, tokenise it with the model's tokenizer, define a metric, and hand everything to the Trainer, which manages batching, mixed precision, checkpoints and logging.\n\nParameter-efficient methods change what fine-tuning costs. LoRA freezes the original weights and trains small low-rank adapter matrices alongside them, cutting memory by an order of magnitude and letting a 7-billion-parameter model fine-tune on a single consumer GPU. The adapter is a few megabytes you can swap in and out, which is also an operational win: one base model, many task adapters.\n\nThe failure modes are familiar from the Practitioner track. Overfit on a small dataset and the model forgets general ability; leak evaluation examples into training and your metric lies. Hold out a test set, track validation loss, and compare against the un-tuned model with a few-shot prompt — if the prompt is close, fine-tuning may not be worth its maintenance cost. Chapter 3 of the LLM Course walks through a full fine-tune; Labonne's course covers LoRA and the current tooling.",
+          "activity": "Fine-tune a small pre-trained model on a public classification dataset with the Trainer, then repeat with LoRA. Compare accuracy, training time, GPU memory and adapter size in a table.",
+          "quiz": [
+            {
+              "q": "LoRA reduces fine-tuning cost by…",
+              "options": [
+                "Deleting layers",
+                "Training small low-rank adapters while freezing the original weights",
+                "Using a smaller tokenizer",
+                "Shortening the dataset"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Before fine-tuning, you should compare against…",
+              "options": [
+                "A random model",
+                "The un-tuned model with a few-shot prompt",
+                "A larger model only",
+                "Nothing — fine-tuning always wins"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "LLM Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/llm-course/chapter3/1",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Chapter 3 — Fine-tuning a pre-trained model"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Maxime Labonne",
+              "url": "https://github.com/mlabonne/llm-course",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "LLM Engineer roadmap — supervised fine-tuning and LoRA notebooks"
+            },
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/18-fine-tuning",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 18 — Fine-tuning"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eng-gpt-from-scratch",
+      "icon": "code",
+      "track": "engineer",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Neural networks",
+        "Language modeling"
+      ],
+      "title": "GPT from Scratch",
+      "summary": "Follow Karpathy from a scalar autograd engine to a working GPT, then read nanoGPT and Raschka's code to see what production training adds.",
+      "lessons": [
+        {
+          "id": "micrograd",
+          "title": "Autograd and a Tiny Neural Net (micrograd)",
+          "minutes": 16,
+          "body": "Every deep-learning framework rests on one idea: automatic differentiation. If you build a computation out of small operations and record, for each, how its output changes with respect to its inputs, then the chain rule lets you walk the graph backwards and compute the gradient of a loss with respect to every parameter. That walk is backpropagation, and it is a hundred lines of Python.\n\nmicrograd implements it on scalars. A Value object stores a number, a gradient and a pointer to the operation that produced it; calling backward on the loss visits the nodes in reverse topological order and accumulates gradients. With that in hand, a neuron is a weighted sum plus a non-linearity, a layer is a list of neurons, and a multilayer perceptron is a list of layers — all trained with the loop you have now seen several times: forward, loss, backward, step.\n\nDoing this once removes the mystery from PyTorch. Tensors, autograd and nn.Module are the same objects with vectorised arithmetic and a GPU. Karpathy's first Zero to Hero lecture builds micrograd live and is link-only; the micrograd repository itself is MIT licensed, so fork it and keep your own annotated copy.",
+          "activity": "Fork micrograd, add a tanh-free ReLU neuron and an L2 regularisation term, and train a 3-layer MLP on a toy 2-D dataset until it separates the classes. Plot the decision boundary.",
+          "quiz": [
+            {
+              "q": "Backpropagation computes…",
+              "options": [
+                "The loss value",
+                "Gradients of the loss with respect to every parameter via the chain rule",
+                "The learning rate",
+                "The training data"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "In micrograd, calling backward() on the loss…",
+              "options": [
+                "Resets the model",
+                "Visits nodes in reverse topological order and accumulates gradients",
+                "Prints the graph",
+                "Generates text"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Neural Networks: Zero to Hero",
+              "by": "Andrej Karpathy",
+              "url": "https://karpathy.ai/zero-to-hero.html",
+              "license": "Videos: link only · code (nn-zero-to-hero): MIT",
+              "hosting": "link",
+              "note": "Lecture 1 — The spelled-out intro to neural networks and backpropagation (video, link only)"
+            },
+            {
+              "title": "micrograd",
+              "by": "Andrej Karpathy",
+              "url": "https://github.com/karpathy/micrograd",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "MIT-licensed autograd engine — fork and annotate"
+            },
+            {
+              "title": "Neural Networks and Deep Learning",
+              "by": "Michael Nielsen",
+              "url": "http://neuralnetworksanddeeplearning.com",
+              "license": "CC BY-NC 3.0",
+              "hosting": "link",
+              "note": "Chapters 1–2 — Perceptrons and backpropagation (CC BY-NC, link only)"
+            }
+          ]
+        },
+        {
+          "id": "nanogpt",
+          "title": "From Bigram to Transformer: nanoGPT",
+          "minutes": 18,
+          "body": "A language model is a probability distribution over the next token. The simplest one — a bigram table — looks up the current character and samples the next. Karpathy's makemore series grows that table into an MLP, adds the tricks that make deep networks trainable (careful initialisation, batch normalisation), and arrives at a character-level transformer trained on Shakespeare. Each step is motivated by a specific failure of the previous model, which is the most valuable part of the sequence.\n\nnanoGPT is the production-shaped version: a few hundred lines that define the GPT architecture, a training script with gradient accumulation, mixed precision and checkpointing, and a configuration that reproduces GPT-2 on a modest cluster. Reading it after building the toy version, you will recognise every component — token and position embeddings, stacked blocks of attention and MLP, a final layer norm and a projection back to the vocabulary.\n\nRaschka's LLMs-from-Scratch repository covers the same ground chapter by chapter with exhaustive comments, including loading pre-trained GPT-2 weights into your own implementation to verify it. The code is Apache-licensed; the accompanying book is not, so link to it rather than copying its text.",
+          "activity": "Train nanoGPT's character-level model on a text corpus of your choice for ten minutes on a free GPU. Sample from it at three temperatures and record the training loss curve.",
+          "quiz": [
+            {
+              "q": "A bigram language model predicts the next token from…",
+              "options": [
+                "The entire document",
+                "The current token only",
+                "A random token",
+                "The tokenizer"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Which component is NOT part of a GPT block?",
+              "options": [
+                "Multi-head self-attention",
+                "A feed-forward MLP",
+                "Layer normalisation",
+                "A convolution over the image"
+              ],
+              "answer": 3
+            }
+          ],
+          "resources": [
+            {
+              "title": "Neural Networks: Zero to Hero",
+              "by": "Andrej Karpathy",
+              "url": "https://karpathy.ai/zero-to-hero.html",
+              "license": "Videos: link only · code (nn-zero-to-hero): MIT",
+              "hosting": "link",
+              "note": "Lectures 2–7 — makemore to 'Let's build GPT' (video, link only)"
+            },
+            {
+              "title": "nanoGPT",
+              "by": "Andrej Karpathy",
+              "url": "https://github.com/karpathy/nanoGPT",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "MIT-licensed training code — fork and run"
+            },
+            {
+              "title": "LLMs from Scratch (code)",
+              "by": "Sebastian Raschka",
+              "url": "https://github.com/rasbt/LLMs-from-scratch",
+              "license": "Apache-2.0 (code) · book © Manning",
+              "hosting": "fork",
+              "note": "Chapters 2–5 code — tokenizer, attention, GPT model, pre-training (Apache-2.0)"
+            }
+          ]
+        },
+        {
+          "id": "scaling-and-data",
+          "title": "Scaling Laws, Data and Compute Budgets",
+          "minutes": 14,
+          "body": "Once a GPT trains, the engineering questions are about budget. Loss falls predictably as you increase parameters, data and compute, following power laws — and the laws say that for a fixed compute budget there is an optimal model size and an optimal number of training tokens, with many well-known models having been under-trained on data relative to their size. The practical takeaway for small teams: a smaller model trained on more, better-filtered tokens often beats a bigger one.\n\nData quality dominates. Deduplication, filtering of boilerplate and low-quality text, and careful mixing of sources move the loss more than architectural tweaks. Tokenizer choice matters too: a vocabulary trained on English wastes tokens on other languages, which both costs money and hurts quality. Keep an evaluation set that is guaranteed not to appear in training, or your benchmark numbers mean nothing.\n\nHardware shapes everything else. Memory bandwidth, not raw FLOPs, limits most training runs; mixed precision, flash attention and activation checkpointing exist to work around it. Stanford's CS336 course walks through all of this from scratch with public lecture notes and assignments, and Labonne's roadmap summarises current practice.",
+          "activity": "Using nanoGPT, train three model sizes for the same wall-clock time and plot validation loss against parameter count. Write a paragraph on which size you would pick for a fixed budget and why.",
+          "quiz": [
+            {
+              "q": "Scaling laws suggest that for a fixed compute budget…",
+              "options": [
+                "The biggest possible model is always best",
+                "There is an optimal balance between model size and training tokens",
+                "Data does not matter",
+                "Smaller is always better"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Which change typically moves pre-training loss the most?",
+              "options": [
+                "Renaming variables",
+                "Data deduplication and quality filtering",
+                "Changing the random seed",
+                "A different logging library"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "CS336 Language Modeling from Scratch",
+              "by": "Stanford",
+              "url": "https://stanford-cs336.github.io",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Stanford CS336 — Language modeling from scratch (public lecture notes and assignments, link only)"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Maxime Labonne",
+              "url": "https://github.com/mlabonne/llm-course",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "LLM Scientist roadmap — pre-training, data and scaling"
+            },
+            {
+              "title": "nanoGPT",
+              "by": "Andrej Karpathy",
+              "url": "https://github.com/karpathy/nanoGPT",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Configuration files for different model sizes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eng-agents",
+      "icon": "compass",
+      "track": "engineer",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Agents",
+        "Tool use"
+      ],
+      "title": "Agents, Tools and Protocols",
+      "summary": "Design agents as loops over an LLM with tools, memory and guardrails; make tool calls reliable with structured output; and know when multi-agent is worth it.",
+      "lessons": [
+        {
+          "id": "agent-loop",
+          "title": "What Makes an Agent: Loop, Tools, Memory",
+          "minutes": 14,
+          "body": "An agent is a language model placed inside a loop. On each turn the model sees the goal, the conversation so far and the results of previous actions, and chooses either to answer or to call a tool — search, a calculator, a database query, a code runner. The runtime executes the tool, appends the result and calls the model again. Everything that distinguishes an \"agent\" from a chatbot lives in that loop: which tools exist, how results are fed back, when to stop.\n\nMemory is the second ingredient. Short-term memory is the context window; long-term memory is anything you retrieve into it, from the RAG index of the Intro track to a store of the user's past preferences. Agents that \"remember\" are doing retrieval, and the same evaluation discipline applies.\n\nReliability is the hard part. Models call tools with malformed arguments, loop forever, or stop early. Production agents cap the number of steps, validate every tool call against a schema, and log each step so failures can be replayed. Hugging Face's Agents Course and Microsoft's AI Agents for Beginners both start here, and both are open-licensed — fork their notebooks and build on them.",
+          "activity": "Write the agent loop by hand — no framework — with two tools (a calculator and a lookup over your RAG index), a step cap of eight and a JSON log of every step. Run ten tasks and inspect the logs.",
+          "quiz": [
+            {
+              "q": "The defining structure of an agent is…",
+              "options": [
+                "A bigger model",
+                "A loop where the model chooses tools and sees their results until it decides to answer",
+                "A longer system prompt",
+                "A web interface"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "An agent's long-term memory is implemented as…",
+              "options": [
+                "Extra model parameters",
+                "Retrieval of stored information into the context window",
+                "A larger GPU",
+                "Higher temperature"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Agents Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/agents-course/unit1/introduction",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Unit 1 — Introduction to agents: the thought-action-observation loop"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/01-intro-to-ai-agents",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 01 — Intro to AI agents and use cases"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/13-agent-memory",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 13 — Agent memory"
+            }
+          ]
+        },
+        {
+          "id": "function-calling",
+          "title": "Function Calling and Structured Output",
+          "minutes": 16,
+          "body": "Tool use works because models can be trained to emit a function name and arguments in a fixed JSON format instead of prose. You describe each tool with a name, a one-paragraph description and a JSON schema for its parameters; the model decides when to call one; your code validates the arguments, runs the function and returns the result as a message. The description is a prompt — vague descriptions produce wrong calls, so write them like documentation for a careful junior developer.\n\nStructured output extends the same idea to answers: ask for a response matching a schema and validate it with a library such as Pydantic before anything downstream touches it. Constrained decoding, available in several open-model servers, guarantees valid JSON by masking impossible tokens at generation time, which removes a whole class of parsing failures.\n\nProtocols standardise the plumbing. The Model Context Protocol lets a tool server describe its capabilities once and be used by any compatible agent, so a school's grade-book connector or library search becomes a reusable, auditable component rather than custom code in every bot. Microsoft's lessons on tool use and agentic protocols and the Agents Course unit on MCP cover current practice.",
+          "activity": "Convert your two tools to JSON-schema definitions with careful descriptions, add Pydantic validation, and expose them through a minimal MCP server. Measure how many of 50 calls are valid before and after improving the descriptions.",
+          "quiz": [
+            {
+              "q": "A tool description given to the model functions as…",
+              "options": [
+                "Documentation only humans read",
+                "A prompt that determines when and how the model calls the tool",
+                "A unit test",
+                "A license"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Constrained decoding guarantees valid JSON by…",
+              "options": [
+                "Retrying until it parses",
+                "Masking tokens that would make the output invalid during generation",
+                "Using a bigger model",
+                "Lowering the temperature to zero"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/04-tool-use",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 04 — Tool use design pattern"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/11-agentic-protocols",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 11 — Agentic protocols (MCP, A2A)"
+            },
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/11-integrating-with-function-calling",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 11 — Function calling"
+            }
+          ]
+        },
+        {
+          "id": "multi-agent-guardrails",
+          "title": "Multi-agent Patterns and Guardrails",
+          "minutes": 16,
+          "body": "Splitting work across several agents — a planner, a researcher, a writer, a reviewer — can improve results when each role has a clearly different tool set or prompt, and it can make a system harder to debug when it does not. Start with one agent and a good loop; add a second only when you can name the failure the split fixes. Common justified patterns are a separate reviewer that checks outputs against a rubric, and a router that chooses a specialist for a request.\n\nGuardrails are the controls you place around the loop. Input filters catch prompt injection — instructions hidden in retrieved documents or tool results that try to hijack the agent. Output filters check for sensitive data and policy violations. Permission boundaries decide which tools can act in the world (send an email, change a grade) versus merely read, and the former should require human confirmation. Every tool result should be treated as untrusted text, never as an instruction.\n\nEvaluate the whole system, not the model. Task success on a fixed set of scenarios, number of steps, tool-call validity, and groundedness of final answers are the minimum. The Agents Course unit on multi-agent systems and Microsoft's lessons on multi-agent design, trustworthy agents and securing agents are the open references; the next module turns these ideas into a harness.",
+          "activity": "Add a reviewer agent that scores your main agent's answers against a rubric, and an input guardrail that detects injected instructions in retrieved text. Craft five injection attempts and report how many succeed.",
+          "quiz": [
+            {
+              "q": "Prompt injection via retrieved documents is dangerous because…",
+              "options": [
+                "Documents are long",
+                "Tool results may contain text the model treats as instructions",
+                "It slows down retrieval",
+                "It changes the model weights"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "When should you add a second agent?",
+              "options": [
+                "Always — more agents are better",
+                "When you can name a specific failure that a separate role or tool set fixes",
+                "Only for images",
+                "Never"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/08-multi-agent",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 08 — Multi-agent design patterns"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/18-securing-ai-agents",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 18 — Securing AI agents"
+            },
+            {
+              "title": "Agents Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/agents-course/unit0/introduction",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Course overview — units on frameworks, use cases and the final project"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eng-local-evals",
+      "icon": "shield",
+      "track": "engineer",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Open models",
+        "Evaluation",
+        "Capstone"
+      ],
+      "title": "Local Models and Evaluation",
+      "summary": "Run open-weight models on your own hardware with quantization, build an evaluation harness that runs on every change, and ship the capstone agent.",
+      "lessons": [
+        {
+          "id": "local-models",
+          "title": "Running Open Models Locally (Quantization)",
+          "minutes": 14,
+          "body": "Open-weight models let you run inference where the data lives. The limiting resource is memory: a model with 8 billion parameters in 16-bit precision needs about 16 GB just for weights, before the key-value cache. Quantization stores weights in 8, 4 or even fewer bits, cutting memory by two to four times with a small quality loss that you should measure rather than assume. Formats and tooling have converged on a few standards that most local servers read directly.\n\nA local server exposes the model behind the same chat-completions API your agent already uses, so moving from a hosted model to a local one is a configuration change. Throughput depends on batching and on whether the whole model fits in GPU memory; on a laptop, a quantized 3–8 billion parameter model is responsive, and for a school deployment a single workstation can serve a classroom.\n\nChoose models by license as well as quality. Some open weights permit commercial use outright, others carry use restrictions or acceptable-use policies — read the model card. Microsoft's Open Source Models lesson and its lesson on creating local agents, plus Labonne's quantization notebooks, are the practical, forkable references.",
+          "activity": "Serve a quantized open model locally behind an OpenAI-compatible endpoint and point your agent at it. Record tokens per second, memory use and your rubric score versus the hosted model you used before.",
+          "quiz": [
+            {
+              "q": "Quantization reduces a model's memory footprint by…",
+              "options": [
+                "Removing layers",
+                "Storing weights in fewer bits",
+                "Shrinking the vocabulary",
+                "Caching answers"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Switching an agent from a hosted to a local model is usually…",
+              "options": [
+                "A rewrite",
+                "A configuration change, if the local server exposes the same chat API",
+                "Impossible",
+                "Only possible for images"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/17-creating-local-ai-agents",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 17 — Creating local AI agents"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Maxime Labonne",
+              "url": "https://github.com/mlabonne/llm-course",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "LLM Engineer roadmap — quantization (GGUF, GPTQ, AWQ) notebooks"
+            },
+            {
+              "title": "Generative AI for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/generative-ai-for-beginners/tree/main/16-open-source-models",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 16 — Open-source models and licenses"
+            }
+          ]
+        },
+        {
+          "id": "eval-harness",
+          "title": "Building an Evaluation Harness",
+          "minutes": 18,
+          "body": "An evaluation harness is a test suite for a system whose outputs are not deterministic. It holds a set of scenarios — inputs plus what a good outcome looks like — and runs the full agent on each, producing scores you can compare across model versions, prompt changes and tool updates. Without one, every change is a guess and every regression is discovered by a user.\n\nScoring comes in three flavours. Exact or programmatic checks work when the task has a verifiable answer: the calculation is right, the JSON validates, the retrieved document id matches. Model-as-judge uses a second model with a written rubric for qualities like helpfulness and groundedness; calibrate it against a sample of human judgements before trusting it. Human review remains the gold standard and should be spent on the cases where the other two disagree.\n\nReport more than the mean. Track pass rate per scenario category, cost and latency per task, tool-call validity, and the specific scenarios that flipped from pass to fail since the last run. Run the harness in continuous integration so a prompt edit cannot merge without numbers. The OpenAI Cookbook's evaluation examples and the Hugging Face Cookbook's RAG-evaluation recipe are open-licensed starting points you can fork.",
+          "activity": "Build a 40-scenario harness for your agent (20 verifiable, 10 judged, 10 adversarial). Wire it into CI so every commit posts pass rate, groundedness, cost and latency.",
+          "quiz": [
+            {
+              "q": "Model-as-judge scoring should be…",
+              "options": [
+                "Trusted automatically",
+                "Calibrated against human judgements on a sample before relying on it",
+                "Used only for code",
+                "Avoided entirely"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "The most important report from a harness, beyond the mean score, is…",
+              "options": [
+                "The longest answer",
+                "Which scenarios flipped from pass to fail since the last run",
+                "The model's name",
+                "The number of tokens in the prompt"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "OpenAI Cookbook",
+              "by": "OpenAI",
+              "url": "https://cookbook.openai.com",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Evaluation examples — building evals and model-graded rubrics (MIT)"
+            },
+            {
+              "title": "Open-Source AI Cookbook",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/cookbook/index",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Recipe — Evaluating RAG pipelines with LLM-as-judge"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/10-ai-agents-production",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 10 — AI agents in production: evaluation and observability"
+            }
+          ]
+        },
+        {
+          "id": "capstone-local-agent",
+          "title": "Capstone: A Local Agent with Evals",
+          "minutes": 20,
+          "body": "Bring the track together. The deliverable is an agent that runs entirely on hardware you control: a quantized open model behind a local server, retrieval over a document set, at least two tools exposed through a protocol server, input and output guardrails, a step cap and structured logging. Pick a task with real users — a help desk for a course, a research assistant for a school library — and define success before you build.\n\nThe harness is half the grade. Forty or more scenarios, with verifiable checks where possible and a calibrated judge where not, running in CI, with a dashboard or at least a markdown report per commit. Include adversarial scenarios: injections in retrieved documents, requests that should be refused, questions whose answers are not in the corpus. Show the pass-rate history across at least five iterations, including one regression you caught and fixed.\n\nDocument it like an engineer. A README with architecture, a data-flow diagram showing where every byte goes, the model license, cost per task, and a limitations section that is honest about what fails. Release under an open license, and credit the open curricula you built on — that is how this ecosystem keeps growing.",
+          "activity": "Ship the local agent with its harness, five iterations of recorded evaluation results and a complete README in a public repository. Present it in a ten-minute demo that includes one live adversarial attempt.",
+          "quiz": [
+            {
+              "q": "The capstone agent must run…",
+              "options": [
+                "On a hosted API only",
+                "Entirely on hardware you control, with a local open model",
+                "Without any tools",
+                "Without evaluation"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why show pass-rate history across iterations?",
+              "options": [
+                "To make the README longer",
+                "To demonstrate the harness catches regressions and guides improvement",
+                "Because CI requires it",
+                "To hide failures"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Agents Course",
+              "by": "Hugging Face",
+              "url": "https://huggingface.co/learn/agents-course/unit0/introduction",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "Final project unit — building and evaluating an agent for the certificate"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/16-deploying-scalable-agents",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 16 — Deploying agents"
+            },
+            {
+              "title": "AI Agents for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ai-agents-for-beginners/tree/main/12-context-engineering",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Lesson 12 — Context engineering"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acad-math",
+      "icon": "sigma",
+      "track": "academic",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Linear algebra",
+        "Calculus",
+        "Probability"
+      ],
+      "title": "Mathematics for Machine Learning",
+      "summary": "The three pillars every ML paper assumes: vectors and matrices as data, gradients as the engine of learning, and probability as the language of uncertainty.",
+      "lessons": [
+        {
+          "id": "linear-algebra",
+          "title": "Linear Algebra as Data",
+          "minutes": 18,
+          "body": "Machine learning stores everything as arrays. A data point is a vector; a dataset is a matrix with one row per example; a neural-network layer is a matrix that maps one vector space to another. Linear algebra is therefore less a prerequisite than the working vocabulary, and the goal of this lesson is fluency: reading a formula like Xw and seeing a weighted combination of columns, or a projection of each row onto a direction.\n\nThree ideas carry most of the weight. Matrix multiplication as composition of linear maps explains why stacking linear layers without non-linearities is pointless. Eigenvalues and eigenvectors describe the directions a transformation stretches, which is the key to principal component analysis and to understanding why optimisation is hard when a loss surface is stretched in one direction and flat in another. The singular value decomposition generalises this to any matrix and underlies low-rank methods — including the LoRA adapters from the Engineer track.\n\nMathematics for Machine Learning (Deisenroth, Faisal and Ong) covers exactly this in its first part with ML motivations throughout; the authors provide the PDF free, so link to it rather than copying. Pair the reading with d2l.ai's preliminaries chapter, whose code is open and runs in a browser.",
+          "activity": "Implement PCA from scratch with NumPy on a small image dataset: centre the data, compute the covariance, take the eigendecomposition, and reconstruct images from the top k components for k in {5, 20, 50}. Show the reconstruction error curve.",
+          "quiz": [
+            {
+              "q": "Why is stacking several linear layers without non-linearities pointless?",
+              "options": [
+                "It uses too much memory",
+                "The composition of linear maps is itself a single linear map",
+                "Gradients cannot flow",
+                "The matrices do not multiply"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Principal component analysis finds…",
+              "options": [
+                "Random directions",
+                "The eigenvectors of the data covariance — directions of greatest variance",
+                "The labels",
+                "The learning rate"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Mathematics for Machine Learning",
+              "by": "Deisenroth, Faisal & Ong",
+              "url": "https://mml-book.github.io",
+              "license": "Free PDF (© Cambridge University Press)",
+              "hosting": "link",
+              "note": "Part I, chapters 2–4 — Linear algebra, analytic geometry, matrix decompositions (free PDF, link only)"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_preliminaries/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 2 — Preliminaries: data manipulation and linear algebra in code"
+            }
+          ]
+        },
+        {
+          "id": "calculus-gradients",
+          "title": "Calculus, Gradients and Optimisation",
+          "minutes": 18,
+          "body": "Learning is optimisation: choose parameters that minimise a loss. Calculus provides the direction — the gradient points uphill, so step the other way. For a function of millions of parameters the gradient is a vector of partial derivatives, and the chain rule lets us compute it through a composition of functions one layer at a time, which is backpropagation stated as mathematics rather than code.\n\nUnderstanding the shape of the loss surface explains the practical rules of thumb. Convex functions have a single minimum and gradient descent with a small enough step size reaches it; neural-network losses are not convex, yet stochastic gradient descent works remarkably well, in part because the noise from small batches helps escape poor regions. Step size, momentum and adaptive methods such as Adam are all answers to the question \"how far should I move, given what I know about curvature?\"\n\nMathematics for Machine Learning's chapter on vector calculus and d2l.ai's optimisation chapter are the pairing here. Prince's Understanding Deep Learning gives the most readable account of why gradient descent works on non-convex losses, with figures you will recognise from every subsequent lecture.",
+          "activity": "Derive the gradient of the mean-squared-error loss for linear regression by hand, implement gradient descent in NumPy, and compare against the closed-form solution. Then plot the loss surface for a two-parameter model and trace the descent path.",
+          "quiz": [
+            {
+              "q": "The gradient of a loss points…",
+              "options": [
+                "Toward the minimum",
+                "In the direction of steepest increase, so we step the opposite way",
+                "Along the data",
+                "Nowhere in particular"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "For a convex loss, gradient descent with a small enough step…",
+              "options": [
+                "May get stuck in a local minimum",
+                "Reaches the global minimum",
+                "Diverges always",
+                "Needs no gradient"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Mathematics for Machine Learning",
+              "by": "Deisenroth, Faisal & Ong",
+              "url": "https://mml-book.github.io",
+              "license": "Free PDF (© Cambridge University Press)",
+              "hosting": "link",
+              "note": "Chapter 5 — Vector calculus; chapter 7 — Continuous optimisation"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_optimization/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 12 — Optimization algorithms with code"
+            },
+            {
+              "title": "Understanding Deep Learning",
+              "by": "Simon J.D. Prince",
+              "url": "https://udlbook.github.io/udlbook/",
+              "license": "Free PDF · CC BY-NC-ND 4.0 (notebooks repo)",
+              "hosting": "link",
+              "note": "Chapters 6–7 — Fitting models and gradients (free PDF, link only)"
+            }
+          ]
+        },
+        {
+          "id": "probability-information",
+          "title": "Probability and Information",
+          "minutes": 16,
+          "body": "Machine learning treats data as draws from an unknown distribution, and a model as an attempt to describe that distribution. Probability supplies the tools: random variables, expectations, conditional probability and Bayes' rule, which converts a model of how data is generated into a rule for inferring causes from observations. Most loss functions are negative log-likelihoods in disguise — mean squared error assumes Gaussian noise, cross-entropy assumes a categorical distribution.\n\nInformation theory measures how surprising data is under a model. Entropy is the expected surprise; cross-entropy is the surprise of the data under your model; their difference, the KL divergence, is what training a classifier minimises. A language model with lower perplexity simply assigns higher probability to the text it sees — perplexity is cross-entropy exponentiated.\n\nMathematics for Machine Learning's probability chapter and Murphy's Probabilistic Machine Learning (free PDF) are the readings; the latter is the reference you will keep returning to. Jurafsky and Martin's draft chapters on n-gram language models give the gentlest introduction to perplexity in the context of text.",
+          "activity": "Train a unigram and bigram language model on a public text, compute perplexity on held-out data with and without smoothing, and explain each result in terms of cross-entropy.",
+          "quiz": [
+            {
+              "q": "Cross-entropy loss for classification corresponds to…",
+              "options": [
+                "Mean squared error",
+                "The negative log-likelihood under a categorical distribution",
+                "Random guessing",
+                "The accuracy"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Perplexity is…",
+              "options": [
+                "The number of parameters",
+                "Cross-entropy exponentiated — how many equally likely choices the model is effectively hedging between",
+                "The learning rate",
+                "A type of tokenizer"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Mathematics for Machine Learning",
+              "by": "Deisenroth, Faisal & Ong",
+              "url": "https://mml-book.github.io",
+              "license": "Free PDF (© Cambridge University Press)",
+              "hosting": "link",
+              "note": "Chapter 6 — Probability and distributions"
+            },
+            {
+              "title": "Probabilistic Machine Learning",
+              "by": "Kevin P. Murphy",
+              "url": "https://probml.github.io/pml-book/",
+              "license": "Free PDF (© MIT Press) · pyprobml code MIT",
+              "hosting": "link",
+              "note": "Book 1, chapters 2–6 — Probability, statistics, information theory (free PDF, link only)"
+            },
+            {
+              "title": "Speech and Language Processing (3rd ed. draft)",
+              "by": "Jurafsky & Martin",
+              "url": "https://web.stanford.edu/~jurafsky/slp3/",
+              "license": "Draft · classroom use only, do not rehost",
+              "hosting": "link",
+              "note": "Chapter 3 — N-gram language models and perplexity (draft, link only)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acad-learning-theory",
+      "icon": "scale",
+      "track": "academic",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Learning theory",
+        "Linear models",
+        "Generalisation"
+      ],
+      "title": "Learning Theory and Linear Models",
+      "summary": "What it means for a machine to learn: empirical risk minimisation, the bias–variance trade-off and generalisation bounds, then the linear and logistic models that remain the baselines for everything.",
+      "lessons": [
+        {
+          "id": "erm",
+          "title": "Empirical Risk Minimisation",
+          "minutes": 16,
+          "body": "Supervised learning has a precise statement. There is an unknown distribution over inputs and labels; a hypothesis is a function from inputs to predictions; its risk is the expected loss under the distribution. We cannot compute risk because we do not know the distribution, so we minimise the empirical risk — the average loss on a sample — and hope the two are close. Almost every question in learning theory is about when that hope is justified.\n\nThe hypothesis class is the key design choice. Choose a tiny class and the best hypothesis in it may be poor; choose a huge class and the empirical minimiser may fit the sample's noise, so the empirical risk is a bad estimate of true risk. Learning theory quantifies this with measures of a class's richness — VC dimension, Rademacher complexity — and proves bounds on the gap between empirical and true risk that shrink with more data and grow with richness.\n\nStanford's CS229 lecture notes and Caltech's Learning From Data lectures give complementary treatments: the former is compact and mathematical, the latter builds intuition over several lectures. MIT 6.390's notes are the most accessible written introduction and are freely readable online.",
+          "activity": "Reproduce the classic experiment: fit polynomials of degree 1 to 15 to twenty noisy samples of a sine curve, plot training and test error against degree, and mark where empirical risk stops tracking true risk.",
+          "quiz": [
+            {
+              "q": "Empirical risk is…",
+              "options": [
+                "The true expected loss",
+                "The average loss on the training sample",
+                "The test accuracy",
+                "The number of parameters"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A richer hypothesis class generally…",
+              "options": [
+                "Lowers both training and true risk",
+                "Lowers training risk but widens the gap between training and true risk",
+                "Has no effect",
+                "Reduces the amount of data needed"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "CS229 Machine Learning",
+              "by": "Stanford",
+              "url": "https://cs229.stanford.edu",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Lecture notes — Part VI: learning theory (ERM, uniform convergence, VC dimension)"
+            },
+            {
+              "title": "Learning From Data",
+              "by": "Caltech (Yaser Abu-Mostafa)",
+              "url": "https://work.caltech.edu/telecourse.html",
+              "license": "Public lecture series · link only",
+              "hosting": "link",
+              "note": "Lectures 1–7 — The learning problem, feasibility, VC dimension (video, link only)"
+            },
+            {
+              "title": "6.390 Introduction to Machine Learning — notes",
+              "by": "MIT",
+              "url": "https://introml.mit.edu/notes",
+              "license": "Public course notes · link only",
+              "hosting": "link",
+              "note": "Chapters 1–2 — Introduction and regression"
+            }
+          ]
+        },
+        {
+          "id": "bias-variance",
+          "title": "Bias, Variance and Generalisation",
+          "minutes": 16,
+          "body": "The bias–variance decomposition breaks a model's expected error into three parts: bias, the error from a class too simple to represent the truth; variance, the error from sensitivity to the particular sample; and irreducible noise. Simple models have high bias and low variance; flexible models the reverse. Regularisation — penalising large weights, early stopping, dropout — is the family of techniques that trades a little bias for a lot less variance.\n\nModern deep networks complicate the picture. They have far more parameters than data points, should by classical reasoning have enormous variance, and yet generalise well. The \"double descent\" phenomenon — test error falling again as models grow past the point of fitting the training data perfectly — is an active research area, and understanding the classical theory is what lets you appreciate why it is surprising.\n\nThe Elements of Statistical Learning gives the definitive classical treatment, and the authors host the PDF free of charge. Berkeley's CS189 notes and Princeton's COS 324 materials offer modern lecture-note versions with worked examples.",
+          "activity": "Estimate bias and variance empirically: draw 100 training sets from a known function plus noise, fit a model of fixed flexibility to each, and compute the mean prediction and its spread at a grid of test points. Repeat for three flexibilities and tabulate.",
+          "quiz": [
+            {
+              "q": "Regularisation typically…",
+              "options": [
+                "Reduces bias at the cost of variance",
+                "Reduces variance at the cost of a little bias",
+                "Increases both",
+                "Has no effect on generalisation"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Double descent refers to…",
+              "options": [
+                "Two learning rates",
+                "Test error decreasing again as models grow past the point of interpolating the training data",
+                "Two optimisers",
+                "A tokenizer effect"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "The Elements of Statistical Learning",
+              "by": "Hastie, Tibshirani & Friedman",
+              "url": "https://hastie.su.domains/ElemStatLearn/",
+              "license": "Free PDF (© Springer)",
+              "hosting": "link",
+              "note": "Chapters 2 and 7 — Overview of supervised learning; model assessment and selection (free PDF, link only)"
+            },
+            {
+              "title": "CS189 Introduction to Machine Learning",
+              "by": "UC Berkeley",
+              "url": "https://eecs189.org",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Lecture notes — Bias–variance, regularisation, cross-validation"
+            },
+            {
+              "title": "COS 324 Introduction to Machine Learning",
+              "by": "Princeton",
+              "url": "https://princeton-introml.github.io",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Lecture notes — Generalisation and regularisation"
+            }
+          ]
+        },
+        {
+          "id": "linear-logistic-glm",
+          "title": "Linear Regression, Logistic Regression and GLMs",
+          "minutes": 18,
+          "body": "Linear regression is the model everything else is measured against. Its least-squares solution has a closed form, its assumptions are explicit, and its coefficients are interpretable. Logistic regression applies a sigmoid to a linear function to model the probability of a binary label, is trained by maximising likelihood — no closed form, but a convex problem — and generalises to softmax regression for many classes. A one-layer neural network with a softmax output is exactly this model.\n\nGeneralised linear models unify both: choose a distribution from the exponential family for the output, and a linear predictor passed through the distribution's canonical link function gives you Gaussian regression, logistic regression, Poisson regression for counts and more. Seeing them as one family explains why cross-entropy and mean squared error are both \"the right\" losses for their settings.\n\nCS229's first lectures derive all of this from first principles and remain the clearest source. Dive into Deep Learning implements linear and softmax regression from scratch and then with a framework, which is the pattern the next module follows for every architecture.",
+          "activity": "Implement logistic regression with gradient descent in NumPy on a binary dataset, verify your gradient numerically, then show that a one-layer PyTorch network with a softmax output reaches the same weights.",
+          "quiz": [
+            {
+              "q": "Logistic regression is trained by…",
+              "options": [
+                "A closed-form formula",
+                "Maximising likelihood — a convex optimisation problem",
+                "Counting labels",
+                "Random search"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "A generalised linear model consists of…",
+              "options": [
+                "A tree and a forest",
+                "An exponential-family output distribution, a linear predictor and a link function",
+                "Two neural networks",
+                "A kernel only"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "CS229 Machine Learning",
+              "by": "Stanford",
+              "url": "https://cs229.stanford.edu",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Lecture notes — Parts I–III: linear regression, classification, generalised linear models"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_linear-regression/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 3 — Linear regression from scratch and with a framework"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_linear-classification/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 4 — Softmax regression"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acad-deep-learning",
+      "icon": "layers",
+      "track": "academic",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Neural networks",
+        "Computer vision",
+        "NLP"
+      ],
+      "title": "Deep Learning Architectures",
+      "summary": "Implement each core architecture with Dive into Deep Learning, then study it in depth through the Stanford course built around it.",
+      "lessons": [
+        {
+          "id": "mlp-backprop",
+          "title": "Multilayer Perceptrons and Backpropagation",
+          "minutes": 18,
+          "body": "A multilayer perceptron stacks linear maps with non-linear activations between them. The universal approximation theorem says one hidden layer of enough width can approximate any continuous function, but depth is what makes approximation efficient: deep networks reuse features hierarchically, and in practice they train to better solutions with far fewer parameters than a wide shallow network.\n\nTraining them raises problems the math module anticipated. Gradients multiply through layers, so they can vanish or explode; careful initialisation, normalisation layers and residual connections exist to keep them in range. Overfitting is controlled with weight decay, dropout and early stopping, and the choice of activation function — ReLU and its relatives rather than sigmoids — matters because of gradient flow, not expressiveness.\n\nDive into Deep Learning's MLP chapter implements everything from scratch and then with a framework, and its text is CC BY-SA so you may host your own annotated copy. Goodfellow, Bengio and Courville's Deep Learning remains the thorough reference, free to read on the authors' site; Nielsen's book is the gentler alternative.",
+          "activity": "Implement a two-hidden-layer MLP and its backward pass manually in NumPy, verify gradients against finite differences, then train on Fashion-MNIST. Show the effect of initialisation scale on the training curve.",
+          "quiz": [
+            {
+              "q": "Depth helps networks mainly because…",
+              "options": [
+                "It is required by the universal approximation theorem",
+                "Deep networks reuse features hierarchically and approximate efficiently",
+                "It avoids all overfitting",
+                "GPUs require it"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "ReLU is preferred over sigmoid activations chiefly because of…",
+              "options": [
+                "Fashion",
+                "Better gradient flow in deep networks",
+                "Lower memory",
+                "Faster tokenisation"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_multilayer-perceptrons/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 5 — Multilayer perceptrons, from scratch and concise"
+            },
+            {
+              "title": "Deep Learning",
+              "by": "Goodfellow, Bengio & Courville",
+              "url": "https://www.deeplearningbook.org",
+              "license": "Free online (© MIT Press)",
+              "hosting": "link",
+              "note": "Chapters 6–8 — Deep feedforward networks, regularisation, optimisation (free online, link only)"
+            },
+            {
+              "title": "Neural Networks and Deep Learning",
+              "by": "Michael Nielsen",
+              "url": "http://neuralnetworksanddeeplearning.com",
+              "license": "CC BY-NC 3.0",
+              "hosting": "link",
+              "note": "Chapters 2–3 — Backpropagation and improving the way networks learn"
+            }
+          ]
+        },
+        {
+          "id": "cnns",
+          "title": "Convolutional Networks and Vision",
+          "minutes": 18,
+          "body": "Images have structure a plain MLP ignores: nearby pixels are related, and a feature that matters in one corner matters everywhere. A convolutional layer encodes both facts by sliding a small learned filter across the image, sharing its weights at every location. Stacking convolutions and pooling builds a hierarchy — edges, textures, parts, objects — and residual connections let that hierarchy run a hundred layers deep.\n\nThe architectures that defined the field — LeNet, AlexNet, VGG, ResNet — are each a lesson in one idea, and Dive into Deep Learning implements all of them in a few dozen lines. Modern vision mixes convolutions with the attention mechanisms of the next lesson, but the inductive biases of convolution remain the right starting point for most image problems and for understanding why models see what they see.\n\nStanford's CS231n is the canonical course. Its public notes and assignments cover backpropagation through convolutions, training recipes and visualisation of what networks learn; the lecture videos from earlier years are posted openly. Pair it with the d2l.ai chapters and implement each architecture yourself before reading the course's analysis.",
+          "activity": "Implement LeNet and a small ResNet with d2l.ai, train both on CIFAR-10 for a fixed budget, and visualise first-layer filters and a saliency map for five test images. Explain one failure case.",
+          "quiz": [
+            {
+              "q": "Weight sharing in a convolutional layer means…",
+              "options": [
+                "All layers have the same weights",
+                "The same filter is applied at every spatial location",
+                "Weights are shared between two models",
+                "The bias is removed"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Residual connections primarily help by…",
+              "options": [
+                "Reducing the number of parameters",
+                "Letting gradients flow through very deep networks",
+                "Removing pooling",
+                "Increasing image resolution"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_convolutional-neural-networks/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 7 — Convolutional neural networks"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_convolutional-modern/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 8 — Modern CNNs: AlexNet, VGG, ResNet"
+            },
+            {
+              "title": "CS231n course notes",
+              "by": "Stanford",
+              "url": "https://cs231n.github.io",
+              "license": "Public course notes · link only",
+              "hosting": "link",
+              "note": "Course notes — Convolutional networks, training, visualisation"
+            }
+          ]
+        },
+        {
+          "id": "sequence-attention",
+          "title": "Sequence Models and Attention",
+          "minutes": 20,
+          "body": "Language and time series arrive as sequences of variable length. Recurrent networks process them one step at a time while carrying a hidden state, and gated variants — LSTMs and GRUs — were the workhorses of NLP for a decade. Their weakness is the path length between distant tokens: information must survive many steps of multiplication, which attention removes by letting any position attend directly to any other.\n\nThe transformer is attention without recurrence, and the Engineer track covers its mechanics with tensor shapes. The academic view asks different questions: why do word embeddings capture analogies, how does pre-training on raw text produce representations that transfer, what are the computational trade-offs between recurrence, convolution and attention, and what does the model's attention pattern tell us about the linguistic structure it has learned?\n\nStanford's CS224n is the course built around these questions; its public lecture notes and assignments move from word vectors through recurrent networks to transformers and large pre-trained models. Dive into Deep Learning's sequence and attention chapters provide the implementations, and Jurafsky and Martin's draft chapters are the linguistically informed companion.",
+          "activity": "Implement a GRU language model and a small transformer language model with d2l.ai on the same corpus. Compare perplexity, training time and the longest dependency each can resolve on a synthetic copy task.",
+          "quiz": [
+            {
+              "q": "Attention addresses the main weakness of recurrent networks by…",
+              "options": [
+                "Using more parameters",
+                "Letting any position attend to any other directly, regardless of distance",
+                "Processing tokens faster",
+                "Removing embeddings"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Pre-training on raw text is valuable because…",
+              "options": [
+                "Labels are expensive and the resulting representations transfer to many tasks",
+                "It requires no compute",
+                "It replaces evaluation",
+                "It eliminates bias"
+              ],
+              "answer": 0
+            }
+          ],
+          "resources": [
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_recurrent-neural-networks/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 9 — Recurrent neural networks"
+            },
+            {
+              "title": "Dive into Deep Learning",
+              "by": "Zhang, Lipton, Li & Smola",
+              "url": "https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html",
+              "license": "CC BY-SA 4.0 (text) · modified MIT (code)",
+              "hosting": "fork",
+              "note": "Chapter 11 — Attention mechanisms and transformers"
+            },
+            {
+              "title": "CS224n NLP with Deep Learning",
+              "by": "Stanford",
+              "url": "https://web.stanford.edu/class/cs224n/",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Lecture notes and assignments — word vectors to transformers and pre-training"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acad-frontier",
+      "icon": "rocket",
+      "track": "academic",
+      "level": "advanced",
+      "grades": [
+        "adult"
+      ],
+      "curriculum": [
+        "Language modeling",
+        "Reinforcement learning",
+        "Research methods"
+      ],
+      "title": "At the Frontier",
+      "summary": "Language modeling from scratch with CS336, the essentials of reinforcement learning, and the research craft of reading papers and reproducing results.",
+      "lessons": [
+        {
+          "id": "lm-from-scratch",
+          "title": "Language Modeling from Scratch (CS336)",
+          "minutes": 18,
+          "body": "CS336 is Stanford's course on building a language model with no shortcuts: tokenizer, architecture, training systems, scaling, data and alignment, each as a substantial assignment. Its public materials make it the most complete open account of how a frontier-style model is actually made, and its systems focus — memory, parallelism, kernels — is what distinguishes it from courses that stop at the architecture.\n\nThe academic value is the connections. Byte-pair encoding is a compression algorithm; mixed-precision training is numerical analysis; scaling laws are empirical statistics with real decisions riding on them; preference optimisation is a reinforcement-learning problem in disguise. Working through the assignments gives you the vocabulary to read current papers critically, including the ability to notice when a result's compute budget makes it irreproducible for anyone outside a handful of labs.\n\nPair the lectures with Raschka's Apache-licensed implementation for a code-level companion and with the Engineer track's nanoGPT module if you have not done it. The course site is link-only; do not mirror its assignments.",
+          "activity": "Complete the tokenizer and transformer-training assignments from CS336 (or their equivalents in Raschka's repo) and write a two-page report on one design decision — tokenizer vocabulary size, learning-rate schedule or data mix — with an ablation.",
+          "quiz": [
+            {
+              "q": "What distinguishes CS336 from most deep-learning courses?",
+              "options": [
+                "It uses no code",
+                "Its systems focus: memory, parallelism, data and scaling as first-class topics",
+                "It covers only images",
+                "It is a short course"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Byte-pair encoding is fundamentally…",
+              "options": [
+                "A neural network",
+                "A compression algorithm applied to build a vocabulary",
+                "A loss function",
+                "An optimiser"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "CS336 Language Modeling from Scratch",
+              "by": "Stanford",
+              "url": "https://stanford-cs336.github.io",
+              "license": "Public course site · link only",
+              "hosting": "link",
+              "note": "Lecture notes and assignments — tokenization, architecture, systems, scaling, data, alignment"
+            },
+            {
+              "title": "LLMs from Scratch (code)",
+              "by": "Sebastian Raschka",
+              "url": "https://github.com/rasbt/LLMs-from-scratch",
+              "license": "Apache-2.0 (code) · book © Manning",
+              "hosting": "fork",
+              "note": "Chapters 2–7 code — building, pre-training and fine-tuning a GPT (Apache-2.0)"
+            },
+            {
+              "title": "LLM Course",
+              "by": "Maxime Labonne",
+              "url": "https://github.com/mlabonne/llm-course",
+              "license": "Apache-2.0",
+              "hosting": "fork",
+              "note": "LLM Scientist roadmap — post-training, preference alignment and evaluation"
+            }
+          ]
+        },
+        {
+          "id": "rl-essentials",
+          "title": "Reinforcement Learning Essentials",
+          "minutes": 18,
+          "body": "Reinforcement learning drops the assumption of labelled data. An agent acts in an environment, receives rewards and must learn a policy that maximises long-run return — with the twin difficulties that rewards may be delayed and that the agent's own actions determine what data it sees. The Markov decision process is the formal setting; value functions, Bellman equations and the trade-off between exploration and exploitation are the core ideas.\n\nTabular methods — dynamic programming, Monte Carlo, temporal-difference learning — are fully understandable with the probability of the first module and should be implemented before anything neural. Deep RL replaces tables with networks for large state spaces, and policy-gradient methods optimise the policy directly; the preference-optimisation step in training modern language models is a descendant of these methods, which is why RL has moved from a niche to a prerequisite.\n\nSutton and Barto's textbook is the canonical source and is free on the authors' site; link to it, do not rehost. Microsoft's ML for Beginners has a gentle, MIT-licensed introduction with a runnable notebook if you want a warm-up.",
+          "activity": "Implement tabular Q-learning and SARSA on a grid-world, then on a small Gym-style environment. Plot return against episodes for three exploration schedules and explain the differences in terms of the exploration–exploitation trade-off.",
+          "quiz": [
+            {
+              "q": "What makes reinforcement learning harder than supervised learning?",
+              "options": [
+                "Smaller datasets",
+                "Rewards may be delayed and the agent's actions determine the data it sees",
+                "It requires no mathematics",
+                "It only works for games"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Temporal-difference learning updates a value estimate using…",
+              "options": [
+                "The full return of a completed episode only",
+                "The reward plus the current estimate of the next state's value",
+                "Labels from a teacher",
+                "No information about the next state"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "Reinforcement Learning: An Introduction",
+              "by": "Sutton & Barto",
+              "url": "http://incompleteideas.net/book/the-book-2nd.html",
+              "license": "Free PDF (© MIT Press)",
+              "hosting": "link",
+              "note": "Chapters 1–6 — MDPs, dynamic programming, Monte Carlo, temporal-difference learning (free PDF, link only)"
+            },
+            {
+              "title": "ML for Beginners",
+              "by": "Microsoft",
+              "url": "https://github.com/microsoft/ML-For-Beginners/tree/main/8-Reinforcement",
+              "license": "MIT",
+              "hosting": "fork",
+              "note": "Section 8 — Reinforcement learning introduction with Q-learning notebook"
+            }
+          ]
+        },
+        {
+          "id": "reading-reproducing",
+          "title": "Reading Papers and Reproducing Results",
+          "minutes": 16,
+          "body": "The final academic skill is independent engagement with the literature. Read a paper in passes: abstract, figures and conclusion first to decide whether it matters to you; then the method with a notebook open, re-deriving the key equations; then the experiments, asking what baselines are missing and whether the compute budget is stated. Write a one-paragraph summary in your own words — if you cannot, you have not understood it.\n\nReproduction is where understanding becomes real. Pick a result with public code and modest compute, re-implement the core idea yourself rather than running the authors' script, and compare numbers. Discrepancies are the lesson: an undocumented preprocessing step, a seed-dependent result, a metric computed differently. Reporting a reproduction honestly, including failures, is a genuine contribution and an excellent portfolio piece.\n\nMIT's 6.S191 pairs open lectures with MIT-licensed labs that reproduce several well-known results at small scale; Jurafsky and Martin's draft chapters model clear scientific writing about methods. Use the course-notes and book indexes in the Library when you need an alternative explanation of a technique the paper assumes.",
+          "activity": "Choose a paper from the last three years with public code and a result reproducible on a free GPU. Re-implement the central idea, reproduce the main table, and publish a report with your numbers, the discrepancies and their causes.",
+          "quiz": [
+            {
+              "q": "The first pass through a paper should…",
+              "options": [
+                "Derive every equation",
+                "Read the abstract, figures and conclusion to judge relevance",
+                "Run the code",
+                "Email the authors"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why re-implement rather than simply run the authors' code?",
+              "options": [
+                "Their code is always wrong",
+                "Re-implementing exposes undocumented steps and tests your understanding",
+                "It is faster",
+                "To avoid citing them"
+              ],
+              "answer": 1
+            }
+          ],
+          "resources": [
+            {
+              "title": "6.S191 Introduction to Deep Learning",
+              "by": "MIT",
+              "url": "https://introtodeeplearning.com",
+              "license": "Lectures: link only · labs (aamini/introtodeeplearning): MIT",
+              "hosting": "link",
+              "note": "Open lectures with MIT-licensed labs (aamini/introtodeeplearning) that reproduce classic results at small scale"
+            },
+            {
+              "title": "Speech and Language Processing (3rd ed. draft)",
+              "by": "Jurafsky & Martin",
+              "url": "https://web.stanford.edu/~jurafsky/slp3/",
+              "license": "Draft · classroom use only, do not rehost",
+              "hosting": "link",
+              "note": "Draft chapters — a model of clear methodological writing (link only)"
+            },
+            {
+              "title": "awesome-free-ai-course-notes",
+              "by": "MarcosSete",
+              "url": "https://github.com/MarcosSete/awesome-free-ai-course-notes",
+              "license": "CC0-1.0",
+              "hosting": "fork",
+              "note": "awesome-free-ai-course-notes — alternative explanations for techniques a paper assumes"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

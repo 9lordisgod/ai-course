@@ -121,7 +121,6 @@ test("server serves pages, data and reports TTS status", async () => {
   const base = `http://127.0.0.1:${server.address().port}`;
   try {
     assert.equal((await fetch(`${base}/`)).status, 200);
-    assert.equal((await fetch(`${base}/pitch/`)).status, 200);
     assert.equal((await fetch(`${base}/data/courses.json`)).status, 200);
     assert.equal((await fetch(`${base}/data/tracks.json`)).status, 200);
     assert.equal((await fetch(`${base}/data/library.json`)).status, 200);

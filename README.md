@@ -22,7 +22,6 @@
 | **Provincial Policy Explorer** | B.C., New Brunswick, Ontario, Alberta, Manitoba, Quebec + federal programs, with status badges |
 | **Dark mode & accessibility** | System-aware dark theme, keyboard navigation, skip link, reduced-motion support, print styles |
 | **Phone-ready** | Mobile-first layout tested at 320–430 px (iPhone / Android): no horizontal scrolling, 44 px touch targets, search button + menu in the top bar, safe-area aware, home-screen icon |
-| **Pitch deck** | 16-slide `/pitch/` web deck (keyboard + swipe, print-friendly) and [Markdown](pitch/pitch-deck.md) version, both built from `pitch/deck-content.mjs` by `npm run deck` |
 | **Privacy-first** | No accounts, no tracking; progress and quiz results stay in the browser (`localStorage`) |
 
 ## Design
@@ -50,7 +49,7 @@ Without an ElevenLabs key the site still works — the **Listen** button falls b
 
 ## Deploy
 
-**GitHub Pages (static, included):** every push to `main` runs [`pages.yml`](.github/workflows/pages.yml), which tests, builds the deck and publishes `public/` + `pitch/` + `docs/` to <https://9lordisgod.github.io/ai-course/>. Pages has no server, so narration uses the browser voice — unless you set a repository variable `TTS_API_BASE` pointing at a hosted copy of the API (below); the workflow injects it into `window.SI_CONFIG.apiBase`.
+**GitHub Pages (static, included):** every push to `main` runs [`pages.yml`](.github/workflows/pages.yml), which tests and publishes `public/` + `docs/` to <https://9lordisgod.github.io/ai-course/>. Pages has no server, so narration uses the browser voice — unless you set a repository variable `TTS_API_BASE` pointing at a hosted copy of the API (below); the workflow injects it into `window.SI_CONFIG.apiBase`.
 
 Each deploy is stamped with its commit SHA: asset and data URLs get `?v=<sha>` (so browser caches can't serve a stale build), the footer shows the build id, and `version.json` lets an already-open tab notice a newer deploy and offer a one-click reload.
 
@@ -74,10 +73,9 @@ server/
   index.js              Express app: static hosting + /api/tts, /api/voices, /api/health (CORS-enabled)
   tts.js                ElevenLabs client, validation, caching
 api/                    Serverless wrappers around server/tts.js
-pitch/                  Pitch deck: deck-content.mjs → index.html / pitch-deck.md via `npm run deck`
 docs/                   Research notes + source briefing
 tests/                  node:test suite (`npm test`)
-.github/workflows/      ci.yml (tests + deck) · pages.yml (GitHub Pages deploy)
+.github/workflows/      ci.yml (tests) · pages.yml (GitHub Pages deploy)
 ```
 
 ## API

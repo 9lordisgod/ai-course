@@ -3,4 +3,3 @@ node_modules/
 .cache/
 .vercel/
 .DS_Store
-pitch/*.pptx

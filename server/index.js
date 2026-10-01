@@ -65,7 +65,6 @@ export function createApp() {
   });
 
   app.use(express.static(path.join(root, "public"), { extensions: ["html"] }));
-  app.use("/pitch", express.static(path.join(root, "pitch")));
   app.use("/docs", express.static(path.join(root, "docs")));
   app.use((_req, res) => res.sendFile(path.join(root, "public", "index.html")));
   return app;

@@ -10,7 +10,6 @@
       "teachers": "Teachers",
       "parents": "Parents",
       "policy": "Policy",
-      "pitch": "Pitch deck",
       "about": "About"
     },
     "ui": {
@@ -99,8 +98,7 @@
       "ctaBand": {
         "title": "Every student. Every language. AI-literate.",
         "body": "Open-source, privacy-first and ready to run in any Canadian classroom today.",
-        "cta": "Browse courses",
-        "cta2": "Read the pitch deck"
+        "cta": "Browse courses"
       },
       "footerLinks": {
         "learn": "Learn",
@@ -108,7 +106,6 @@
         "resources": "Resources",
         "openSource": "Open source · MIT",
         "github": "Source on GitHub",
-        "deck": "Pitch deck",
         "research": "Research notes",
         "build": "Build",
         "buildTitle": "Deployed commit on GitHub"

@@ -263,7 +263,7 @@ function renderChrome() {
     <div class="topbar">
       <div class="wrap topbar-inner">
         <a class="brand" href="#/"><span class="logo">${LOGO}</span><span class="brand-text"><b>${esc(t("brand"))}</b></span></a>
-        <nav class="nav" aria-label="Primary">${nav.map((k) => `<a href="${href(k)}" data-nav="${k}">${esc(t(`nav.${k}`))}</a>`).join("")}<a href="pitch/" target="_blank" rel="noopener">${esc(t("nav.pitch"))} ↗</a></nav>
+        <nav class="nav" aria-label="Primary">${nav.map((k) => `<a href="${href(k)}" data-nav="${k}">${esc(t(`nav.${k}`))}</a>`).join("")}</nav>
         <div class="search" role="search">
           ${icon("search")}
           <input id="q" type="search" autocomplete="off" placeholder="${esc(t("ui.search"))}" aria-label="${esc(t("ui.search"))}" />
@@ -278,7 +278,6 @@ function renderChrome() {
       </div>
       <div class="mobile-menu" id="mobileMenu">
         ${["home", ...nav].map((k) => `<a href="${href(k)}">${esc(t(`nav.${k}`))}</a>`).join("")}
-        <a href="pitch/" target="_blank" rel="noopener">${esc(t("nav.pitch"))} ↗</a>
       </div>
     </div>`;
 
@@ -305,7 +304,6 @@ function renderChrome() {
         <div><h4>${esc(fl.resources)}</h4><ul>
           <li><a href="#/library">${icon("library")}${esc(t("library.title"))}</a></li>
           <li><a href="${REPO}" target="_blank" rel="noopener">${icon("code")}${esc(fl.github)}</a></li>
-          <li><a href="pitch/" target="_blank" rel="noopener">${icon("layers")}${esc(fl.deck)}</a></li>
           <li><a href="${REPO}/blob/main/docs/research.md" target="_blank" rel="noopener">${icon("file")}${esc(fl.research)}</a></li>
         </ul></div>
       </div>
@@ -543,7 +541,7 @@ const pages = {
       </div></section>
       <section class="cta-band"><div class="wrap">
         <h2>${esc(ui.ctaBand.title)}</h2><p>${esc(ui.ctaBand.body)}</p>
-        <div class="hero-actions"><a class="btn btn-light btn-lg" href="#/courses">${esc(ui.ctaBand.cta)} ${icon("arrow")}</a><a class="btn btn-outline-light btn-lg" href="pitch/" target="_blank" rel="noopener">${esc(ui.ctaBand.cta2)} ${icon("external")}</a></div>
+        <div class="hero-actions"><a class="btn btn-light btn-lg" href="#/courses">${esc(ui.ctaBand.cta)} ${icon("arrow")}</a></div>
       </div></section>`;
   },
 
@@ -724,7 +722,6 @@ const pages = {
             <div class="card" style="grid-column:1/-1"><h2>${esc(th.resources)}</h2>
               <ul class="res-list">${state.policy.sources.map((s) => `<li><a href="${esc(s.u)}" target="_blank" rel="noopener">${icon("link")}<span>${esc(s.t)}</span>${icon("external")}</a></li>`).join("")}</ul></div>
             <div class="card"><h3>${esc(th.cert)}</h3><p class="muted">${esc(th.certHelp)}</p><a class="btn btn-ghost" href="#/certificate">${icon("award")} ${esc(t("certificate.title"))}</a></div>
-            <div class="card"><h3>${esc(t("nav.pitch"))}</h3><p class="muted">${esc(t("ui.ctaBand.body"))}</p><a class="btn btn-ghost" href="pitch/" target="_blank" rel="noopener">${icon("layers")} ${esc(t("ui.footerLinks.deck"))} ${icon("external")}</a></div>
           </div>
         </section>
       </div>`;
@@ -764,7 +761,7 @@ const pages = {
         <div>
           <p class="lead">${esc(a.body)}</p>
           <div class="notice">${icon("info")} ${esc(t("policy.subtitle"))}</div>
-          <div class="hero-actions" style="margin-top:24px"><a class="btn btn-dark" href="${REPO}" target="_blank" rel="noopener">${icon("code")} GitHub</a><a class="btn btn-ghost" href="pitch/" target="_blank" rel="noopener">${icon("layers")} ${esc(t("nav.pitch"))}</a></div>
+          <div class="hero-actions" style="margin-top:24px"><a class="btn btn-dark" href="${REPO}" target="_blank" rel="noopener">${icon("code")} GitHub</a></div>
         </div>
         <div class="card"><h4>${esc(a.sources)}</h4><ul>${state.policy.sources.map((s) => `<li><a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)} ${icon("external")}</a></li>`).join("")}</ul></div>
       </div>`;

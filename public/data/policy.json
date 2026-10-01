@@ -1,0 +1,141 @@
+{
+  "provinces": [
+    {
+      "id": "bc",
+      "name": "British Columbia",
+      "status": "embedded",
+      "where": "Applied Design, Skills & Technologies (ADST) — required K–9, electives 10–12; Career Education; Digital Literacy Framework",
+      "notes": "Ministry guidance 'Digital literacy and the use of AI in education' encourages critical, ethical use. Vancouver School Board approved Microsoft Copilot with Enterprise Data Protection for staff and secondary students.",
+      "links": [
+        {
+          "t": "B.C. — AI in education",
+          "u": "https://www2.gov.bc.ca/gov/content/education-training/k-12/teach/resources-for-teachers/digital-literacy/ai-in-education"
+        },
+        {
+          "t": "ADST curriculum",
+          "u": "https://curriculum.gov.bc.ca/curriculum/adst"
+        }
+      ]
+    },
+    {
+      "id": "nb",
+      "name": "New Brunswick",
+      "status": "embedded",
+      "where": "AI literacy woven across K–12 curriculum from September 2026 (first province to do so)",
+      "notes": "Focus on critical thinking, ethics and responsible use rather than a stand-alone course.",
+      "links": [
+        {
+          "t": "NB Education & Early Childhood Development",
+          "u": "https://www2.gnb.ca/content/gnb/en/departments/education.html"
+        }
+      ]
+    },
+    {
+      "id": "on",
+      "name": "Ontario",
+      "status": "guidance",
+      "where": "Board-level AI guidelines; digital literacy in Language (2023) and Math curricula",
+      "notes": "No province-wide AI course; boards such as TDSB and Peel publish staff/student AI guidance.",
+      "links": [
+        {
+          "t": "Ontario curriculum",
+          "u": "https://www.dcp.edu.gov.on.ca/en/"
+        }
+      ]
+    },
+    {
+      "id": "ab",
+      "name": "Alberta",
+      "status": "guidance",
+      "where": "Career & Technology Foundations; host of Amii and the National AI Literacy Initiative launch (Edmonton)",
+      "notes": "Educators can access 'Essentials for Educators' free from Amii.",
+      "links": [
+        {
+          "t": "Essentials for Educators",
+          "u": "https://educators.ailiteracyforall.ca"
+        }
+      ]
+    },
+    {
+      "id": "mb",
+      "name": "Manitoba",
+      "status": "school-led",
+      "where": "School-level modules, e.g. Winnipeg collegiate 2-hour AI literacy module",
+      "notes": "Provincial guidance under development; strong school-led practice.",
+      "links": [
+        {
+          "t": "Manitoba Education",
+          "u": "https://www.edu.gov.mb.ca/"
+        }
+      ]
+    },
+    {
+      "id": "qc",
+      "name": "Quebec",
+      "status": "guidance",
+      "where": "Digital Competency Framework (Cadre de référence de la compétence numérique)",
+      "notes": "Ministry guidance on generative AI in schools (French-first).",
+      "links": [
+        {
+          "t": "Quebec digital competency",
+          "u": "https://www.quebec.ca/education"
+        }
+      ]
+    },
+    {
+      "id": "federal",
+      "name": "Federal (pan-Canadian)",
+      "status": "programs",
+      "where": "National AI Literacy Initiative ($13M, Amii, Sept 2026) · CanCode Phase 5 ($30M, 2026–2028) · AI for All strategy",
+      "notes": "Education is provincial; federal programs fund resources and training rather than mandating curriculum.",
+      "links": [
+        {
+          "t": "AI Literacy for All",
+          "u": "https://ailiteracyforall.ca"
+        },
+        {
+          "t": "ISED — AI literacy",
+          "u": "https://ised-isde.canada.ca/site/ised/en/ai-literacy"
+        },
+        {
+          "t": "CanCode",
+          "u": "https://ised-isde.canada.ca/site/cancode/en"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "t": "Canada.ca news release — National AI Literacy Initiative (9 Sept 2026)",
+      "u": "https://www.canada.ca/en/innovation-science-economic-development/news.html"
+    },
+    {
+      "t": "AI for All — Essentials for Educators (Amii)",
+      "u": "https://educators.ailiteracyforall.ca"
+    },
+    {
+      "t": "AI for All — Essentials for Students",
+      "u": "https://students.ailiteracyforall.ca"
+    },
+    {
+      "t": "AI Literacy for All hub",
+      "u": "https://ailiteracyforall.ca"
+    },
+    {
+      "t": "B.C. — Digital literacy and the use of AI in education",
+      "u": "https://www2.gov.bc.ca/gov/content/education-training/k-12/teach/resources-for-teachers/digital-literacy/ai-in-education"
+    },
+    {
+      "t": "CanCode program",
+      "u": "https://ised-isde.canada.ca/site/cancode/en"
+    },
+    {
+      "t": "First Nations principles of OCAP®",
+      "u": "https://fnigc.ca/ocap-training/"
+    },
+    {
+      "t": "ElevenLabs Text-to-Speech API",
+      "u": "https://elevenlabs.io/docs/api-reference/text-to-speech/convert"
+    }
+  ]
+}

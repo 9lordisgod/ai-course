@@ -1,0 +1,308 @@
+{
+  "en": {
+    "brand": "SI Academy",
+    "tagline": "K–12 AI literacy, aligned with Canada's National AI Literacy Initiative",
+    "nav": {
+      "home": "Home",
+      "courses": "Courses",
+      "teachers": "Teachers",
+      "parents": "Parents",
+      "policy": "Policy",
+      "pitch": "Pitch deck",
+      "about": "About"
+    },
+    "ui": {
+      "search": "Search lessons, topics, policies…",
+      "searchEmpty": "No matching lessons",
+      "searchAll": "See all results",
+      "theme": "Toggle dark mode",
+      "menu": "Menu",
+      "startLearning": "Start learning",
+      "continue": "Continue learning",
+      "resume": "Resume",
+      "module": "Module",
+      "lesson": "Lesson",
+      "of": "of",
+      "level": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      },
+      "mastery": {
+        "title": "Mastery",
+        "points": "mastery points",
+        "levels": {
+          "none": "Not started",
+          "attempted": "Attempted",
+          "familiar": "Familiar",
+          "proficient": "Proficient",
+          "mastered": "Mastered"
+        },
+        "explain": "Read each lesson and ace its practice quiz to earn up to 100 mastery points per lesson."
+      },
+      "contents": "Module contents",
+      "aboutModule": "About this module",
+      "read": "Read",
+      "listen": "Listen",
+      "practice": "Practice",
+      "upNext": "Up next",
+      "startHere": "Start here",
+      "viewAll": "View all",
+      "reset": "Reset filters",
+      "filters": "Filters",
+      "gradeBand": "Grade band",
+      "curriculumFilter": "Curriculum area",
+      "paths": "Learning paths",
+      "results": "modules",
+      "trust": "Curriculum alignment",
+      "audienceTitle": "Built for everyone in the classroom",
+      "audience": [
+        {
+          "icon": "graduation",
+          "t": "Learners",
+          "d": "Self-paced modules with narration, practice quizzes and mastery points — no account needed.",
+          "cta": "Browse courses",
+          "href": "#/courses"
+        },
+        {
+          "icon": "users",
+          "t": "Teachers",
+          "d": "Curriculum-mapped lessons, a traffic-light AI-use policy generator and disclosure templates.",
+          "cta": "Open Teacher Hub",
+          "href": "#/teachers"
+        },
+        {
+          "icon": "home",
+          "t": "Parents",
+          "d": "Plain-language answers about what Canadian schools expect from students and families.",
+          "cta": "Read the FAQ",
+          "href": "#/parents"
+        }
+      ],
+      "howTitle": "How mastery works",
+      "how": [
+        {
+          "t": "Read or listen",
+          "d": "Every lesson is written in plain English and narrated by ElevenLabs voices."
+        },
+        {
+          "t": "Practice",
+          "d": "Short quizzes with instant feedback — get 100% to reach Mastered."
+        },
+        {
+          "t": "Track & certify",
+          "d": "Progress stays on your device. Print a certificate when you finish."
+        }
+      ],
+      "ctaBand": {
+        "title": "Every student. Every language. AI-literate.",
+        "body": "Open-source, privacy-first and ready to run in any Canadian classroom today.",
+        "cta": "Browse courses",
+        "cta2": "Read the pitch deck"
+      },
+      "footerLinks": {
+        "learn": "Learn",
+        "educators": "Educators",
+        "resources": "Resources",
+        "openSource": "Open source · MIT",
+        "github": "Source on GitHub",
+        "deck": "Pitch deck",
+        "research": "Research notes",
+        "briefing": "Policy briefing (PDF)"
+      },
+      "levelLabel": "Level"
+    },
+    "hero": {
+      "kicker": "National AI Literacy Initiative · 2026",
+      "title": "Learn how AI really works. Then teach it.",
+      "subtitle": "Ready-to-teach K–12 modules on how AI works, generative AI, bias, privacy, academic integrity, Indigenous data sovereignty and future careers — every lesson narrated by ElevenLabs.",
+      "cta": "Start learning",
+      "cta2": "For teachers",
+      "stats": [
+        {
+          "n": "8",
+          "l": "modules"
+        },
+        {
+          "n": "K–12",
+          "l": "grade bands"
+        },
+        {
+          "n": "2",
+          "l": "languages"
+        },
+        {
+          "n": "0",
+          "l": "student accounts required"
+        }
+      ],
+      "preview": {
+        "module": "Module 02 · Generative AI",
+        "lesson": "How chatbots predict words",
+        "playing": "Now playing · ElevenLabs",
+        "quiz": "An AI \"hallucination\" is…",
+        "choice": "Confident but false output",
+        "correct": "Correct · +100 mastery points"
+      }
+    },
+    "features": {
+      "title": "Everything a school needs",
+      "items": [
+        {
+          "icon": "headphones",
+          "t": "AI voice-over",
+          "d": "Listen to any lesson with natural ElevenLabs voices — for early readers, ELL students and accessibility."
+        },
+        {
+          "icon": "map",
+          "t": "Curriculum-mapped",
+          "d": "Lessons tagged to B.C. ADST & Career Education, New Brunswick K–12 AI literacy and Canada's Essentials for Educators topics."
+        },
+        {
+          "icon": "shield",
+          "t": "Privacy-first",
+          "d": "No student accounts. Progress stays on-device. Works alongside district-approved tools like Copilot with Enterprise Data Protection."
+        },
+        {
+          "icon": "users",
+          "t": "Teacher Hub",
+          "d": "AI-use policy generator, traffic-light assignment labels and disclosure templates ready to paste into your LMS."
+        },
+        {
+          "icon": "globe",
+          "t": "Curriculum-mapped",
+          "d": "Every module is tagged to B.C. ADST & Career Education, New Brunswick's K–12 AI literacy strands and the Essentials for Educators topics."
+        },
+        {
+          "icon": "award",
+          "t": "Mastery & certificates",
+          "d": "Khan-style mastery points, instant-feedback quizzes and a printable certificate on completion."
+        }
+      ]
+    },
+    "courses": {
+      "title": "Courses",
+      "subtitle": "Eight modules organised into four learning paths. Each maps to a topic in Canada's Essentials for Educators course.",
+      "all": "All grades",
+      "k5": "K–5",
+      "68": "6–8",
+      "912": "9–12",
+      "lessons": "lessons",
+      "min": "min",
+      "start": "Open module",
+      "progress": "complete",
+      "search": "Search lessons…"
+    },
+    "lesson": {
+      "listen": "Listen",
+      "stop": "Stop",
+      "loading": "Generating audio…",
+      "fallback": "Browser voice — add an ElevenLabs key for studio-quality audio",
+      "activity": "Classroom activity",
+      "quiz": "Practice",
+      "submit": "Check",
+      "correct": "Correct!",
+      "incorrect": "Not quite — review the lesson and try again.",
+      "score": "Score",
+      "complete": "Mark lesson complete",
+      "completed": "Completed",
+      "next": "Next lesson",
+      "back": "Back to module",
+      "curriculum": "Curriculum connections",
+      "prev": "Previous"
+    },
+    "teachers": {
+      "title": "Teacher Hub",
+      "subtitle": "Tools drawn from the acceptable-use rules Canadian districts already publish.",
+      "generator": "AI-Use Policy Generator",
+      "genHelp": "Choose the settings for an assignment and copy the resulting statement into your handout or LMS.",
+      "subject": "Subject",
+      "grade": "Grade",
+      "level": "AI permission level",
+      "tools": "Approved tools",
+      "disclosure": "Require disclosure statement",
+      "levels": {
+        "green": "Green — AI encouraged",
+        "yellow": "Yellow — AI for specific stages only",
+        "red": "Red — no AI"
+      },
+      "stages": "Allowed stages (yellow)",
+      "stageList": [
+        "Brainstorming",
+        "Outlining",
+        "Research summaries",
+        "Grammar & style feedback",
+        "Translation support"
+      ],
+      "generate": "Generate statement",
+      "copy": "Copy",
+      "copied": "Copied to clipboard",
+      "studentTitle": "Student AI-Use Disclosure Template",
+      "resources": "Official resources",
+      "cert": "Class certificate",
+      "certHelp": "Print a certificate for students who completed all modules.",
+      "tabs": {
+        "policy": "Policy generator",
+        "template": "Disclosure template",
+        "modules": "Module planner",
+        "resources": "Resources"
+      },
+      "planner": "Pick modules by grade band and estimated class time.",
+      "total": "Total class time"
+    },
+    "parents": {
+      "title": "For Parents & Guardians",
+      "subtitle": "What Canadian schools expect — and how to support learning at home.",
+      "faq": [
+        {
+          "q": "Is AI a mandatory school subject in Canada?",
+          "a": "No. There is no Canada-wide mandatory AI class; education is provincial. B.C. embeds AI literacy inside Applied Design, Skills & Technologies (ADST) and Career Education, and New Brunswick is weaving AI literacy across K–12 from September 2026."
+        },
+        {
+          "q": "Can my child use ChatGPT for homework?",
+          "a": "It depends on the assignment and the school's approved tools. Many AI tools require users to be 13+. Ask the teacher which level (green/yellow/red) applies and which tools are approved."
+        },
+        {
+          "q": "What happens if AI-generated work is submitted as their own?",
+          "a": "Schools treat it as plagiarism under academic-integrity policies. Encourage your child to disclose AI use honestly using the templates in this platform."
+        },
+        {
+          "q": "Is my child's data safe?",
+          "a": "Schools vet tools for privacy compliance; for example, the Vancouver School Board approved Microsoft Copilot with Enterprise Data Protection. Remind children never to enter personal details into any AI chat."
+        },
+        {
+          "q": "How can I help at home?",
+          "a": "Use the 'attempt → compare → revise' pattern together, listen to lessons in your home language, and talk about what AI got wrong."
+        }
+      ],
+      "recommended": "Recommended for younger learners"
+    },
+    "policy": {
+      "title": "Provincial Policy Explorer",
+      "subtitle": "Where AI literacy lives in each province's curriculum and guidance (summarised from public sources; verify with your district).",
+      "status": "Status",
+      "where": "Where it lives",
+      "notes": "Notes",
+      "links": "Official links",
+      "statuses": {
+        "embedded": "Embedded in curriculum",
+        "guidance": "Guidance",
+        "school-led": "School-led",
+        "programs": "Funding programs"
+      }
+    },
+    "about": {
+      "title": "About SI Academy",
+      "body": "SI Academy (Super Intelligence Academy) is an open-source learning platform built to support Canada's National AI Literacy Initiative (launched 9 September 2026 with Amii) and provincial curricula. It is not affiliated with the Government of Canada or Amii. Content is summarised from public briefings and should be verified against your district's policies.",
+      "sources": "Sources & further reading"
+    },
+    "footer": "Open source · MIT License · Built for Canadian classrooms",
+    "certificate": {
+      "title": "Certificate of Completion",
+      "body": "has completed all modules of the SI Academy AI Literacy program",
+      "name": "Your name",
+      "print": "Print certificate",
+      "date": "Date"
+    }
+  }
+}

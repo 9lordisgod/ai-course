@@ -1,0 +1,392 @@
+{
+  "modules": [
+    {
+      "id": "what-is-ai",
+      "icon": "cpu",
+      "path": "foundations",
+      "level": "beginner",
+      "grades": [
+        "k5",
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "ADST K–9",
+        "Math & Science"
+      ],
+      "title": "What Is AI and Machine Learning?",
+      "summary": "How computers learn patterns from data, and how that is different from following rules.",
+      "lessons": [
+        {
+          "id": "rules-vs-learning",
+          "title": "Rules vs. Learning",
+          "minutes": 12,
+          "body": "Traditional programs follow exact instructions written by people: if this, then that. Artificial intelligence works differently. A machine-learning model is shown many examples — thousands of photos of cats and dogs, for instance — and it gradually adjusts itself until it can tell them apart on its own.\n\nThis matters for you as a student because AI systems are only as good as the examples they learned from. If a model has never seen a husky in the snow, it might call it a wolf. When you use AI tools at school, remember: they are pattern-matchers, not thinkers. They can be very useful, but they can also be confidently wrong.\n\nCanada's National AI Literacy Initiative, launched in September 2026 with the Alberta Machine Intelligence Institute (Amii), begins with exactly this idea — understanding how AI and machine learning actually work.",
+          "activity": "Sort 10 everyday tasks into 'rules' (a calculator, a traffic light) or 'learning' (spam filter, voice assistant). Explain one choice to a partner.",
+          "quiz": [
+            {
+              "q": "A machine-learning model gets better mainly by…",
+              "options": [
+                "Reading a rulebook",
+                "Seeing many examples",
+                "Being faster",
+                "Having a bigger screen"
+              ],
+              "answer": 1
+            },
+            {
+              "q": "Why might an AI misidentify a husky as a wolf?",
+              "options": [
+                "It is being lazy",
+                "It lacked similar training examples",
+                "Wolves and huskies are identical",
+                "The Wi-Fi was slow"
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "id": "training-data",
+          "title": "Where Does Training Data Come From?",
+          "minutes": 10,
+          "body": "Every AI system starts with data: text from websites, photos people uploaded, recordings of speech. Companies collect enormous amounts of it. Some data is public, some is licensed, and some is gathered in ways that raise fair questions about consent and copyright.\n\nAsk three questions about any AI tool: Whose data trained it? Who is represented — and who is missing? Who benefits? These questions connect directly to Canadian conversations about privacy and Indigenous data sovereignty, which you will explore in later modules.",
+          "activity": "Pick an AI app you use. Find its privacy policy and identify one sentence about how your data is used.",
+          "quiz": [
+            {
+              "q": "Which is NOT one of the three data questions?",
+              "options": [
+                "Whose data trained it?",
+                "Who is missing?",
+                "Who benefits?",
+                "How many pixels does it have?"
+              ],
+              "answer": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generative-ai",
+      "icon": "sparkles",
+      "path": "foundations",
+      "level": "intermediate",
+      "grades": [
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "ADST 6–12",
+        "English Language Arts"
+      ],
+      "title": "Generative AI & Cognitive Offloading",
+      "summary": "What chatbots and image generators really do, and how to use them without letting your brain go on autopilot.",
+      "lessons": [
+        {
+          "id": "how-llms-work",
+          "title": "How Chatbots Predict Words",
+          "minutes": 15,
+          "body": "A large language model does not look up answers in a database. It predicts the most likely next word, again and again, based on patterns in the text it was trained on. That is why it can write a fluent paragraph about almost anything — and why it can invent a fake book title or a wrong date that sounds completely real. Researchers call these 'hallucinations'.\n\nThe practical rule: treat AI output like a first draft from a very confident stranger. Verify names, numbers, quotes, and sources before you rely on them. Educators across Canada — from B.C. to New Brunswick — now teach students to check AI results for bias, mistakes, and copyright issues.",
+          "activity": "Ask an approved chatbot for three facts about your town. Verify each with a trusted source. Mark them true, false, or partly true.",
+          "quiz": [
+            {
+              "q": "An AI 'hallucination' is…",
+              "options": [
+                "A scary picture",
+                "Confident but false output",
+                "A slow response",
+                "A software update"
+              ],
+              "answer": 1
+            }
+          ]
+        },
+        {
+          "id": "cognitive-offloading",
+          "title": "Keep Your Brain in the Loop",
+          "minutes": 12,
+          "body": "Cognitive offloading means handing a mental task to a tool — like using a calculator or a GPS. It is not always bad. But if you offload the thinking you are supposed to be practising, you never build the skill. Research on learning shows that struggling with a problem first, then getting feedback, leads to deeper understanding than reading a finished answer.\n\nA healthy pattern: attempt first, use AI to compare or critique, then revise in your own words. Many Canadian schools describe this as 'AI as a study partner, not a ghost-writer'. Your teacher decides which stages of an assignment allow AI help; the AI-use disclosure tools in this platform help you make that visible.",
+          "activity": "Write a paragraph on a topic first. Then ask AI for feedback only. Highlight what you changed and why.",
+          "quiz": [
+            {
+              "q": "The recommended order for using AI on homework is…",
+              "options": [
+                "Copy → submit",
+                "Attempt → compare → revise",
+                "Ask AI → forget it",
+                "Never think"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bias-misinformation",
+      "icon": "scan",
+      "path": "critical",
+      "level": "intermediate",
+      "grades": [
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "Social Studies",
+        "ADST 6–12"
+      ],
+      "title": "Bias, Deepfakes & Misinformation",
+      "summary": "Spot unfair patterns in AI, recognise synthetic media, and build habits of verification.",
+      "lessons": [
+        {
+          "id": "algorithmic-bias",
+          "title": "Where Bias Comes From",
+          "minutes": 14,
+          "body": "AI learns from the world as it was recorded, and the record is uneven. If historical hiring data favoured one group, a hiring model may too. If image datasets contain few pictures of northern or Indigenous communities, the model will describe them poorly. Bias is not a bug you can simply delete; it is a mirror of the data and the choices designers made.\n\nAs a critical user, look for: who is shown, who is stereotyped, whose language is handled well. Report unfair results to your teacher — most Canadian districts now ask students to flag bias as part of responsible use.",
+          "activity": "Ask an image generator for 'a scientist' five times. Tally who appears. Discuss what the pattern tells you about the training data.",
+          "quiz": [
+            {
+              "q": "AI bias mainly comes from…",
+              "options": [
+                "Uneven training data and design choices",
+                "Bad luck",
+                "Slow computers",
+                "Too many users"
+              ],
+              "answer": 0
+            }
+          ]
+        },
+        {
+          "id": "deepfakes",
+          "title": "Deepfakes and Digital Forensics",
+          "minutes": 12,
+          "body": "Generative AI can clone a voice from a few seconds of audio and swap faces in video. Some uses are creative and legal; others are harassment or fraud. Sharing intimate deepfakes of classmates is a crime in Canada.\n\nDetection habits: check the source account, look for mismatched lighting or lip-sync, reverse-image-search, and pause before sharing anything designed to make you angry. When in doubt, ask a trusted adult — and never create synthetic media of a real person without their consent.",
+          "activity": "Compare a real and an AI-generated news clip (teacher-provided). List three clues that helped you decide.",
+          "quiz": [
+            {
+              "q": "Before sharing a shocking video you should…",
+              "options": [
+                "Share fast before others do",
+                "Check the source and pause",
+                "Add a dramatic caption",
+                "Nothing"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "privacy-data",
+      "icon": "lock",
+      "path": "critical",
+      "level": "beginner",
+      "grades": [
+        "k5",
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "ADST K–12",
+        "Career Education"
+      ],
+      "title": "Privacy & Your Data",
+      "summary": "Why schools approve specific tools, what 'enterprise data protection' means, and how to protect yourself online.",
+      "lessons": [
+        {
+          "id": "approved-tools",
+          "title": "Why Only Approved Tools?",
+          "minutes": 10,
+          "body": "Most AI apps set a minimum age of 13 and collect personal information. Schools in Canada must follow provincial privacy laws for students, so they vet tools first. For example, the Vancouver School Board approved Microsoft Copilot with Enterprise Data Protection, meaning student prompts are not used to train the public model and stay inside the district's account.\n\nUsing an unapproved AI tool for schoolwork can expose your data — and may break your school's acceptable-use policy. Ask your teacher which tools are cleared, and never type personal details (full name, address, health info) into any AI chat.",
+          "activity": "List the AI tools approved by your school. For each, write one thing it may do with your data.",
+          "quiz": [
+            {
+              "q": "'Enterprise Data Protection' means…",
+              "options": [
+                "Prompts train the public model",
+                "Prompts stay within the organisation's account",
+                "Anyone can read your chats",
+                "It is free"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "academic-integrity",
+      "icon": "pen",
+      "path": "ethics",
+      "level": "intermediate",
+      "grades": [
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "All subjects",
+        "Career Education"
+      ],
+      "title": "Academic Integrity in the AI Era",
+      "summary": "Where the line is between help and cheating, how to disclose AI use, and how to cite it.",
+      "lessons": [
+        {
+          "id": "disclosure",
+          "title": "Disclose, Don't Disguise",
+          "minutes": 12,
+          "body": "Submitting AI-generated work as your own is treated as plagiarism in Canadian schools. But using AI to brainstorm, check grammar, or explain a concept is often allowed — if your teacher permits it and you say so. Many schools now use a traffic-light system: green (AI encouraged), yellow (AI for specific stages, must be disclosed), red (no AI).\n\nA good disclosure statement names the tool, what you used it for, and what you changed. Example: 'I used Copilot to suggest an outline; all writing and sources are my own.' Use the AI-Use Statement Generator in the Teacher Hub to practise.",
+          "activity": "Draft an AI-use statement for your last assignment, real or hypothetical, using the generator.",
+          "quiz": [
+            {
+              "q": "A 'yellow' assignment means…",
+              "options": [
+                "No AI at all",
+                "AI allowed for specific stages, with disclosure",
+                "Copy anything",
+                "Only teachers use AI"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "indigenous-data",
+      "icon": "feather",
+      "path": "ethics",
+      "level": "advanced",
+      "grades": [
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "Social Studies",
+        "First Peoples Principles of Learning"
+      ],
+      "title": "Indigenous Data Sovereignty",
+      "summary": "The OCAP® principles and why communities should govern data about themselves — including in AI.",
+      "lessons": [
+        {
+          "id": "ocap",
+          "title": "Ownership, Control, Access, Possession",
+          "minutes": 14,
+          "body": "Indigenous data sovereignty is the right of First Nations, Inuit and Métis peoples to govern the collection, ownership and use of data about their communities, lands, languages and knowledge. The First Nations principles of OCAP® — Ownership, Control, Access and Possession — are one widely used framework in Canada.\n\nWhy does this matter for AI? Models are trained on scraped data that may include Indigenous languages, stories and images taken without consent. Canada's national educator course includes this topic because responsible AI in classrooms must respect these rights. As a learner, ask: was this knowledge shared with permission, and who decides how it is used?",
+          "activity": "Research one Indigenous-led language or data project in Canada. Present how it applies OCAP® principles.",
+          "quiz": [
+            {
+              "q": "OCAP® stands for…",
+              "options": [
+                "Open Code And Programs",
+                "Ownership, Control, Access, Possession",
+                "Online Content Approval Policy",
+                "Official Canadian AI Plan"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "responsible-use",
+      "icon": "compass",
+      "path": "ethics",
+      "level": "beginner",
+      "grades": [
+        "k5",
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "ADST",
+        "Physical & Health Education"
+      ],
+      "title": "Responsible Use in the Classroom",
+      "summary": "Acceptable-use policies, digital wellbeing, and a checklist you can apply to any AI task.",
+      "lessons": [
+        {
+          "id": "checklist",
+          "title": "The 5-Question Checklist",
+          "minutes": 10,
+          "body": "Before using AI for any school task, run the checklist: 1) Am I allowed? (Check the assignment's colour.) 2) Is this tool approved by my school? 3) Am I sharing private data? 4) Will I verify the output? 5) Will I disclose how I used it?\n\nIf any answer is 'no' or 'not sure', stop and ask. These five questions summarise the acceptable-use rules found in Canadian school districts from B.C. to Manitoba to New Brunswick.",
+          "activity": "Create a poster of the 5-Question Checklist for your classroom.",
+          "quiz": [
+            {
+              "q": "If you're not sure whether AI is allowed, you should…",
+              "options": [
+                "Use it anyway",
+                "Stop and ask your teacher",
+                "Use a different tool",
+                "Hide it"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "future-ready",
+      "icon": "rocket",
+      "path": "futures",
+      "level": "advanced",
+      "grades": [
+        "68",
+        "912"
+      ],
+      "curriculum": [
+        "Career Education 8–12",
+        "ADST 10–12"
+      ],
+      "title": "Future-Ready: Careers & Creativity with AI",
+      "summary": "How AI is changing jobs in Canada, and the durable human skills that matter more than ever.",
+      "lessons": [
+        {
+          "id": "careers",
+          "title": "Working Alongside AI",
+          "minutes": 15,
+          "body": "AI is reshaping work in Canada — from agriculture in Saskatchewan to film in Vancouver to health research in Toronto. Most jobs will not disappear, but they will change: people who can direct, evaluate and improve AI output will be in demand. Programs like CanCode ($30 million, 2026–2028, reaching 1.1 million students and 76,000 teachers) exist to make sure every young Canadian gets this chance.\n\nThe skills that hold their value are human ones: asking good questions, judging evidence, collaborating across cultures and languages, and creating things that matter to your community. Being bilingual — in English, French, Chinese or any language — is itself a superpower in a world of global AI tools.",
+          "activity": "Interview a family member about how technology changed their job. Predict one way AI might change a career you're interested in.",
+          "quiz": [
+            {
+              "q": "Which skill becomes MORE valuable as AI spreads?",
+              "options": [
+                "Memorising facts",
+                "Judging evidence and asking good questions",
+                "Typing speed",
+                "Avoiding technology"
+              ],
+              "answer": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "description": "How AI actually works — from training data to chatbots."
+    },
+    {
+      "id": "critical",
+      "title": "Critical Thinking",
+      "description": "Spot bias, verify claims and protect your data."
+    },
+    {
+      "id": "ethics",
+      "title": "Ethics & Responsibility",
+      "description": "Integrity, data sovereignty and classroom norms."
+    },
+    {
+      "id": "futures",
+      "title": "Futures & Careers",
+      "description": "Durable human skills for a world of AI tools."
+    }
+  ]
+}

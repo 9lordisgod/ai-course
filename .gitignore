@@ -1,0 +1,7 @@
+node_modules/
+.env
+.cache/
+.vercel/
+.DS_Store
+pitch/*.pptx
+!pitch/SI-Academy-Pitch-Deck.pptx

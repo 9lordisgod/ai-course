@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm test
+      - run: npm run deck
+      - name: Assemble static site
+        env:
+          TTS_API_BASE: ${{ vars.TTS_API_BASE }}
+        run: |
+          rm -rf _site && mkdir -p _site/pitch _site/docs
+          cp -R public/. _site/
+          cp pitch/index.html pitch/*.pptx pitch/pitch-deck.md _site/pitch/
+          cp docs/*.pdf docs/*.md _site/docs/
+          touch _site/.nojekyll
+          # Optional: point the static site at a hosted ElevenLabs proxy (repo variable TTS_API_BASE)
+          if [ -n "$TTS_API_BASE" ]; then
+            sed -i "s#apiBase: \"\"#apiBase: \"$TTS_API_BASE\"#" _site/index.html
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: _site }
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

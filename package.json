@@ -1,0 +1,26 @@
+{
+  "name": "si-academy",
+  "version": "1.0.0",
+  "description": "SI Academy (Super Intelligence Academy) — open-source K-12 AI literacy platform aligned with Canada's National AI Literacy Initiative, with ElevenLabs voice-over, mastery points and a Teacher Hub",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "deck": "node pitch/build-deck.mjs"
+  },
+  "keywords": [],
+  "author": "9lordisgod",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

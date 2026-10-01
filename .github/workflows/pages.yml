@@ -29,7 +29,7 @@ jobs:
         run: |
           rm -rf _site && mkdir -p _site/pitch _site/docs
           cp -R public/. _site/
-          cp pitch/index.html pitch/*.pptx pitch/pitch-deck.md _site/pitch/
+          cp pitch/index.html pitch/pitch-deck.md _site/pitch/
           cp docs/*.pdf docs/*.md _site/docs/
           touch _site/.nojekyll
           # Stamp the deploy with the commit SHA: cache-busted asset URLs, the build id shown in the

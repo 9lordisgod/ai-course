@@ -1,5 +1,4 @@
-// Source of truth for the HTML + Markdown pitch deck (pitch/index.html, pitch/pitch-deck.md).
-// Mirrors the 16 slides of the committed pitch/SI-Academy-Pitch-Deck.pptx, slide for slide.
+// Source of truth for the 16-slide pitch deck, rendered to pitch/index.html and pitch/pitch-deck.md by build-deck.mjs.
 //
 // Bullet grammar understood by build-deck.mjs:
 //   "LABEL — text"  → label rendered as a card heading (slides where every bullet has a label become a card grid)

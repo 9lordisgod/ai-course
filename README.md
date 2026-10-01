@@ -6,10 +6,6 @@
 [![GitHub Pages](https://github.com/9lordisgod/ai-course/actions/workflows/pages.yml/badge.svg)](https://github.com/9lordisgod/ai-course/actions/workflows/pages.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0f1115.svg)](LICENSE)
 
-**Live site:** <https://9lordisgod.github.io/ai-course/> · **Pitch deck:** <https://9lordisgod.github.io/ai-course/pitch/>
-
-> Built from the briefing *Canada_AI_Education_K12_EN_ZH.pdf* (see [`docs/`](docs/)); the platform itself is English-only. Not affiliated with the Government of Canada or Amii.
-
 ## Features
 
 | Feature | Details |

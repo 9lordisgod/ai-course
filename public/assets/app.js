@@ -4,8 +4,11 @@
 
 const CFG = window.SI_CONFIG || {};
 const API_BASE = String(CFG.apiBase || "").replace(/\/+$/, "");
+const BUILD = String(CFG.build || "dev");
+const IS_RELEASE = /^[0-9a-f]{7,40}$/.test(BUILD);
 const REPO = "https://github.com/9lordisgod/ai-course";
 const api = (p) => (API_BASE ? API_BASE + p : p.replace(/^\//, ""));
+const versioned = (u) => `${u}?v=${encodeURIComponent(BUILD)}`;
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
@@ -119,13 +122,14 @@ const areaOf = (c) => c.replace(/\s*(K[–-]\d+|\d+[–-]\d+)$/u, "").trim();
 const wave = (n = 14) => `<div class="wave" aria-hidden="true">${Array.from({ length: n }, (_, i) => `<i style="--i:${i}"></i>`).join("")}</div>`;
 const key = (mid, lid) => `${mid}/${lid}`;
 
-function toast(msg, ic = "check") {
+function toast(msg, ic = "check", { action, sticky = false } = {}) {
   const el = $("#toast");
-  el.innerHTML = `${icon(ic)}<span>${esc(msg)}</span>`;
+  el.innerHTML = `${icon(ic)}<span>${esc(msg)}</span>${action ? `<button type="button" class="toast-btn">${esc(action.label)}</button>` : ""}`;
+  if (action) $(".toast-btn", el).onclick = action.onClick;
   el.hidden = false;
   requestAnimationFrame(() => el.classList.add("show"));
   clearTimeout(toast.timer);
-  toast.timer = setTimeout(() => { el.classList.remove("show"); }, 2200);
+  if (!sticky) toast.timer = setTimeout(() => { el.classList.remove("show"); }, 2200);
 }
 
 // ---------- Mastery ----------
@@ -305,7 +309,9 @@ function renderChrome() {
           <li><a href="docs/Canada_AI_Education_K12_EN_ZH.pdf" target="_blank" rel="noopener">${icon("file")}${esc(fl.briefing)}</a></li>
         </ul></div>
       </div>
-      <div class="wrap footer-bottom"><span>${esc(t("footer"))}</span><span>© ${new Date().getFullYear()} ${esc(t("brand"))} · ${esc(fl.openSource)}</span></div>
+      <div class="wrap footer-bottom"><span>${esc(t("footer"))}</span><span>© ${new Date().getFullYear()} ${esc(t("brand"))} · ${esc(fl.openSource)} · ${IS_RELEASE
+        ? `<a class="build" href="${REPO}/commit/${BUILD}" target="_blank" rel="noopener" title="${esc(fl.buildTitle)}">${esc(fl.build)} ${BUILD}</a>`
+        : `<span class="build">${esc(fl.build)} ${esc(BUILD)}</span>`}</span></div>
     </div>`;
 
   $("#themeBtn").onclick = () => setTheme(state.theme === "dark" ? "light" : "dark");
@@ -1038,9 +1044,33 @@ function wire(path, parts) {
   }
 }
 
+// ---------- Update check ----------
+// GitHub Pages caches for 10 minutes and the hash router never reloads the page, so a tab can
+// outlive several deploys. version.json is stamped per deploy; offer a reload when it changes.
+function watchForUpdates() {
+  if (!IS_RELEASE) return;
+  let prompted = false;
+  const reloadFresh = () => fetch(location.href.replace(/#.*$/, ""), { cache: "reload" }).catch(() => {}).finally(() => location.reload());
+  const check = async (force) => {
+    if (prompted || (force !== true && document.visibilityState === "hidden")) return;
+    try {
+      const r = await fetch(`version.json?t=${Date.now()}`, { cache: "no-store" });
+      if (!r.ok) return;
+      const { build } = await r.json();
+      if (!build || build === BUILD) return;
+      prompted = true;
+      toast(t("ui.update.ready"), "refresh", { sticky: true, action: { label: t("ui.update.reload"), onClick: reloadFresh } });
+    } catch {}
+  };
+  setTimeout(() => check(true), 4000);
+  setInterval(check, 15 * 60 * 1000);
+  document.addEventListener("visibilitychange", check);
+  window.addEventListener("focus", check);
+}
+
 // ---------- Boot ----------
 async function boot() {
-  const [i18n, courses, policy, tracks, library] = await Promise.all(["data/i18n.json", "data/courses.json", "data/policy.json", "data/tracks.json", "data/library.json"].map((u) => fetch(u).then((r) => { if (!r.ok) throw new Error(u); return r.json(); })));
+  const [i18n, courses, policy, tracks, library] = await Promise.all(["data/i18n.json", "data/courses.json", "data/policy.json", "data/tracks.json", "data/library.json"].map((u) => fetch(versioned(u)).then((r) => { if (!r.ok) throw new Error(u); return r.json(); })));
   Object.assign(state, { i18n, courses, policy, library, tracks: tracks.tracks, trackModules: tracks.modules });
   document.documentElement.dataset.theme = state.theme;
   document.documentElement.lang = "en-CA";
@@ -1049,6 +1079,7 @@ async function boot() {
   route();
   window.addEventListener("hashchange", route);
   if ("speechSynthesis" in window) speechSynthesis.getVoices();
+  watchForUpdates();
 }
 boot().catch((err) => {
   console.error(err);

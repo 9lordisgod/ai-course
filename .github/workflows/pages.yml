@@ -32,6 +32,12 @@ jobs:
           cp pitch/index.html pitch/*.pptx pitch/pitch-deck.md _site/pitch/
           cp docs/*.pdf docs/*.md _site/docs/
           touch _site/.nojekyll
+          # Stamp the deploy with the commit SHA: cache-busted asset URLs, the build id shown in the
+          # footer, and version.json so an already-open tab can detect this deploy and offer a reload.
+          SHA7="${GITHUB_SHA::7}"
+          sed -i "s/?v=dev/?v=$SHA7/g; s/build: \"dev\"/build: \"$SHA7\"/" _site/index.html
+          grep -q "assets/app.js?v=$SHA7" _site/index.html && grep -q "build: \"$SHA7\"" _site/index.html
+          printf '{"build":"%s","deployed":"%s"}\n' "$SHA7" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > _site/version.json
           # Optional: point the static site at a hosted ElevenLabs proxy (repo variable TTS_API_BASE)
           if [ -n "$TTS_API_BASE" ]; then
             sed -i "s#apiBase: \"\"#apiBase: \"$TTS_API_BASE\"#" _site/index.html

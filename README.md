@@ -51,6 +51,8 @@ Without an ElevenLabs key the site still works — the **Listen** button falls b
 
 **GitHub Pages (static, included):** every push to `main` runs [`pages.yml`](.github/workflows/pages.yml), which tests, builds the deck and publishes `public/` + `pitch/` + `docs/` to <https://9lordisgod.github.io/ai-course/>. Pages has no server, so narration uses the browser voice — unless you set a repository variable `TTS_API_BASE` pointing at a hosted copy of the API (below); the workflow injects it into `window.SI_CONFIG.apiBase`.
 
+Each deploy is stamped with its commit SHA: asset and data URLs get `?v=<sha>` (so browser caches can't serve a stale build), the footer shows the build id, and `version.json` lets an already-open tab notice a newer deploy and offer a one-click reload.
+
 **Node host with ElevenLabs (Render, Railway, Fly, VPS):** `npm ci && npm start`, set `PORT`, `ELEVENLABS_API_KEY` and optionally `ALLOWED_ORIGIN=https://9lordisgod.github.io` to let the Pages front-end call `/api/tts`.
 
 **Serverless:** `api/*.js` are ready-made serverless functions (Vercel-compatible) that wrap `server/tts.js`; `public/` is served statically via `vercel.json`.

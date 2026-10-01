@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/styles.css?v=dev" />
     <script>
       // Apply the saved theme before first paint to avoid a flash.
       (function () {
@@ -24,7 +24,9 @@
         } catch (e) {}
       })();
       // Optional: point a static deployment (e.g. GitHub Pages) at a hosted TTS API.
-      window.SI_CONFIG = { apiBase: "" };
+      // `build` and the `?v=` stamps on asset URLs are replaced with the commit SHA by pages.yml
+      // so every deploy busts browser caches and an open tab can detect a newer build.
+      window.SI_CONFIG = { apiBase: "", build: "dev" };
     </script>
   </head>
   <body>
@@ -33,6 +35,6 @@
     <main id="app" tabindex="-1"><div class="loading">Loading SI Academy…</div></main>
     <footer id="footer"></footer>
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-    <script src="assets/app.js" defer></script>
+    <script src="assets/app.js?v=dev" defer></script>
   </body>
 </html>

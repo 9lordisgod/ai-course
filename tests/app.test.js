@@ -107,6 +107,15 @@ test("open resource library is well-formed and cross-references tracks", () => {
   assert.ok(!CJK.test(JSON.stringify(library)), "library is English only");
 });
 
+test("index.html carries the deploy-stamp contract that pages.yml rewrites", async () => {
+  const html = await readFile(new URL("../public/index.html", import.meta.url), "utf8");
+  const workflow = await readFile(new URL("../.github/workflows/pages.yml", import.meta.url), "utf8");
+  assert.match(html, /href="assets\/styles\.css\?v=dev"/);
+  assert.match(html, /src="assets\/app\.js\?v=dev"/);
+  assert.match(html, /window\.SI_CONFIG = \{ apiBase: "", build: "dev" \}/);
+  for (const needle of ["?v=dev", 'build: \\"dev\\"', "_site/version.json"]) assert.ok(workflow.includes(needle), needle);
+});
+
 test("server serves pages, data and reports TTS status", async () => {
   const server = createApp().listen(0);
   const base = `http://127.0.0.1:${server.address().port}`;
